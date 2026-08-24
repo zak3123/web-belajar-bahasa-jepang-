@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HiraKataKan - Belajar Bahasa Jepang</title>
+  <meta name="description" content="Platform belajar bahasa Jepang interaktif dari Hiragana, Katakana, Kanji, kosakata, grammar, flashcard, dan latihan JLPT.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="sakura-layer" aria-hidden="true"></div>
+  <div class="sakura-vignette" aria-hidden="true"></div>
+  <div class="site-shell">
+    <header class="topbar">
+      <button class="brand nav-action" data-view="home" aria-label="Beranda">
+        <span class="brand-mark">平</span>
+        <span class="brand-text">
+          <strong>HiraKataKan</strong>
+          <small>日本語</small>
+        </span>
+      </button>
+
+      <button class="mobile-menu" aria-label="Buka menu">☰</button>
+
+      <nav class="nav" aria-label="Menu utama">
+        <button class="nav-action is-active" data-view="home">Beranda</button>
+        <button class="nav-action" data-view="kana">Aksara Jepang</button>
+        <button class="nav-action" data-view="lessons">Materi Belajar</button>
+        <button class="nav-action" data-view="quiz">Latihan Soal</button>
+        <button class="nav-action" data-view="leaderboard">Peringkat</button>
+        <button class="nav-action" data-view="premium">Premium</button>
+      </nav>
+
+      <div class="topbar-actions">
+        <button class="search-chip" data-open-search>Cari kanji, kosakata, materi... <span>Ctrl K</span></button>
+        <button class="ghost-link" data-open-auth="login">Masuk</button>
+        <button class="solid-link" data-open-auth="register">Daftar</button>
+        <button class="user-pill is-hidden" data-view="dashboard" aria-label="Buka dashboard akun"></button>
+      </div>
+    </header>
+
+    <main>
+      <section class="view is-active" data-page="home">
+        <div class="hero">
+          <div class="hero-copy">
+            <span class="eyebrow">Platform Belajar Bahasa Jepang Interaktif</span>
+            <h1>Kuasai Hiragana, Katakana &amp; Kanji Lebih Cepat.</h1>
+            <p>
+              Metode terstruktur dari nol hingga siap JLPT N5-N1 dengan kartu pintar
+              Spaced Repetition, latihan soal real-time, dan materi tata bahasa kontekstual.
+            </p>
+            <div class="hero-actions">
+              <button class="cta-primary" data-start-learning>Mulai Belajar Gratis</button>
+              <button class="cta-secondary nav-action" data-view="kana">あ Lihat Tabel Hiragana</button>
+            </div>
+            <div class="stats">
+              <article>
+                <strong>2211</strong>
+                <span>Aksara &amp; Kanji</span>
+              </article>
+              <article>
+                <strong>615+</strong>
+                <span>Kosakata Valid</span>
+              </article>
+              <article>
+                <strong>N5-N1</strong>
+                <span>Standar JLPT</span>
+              </article>
+            </div>
+          </div>
+
+          <div class="hero-panels">
+            <article class="panel panel-card">
+              <span class="panel-label">Pratinjau Materi Interaktif</span>
+              <div class="kana-card">
+                <div class="kana-mark">あ</div>
+                <div>
+                  <h2>Hiragana "A"</h2>
+                  <p>3 Goresan - Vokal Dasar</p>
+                </div>
+              </div>
+              <div class="kanji-card">
+                <div class="kanji-mark">日</div>
+                <div>
+                  <h3>Kanji "Matahari / Hari"</h3>
+                  <p>On: NICHI - Kun: hi, ka</p>
+                  <span>日曜日 (nichiyoubi = Minggu)</span>
+                </div>
+              </div>
+              <div class="chip-row">
+                <span>朝 (asa = pagi)</span>
+                <span>N5 Basic</span>
+                <span>103 Kanji N5</span>
+              </div>
+            </article>
+
+            <article class="panel panel-quiz">
+              <span class="quiz-xp">+10 XP</span>
+              <h2>Contoh Kuis Harian</h2>
+              <p>Apa arti dari kosakata 「ご飯」 (gohan)?</p>
+              <button class="quiz-option" data-answer="wrong">A. Air Putih</button>
+              <button class="quiz-option active" data-answer="correct">B. Nasi / Makanan</button>
+            </article>
+          </div>
+        </div>
+
+        <div class="curriculum">
+          <div class="section-heading">
+            <span class="eyebrow">Kurikulum Terstruktur</span>
+            <h2>Alur Belajar 4 Langkah Pasti Bisa</h2>
+            <p>Dirancang untuk pembelajar pemula hingga mahir tanpa bingung menentukan urutan belajar.</p>
+          </div>
+          <div class="step-grid">
+            <article>
+              <span class="step-number">01</span>
+              <h3>Kuasai Aksara Dasar</h3>
+              <p>Hafalkan 46 Hiragana dan Katakana lengkap dengan dakuten dan kombinasi.</p>
+              <button class="text-link nav-action" data-view="kana">Buka Tabel Huruf</button>
+            </article>
+            <article>
+              <span class="step-number">02</span>
+              <h3>Kamus 500+ Kosakata</h3>
+              <p>Bangun tabungan kata dari salam, dapur, rumah, kerja, cuaca, sampai arah jalan.</p>
+              <button class="text-link nav-action" data-view="lessons">Eksplor Kosakata</button>
+            </article>
+            <article>
+              <span class="step-number">03</span>
+              <h3>Tata Bahasa &amp; Partikel</h3>
+              <p>Pahami partikel WA, GA, WO, NI, DE dan konjugasi kata kerja bentuk sopan.</p>
+              <button class="text-link nav-action" data-view="lessons">Baca Modul</button>
+            </article>
+            <article>
+              <span class="step-number">04</span>
+              <h3>Reading &amp; Listening</h3>
+              <p>Asah pemahaman bacaan dan percakapan untuk persiapan ujian JLPT.</p>
+              <button class="text-link nav-action" data-view="quiz">Mulai Latihan</button>
+            </article>
+          </div>
+        </div>
+
+        <div class="srs-band">
+          <div class="srs-copy">
+            <span class="eyebrow">Algoritma SM-2</span>
+            <h2>Kartu Pintar Spaced Repetition (SRS)</h2>
+            <p>
+              Sistem menghitung interval pengulangan berdasarkan daya ingat. Kartu sulit muncul
+              lebih sering, kartu yang sudah dikuasai diulang pada waktu optimal.
+            </p>
+            <ul>
+              <li>Evaluasi otomatis: Lagi (0), Sulit (3), Bagus (4), Mudah (5)</li>
+              <li>Mendukung dek Huruf, Kanji N5-N1, dan Kosakata Tematik</li>
+            </ul>
+            <button class="cta-primary nav-action" data-view="flashcard">Coba Flashcard Sekarang</button>
+          </div>
+          <div class="flashcard-stack" aria-label="Pratinjau flashcard">
+            <div class="flashcard back"></div>
+            <div class="flashcard middle"></div>
+            <button class="flashcard front" data-view="flashcard">
+              <span>Pratinjau Kartu Depan</span>
+              <strong>食べる</strong>
+              <p>Klik untuk membalik dan lihat arti, bacaan, serta contoh kalimat.</p>
+              <div class="grade-row">
+                <span>Lagi</span>
+                <span>Sulit</span>
+                <span>Bagus</span>
+                <span>Mudah</span>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <div class="vocabulary-band">
+          <div class="section-heading align-row">
+            <div>
+              <span class="eyebrow">Kamus Tematik</span>
+              <h2>Eksplor Kategori Kosakata Sehari-hari</h2>
+            </div>
+            <button class="text-link nav-action" data-view="lessons">Lihat Semua</button>
+          </div>
+          <div class="category-grid" data-category-list></div>
+        </div>
+
+        <div class="faq">
+          <div class="section-heading narrow">
+            <span class="eyebrow">Tanya Jawab</span>
+            <h2>Pertanyaan yang Sering Diajukan (FAQ)</h2>
+            <p>Semua yang perlu diketahui untuk memulai belajar di HiraKataKan.</p>
+          </div>
+          <div class="faq-list">
+            <details open>
+              <summary>Apakah cocok untuk pemula yang belum tahu huruf sama sekali?</summary>
+              <p>Sangat cocok. Alurnya dimulai dari pengenalan 46 huruf Hiragana dasar, membaca, menulis, dan latihan pengingat.</p>
+            </details>
+            <details>
+              <summary>Apakah materi mengacu pada standar JLPT?</summary>
+              <p>Ya. Materi disusun bertahap dari N5 sampai N1, termasuk kanji, grammar, reading, listening, dan kosakata.</p>
+            </details>
+            <details>
+              <summary>Apakah akun gratis bisa menyimpan progres?</summary>
+              <p>Bisa untuk versi lokal ini. Progres, XP, dan akun tersimpan di browser yang sama memakai localStorage.</p>
+            </details>
+          </div>
+        </div>
+
+        <div class="final-cta">
+          <span class="eyebrow">Mari Mulai Bersama Kami</span>
+          <h2>Siap Berbicara Bahasa Jepang dengan Percaya Diri?</h2>
+          <p>Bergabunglah sekarang dan bangun rutinitas belajar dari huruf dasar sampai simulasi JLPT.</p>
+          <button class="cta-primary" data-open-auth="register">Daftar Akun Gratis Sekarang</button>
+        </div>
+      </section>
+
+      <section class="view app-view" data-page="dashboard">
+        <div class="app-header">
+          <div>
+            <span class="eyebrow">Dashboard</span>
+            <h1>Ringkasan Belajar</h1>
+            <p data-dashboard-greeting>Masuk untuk melihat progres belajar Anda.</p>
+          </div>
+          <button class="cta-secondary" data-logout>Keluar</button>
+        </div>
+        <div class="dashboard-grid">
+          <article class="metric-card"><span>XP Hari Ini</span><strong data-xp>0</strong></article>
+          <article class="metric-card"><span>Streak</span><strong data-streak>0 hari</strong></article>
+          <article class="metric-card"><span>Kartu Diulang</span><strong data-reviewed>0</strong></article>
+          <article class="metric-card"><span>Level Target</span><strong data-target-level>N5</strong></article>
+        </div>
+        <div class="content-grid">
+          <article class="learning-path">
+            <h2>Jalur Belajar Hari Ini</h2>
+            <div data-daily-path></div>
+          </article>
+          <article class="mini-panel">
+            <h2>Aktivitas Terakhir</h2>
+            <ul data-activity-log></ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="view app-view" data-page="kana">
+        <div class="app-header">
+          <div>
+            <span class="eyebrow">Aksara Jepang</span>
+            <h1>Hiragana, Katakana &amp; Kanji Dasar</h1>
+            <p>Latih pengenalan huruf dengan tabel lengkap, bacaan romaji, dan contoh kata.</p>
+          </div>
+        </div>
+        <div class="tabs" role="tablist">
+          <button class="tab-button is-active" data-kana-tab="hiragana">Hiragana</button>
+          <button class="tab-button" data-kana-tab="katakana">Katakana</button>
+          <button class="tab-button" data-kana-tab="kanji">Kanji N5</button>
+        </div>
+        <div class="kana-grid" data-kana-grid></div>
+      </section>
+
+      <section class="view app-view" data-page="lessons">
+        <div class="app-header">
+          <div>
+            <span class="eyebrow">Materi Belajar</span>
+            <h1>Modul &amp; Kamus JLPT N5-N1</h1>
+            <p>Pilih dari <strong data-lesson-count>64 modul</strong> aksara, kosakata tematik, grammar, reading, listening, latihan JLPT, dan vokasi.</p>
+          </div>
+        </div>
+        <div class="lesson-grid" data-lesson-grid></div>
+      </section>
+
+      <section class="view app-view" data-page="lesson-detail">
+        <div class="app-header">
+          <div>
+            <span class="eyebrow" data-lesson-level>Materi</span>
+            <h1 data-lesson-title>Hiragana Dasar</h1>
+            <p data-lesson-summary></p>
+          </div>
+          <button class="cta-secondary nav-action" data-view="lessons">Kembali ke Materi</button>
+        </div>
+        <div class="lesson-reader">
+          <article class="reader-main">
+            <div class="reader-block">
+              <h2>Target Belajar</h2>
+              <ul data-lesson-goals></ul>
+            </div>
+            <div class="reader-block">
+              <h2>Penjelasan Materi</h2>
+              <div data-lesson-body></div>
+            </div>
+            <div class="reader-block">
+              <h2>Contoh & Pola</h2>
+              <div class="example-list" data-lesson-examples></div>
+            </div>
+            <div class="reader-block">
+              <h2>Latihan Cepat</h2>
+              <div class="practice-box" data-lesson-practice></div>
+            </div>
+          </article>
+          <aside class="reader-sidebar">
+            <h2>Kosakata Kunci</h2>
+            <div class="vocab-table" data-lesson-vocab></div>
+            <button class="cta-primary nav-action" data-view="flashcard">Latih dengan Flashcard</button>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view app-view" data-page="flashcard">
+        <div class="app-header">
+          <div>
+            <span class="eyebrow">Flashcard SRS</span>
+            <h1>Kartu Belajar Pintar</h1>
+            <p>Balik kartu, nilai daya ingat, dan simpan progres akun lokal.</p>
+          </div>
+        </div>
+        <div class="study-layout">
+          <button class="study-card" data-flip-card>
+            <span data-card-label>Kosakata N5</span>
+            <strong data-card-front>食べる</strong>
+            <p data-card-back class="is-hidden">taberu - makan. Contoh: ご飯を食べます。</p>
+          </button>
+          <div class="study-controls">
+            <button data-grade="0">Lagi</button>
+            <button data-grade="3">Sulit</button>
+            <button data-grade="4">Bagus</button>
+            <button data-grade="5">Mudah</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="view app-view" data-page="quiz">
+        <div class="app-header">
+          <div>
+            <span class="eyebrow">Latihan Soal</span>
+            <h1>Kuis Cepat JLPT</h1>
+            <p>Jawab soal pilihan ganda dan kumpulkan XP untuk peringkat.</p>
+          </div>
+        </div>
+        <div class="quiz-shell">
+          <div class="quiz-status">
+            <span data-question-count>Soal 1/5</span>
+            <strong data-quiz-score>0 XP</strong>
+          </div>
+          <h2 data-question-text></h2>
+          <div class="quiz-choice-grid" data-quiz-choices></div>
+          <button class="cta-secondary" data-next-question>Soal Berikutnya</button>
+        </div>
+      </section>
+
+      <section class="view app-view" data-page="leaderboard">
+        <div class="app-header">
+          <div>
+            <span class="eyebrow">Peringkat</span>
+            <h1>Leaderboard Mingguan</h1>
+            <p>Lihat posisi berdasarkan XP latihan. Akun lokal Anda ikut muncul setelah daftar.</p>
+          </div>
+        </div>
+        <div class="leaderboard-list" data-leaderboard></div>
+      </section>
+
+      <section class="view app-view" data-page="premium">
+        <div class="app-header">
+          <div>
+            <span class="eyebrow">Premium</span>
+            <h1>Paket Langganan Premium</h1>
+            <p>Akses simulasi JLPT, review listening, statistik mendalam, dan mode belajar intensif.</p>
+          </div>
+        </div>
+        <div class="pricing-grid">
+          <article>
+            <h2>Gratis</h2>
+            <strong>Rp0</strong>
+            <p>Huruf dasar, kuis harian, dan flashcard terbatas.</p>
+            <button class="cta-secondary" data-open-auth="register">Mulai Gratis</button>
+          </article>
+          <article class="featured">
+            <h2>Premium</h2>
+            <strong>Rp29.000/bln</strong>
+            <p>Semua dek, simulasi JLPT, listening, reading, dan laporan progres penuh.</p>
+            <button class="cta-primary" data-open-auth="register">Aktifkan Premium</button>
+          </article>
+          <article>
+            <h2>Vokasi</h2>
+            <strong>Rp49.000/bln</strong>
+            <p>Bahasa Jepang kerja, wawancara, kaigo, restoran, dan manufaktur.</p>
+            <button class="cta-secondary" data-open-auth="register">Pilih Vokasi</button>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal is-hidden" data-auth-modal>
+    <div class="modal-backdrop" data-close-modal></div>
+    <section class="modal-panel" aria-modal="true" role="dialog">
+      <button class="modal-close" data-close-modal aria-label="Tutup">×</button>
+      <div class="auth-tabs">
+        <button class="auth-tab is-active" data-auth-tab="login">Masuk</button>
+        <button class="auth-tab" data-auth-tab="register">Daftar</button>
+      </div>
+
+      <form class="auth-form" data-auth-form="login">
+        <h2>Masuk ke Akun</h2>
+        <label>Email<input type="email" name="email" placeholder="nama@email.com" required></label>
+        <label>Password<input type="password" name="password" placeholder="Password" required></label>
+        <button class="cta-primary" type="submit">Masuk</button>
+        <p class="form-message" data-login-message></p>
+      </form>
+
+      <form class="auth-form is-hidden" data-auth-form="register">
+        <h2>Buat Akun Gratis</h2>
+        <label>Nama<input type="text" name="name" placeholder="Nama belajar" required></label>
+        <label>Email<input type="email" name="email" placeholder="nama@email.com" required></label>
+        <label>Password<input type="password" name="password" placeholder="Minimal 6 karakter" minlength="6" required></label>
+        <label>Target JLPT
+          <select name="target">
+            <option value="N5">N5 - Pemula</option>
+            <option value="N4">N4 - Dasar</option>
+            <option value="N3">N3 - Menengah</option>
+            <option value="N2">N2 - Lanjut</option>
+            <option value="N1">N1 - Mahir</option>
+          </select>
+        </label>
+        <button class="cta-primary" type="submit">Daftar Sekarang</button>
+        <p class="form-message" data-register-message></p>
+      </form>
+    </section>
+  </div>
+
+  <div class="modal is-hidden" data-search-modal>
+    <div class="modal-backdrop" data-close-search></div>
+    <section class="modal-panel search-panel" aria-modal="true" role="dialog">
+      <button class="modal-close" data-close-search aria-label="Tutup">×</button>
+      <label class="search-input">Cari materi
+        <input type="search" data-search-input placeholder="Contoh: hiragana, gohan, partikel wa, kanji hari">
+      </label>
+      <div class="search-results" data-search-results></div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
