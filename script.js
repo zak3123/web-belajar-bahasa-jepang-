@@ -250,6 +250,7 @@ extraLessonModules.forEach(([symbol, title, level, summary, focus, examples, voc
   if (!data.lessonDetails[title]) {
     data.lessons.push([symbol, title, level, summary]);
     data.lessonDetails[title] = {
+      symbol,
       level,
       summary,
       goals: [
@@ -267,6 +268,111 @@ extraLessonModules.forEach(([symbol, title, level, summary, focus, examples, voc
       practice
     };
   }
+});
+
+data.lessons.forEach(([symbol, title]) => {
+  if (data.lessonDetails[title] && !data.lessonDetails[title].symbol) {
+    data.lessonDetails[title].symbol = symbol;
+  }
+});
+
+const supplementalKana = {
+  hiragana: [
+    ["な", "na", "namae - nama"], ["に", "ni", "niwa - taman"], ["ぬ", "nu", "nuno - kain"], ["ね", "ne", "neko - kucing"], ["の", "no", "nomu - minum"],
+    ["は", "ha", "hana - bunga"], ["ひ", "hi", "hikari - cahaya"], ["ふ", "fu", "fuyu - musim dingin"], ["へ", "he", "heya - kamar"], ["ほ", "ho", "hoshi - bintang"],
+    ["ま", "ma", "machi - kota"], ["み", "mi", "mizu - air"], ["む", "mu", "mushi - serangga"], ["め", "me", "mata"], ["も", "mo", "mori - hutan"],
+    ["や", "ya", "yama - gunung"], ["ゆ", "yu", "yuki - salju"], ["よ", "yo", "yoru - malam"], ["ら", "ra", "raion - singa"], ["り", "ri", "ringo - apel"],
+    ["る", "ru", "rusu - tidak di rumah"], ["れ", "re", "rekishi - sejarah"], ["ろ", "ro", "roka - koridor"], ["わ", "wa", "watashi - saya"], ["を", "wo", "partikel objek"], ["ん", "n", "hon - buku"]
+  ],
+  katakana: [
+    ["チ", "chi", "chiizu"], ["ツ", "tsu", "tsuaa"], ["テ", "te", "terebi"], ["ト", "to", "toire"],
+    ["ナ", "na", "naifu"], ["ニ", "ni", "nyuusu"], ["ヌ", "nu", "nuudoru"], ["ネ", "ne", "netto"], ["ノ", "no", "nooto"],
+    ["ハ", "ha", "hanbaagaa"], ["ヒ", "hi", "hoteru"], ["フ", "fu", "furansu"], ["ヘ", "he", "herumetto"], ["ホ", "ho", "hoomu"],
+    ["マ", "ma", "maiku"], ["ミ", "mi", "miruku"], ["ム", "mu", "muubi"], ["メ", "me", "meeru"], ["モ", "mo", "mooru"],
+    ["ヤ", "ya", "yasai"], ["ユ", "yu", "yuuzaa"], ["ヨ", "yo", "yooroppa"], ["ラ", "ra", "rajio"], ["リ", "ri", "risuto"],
+    ["ル", "ru", "ruuru"], ["レ", "re", "resutoran"], ["ロ", "ro", "roketto"], ["ワ", "wa", "wain"], ["ヲ", "wo", "jarang dipakai"], ["ン", "n", "pan"]
+  ]
+};
+
+const kanjiBank = [
+  ["一", "ichi/hito", "satu"], ["二", "ni/futa", "dua"], ["三", "san/mi", "tiga"], ["四", "shi/yon", "empat"], ["五", "go/itsu", "lima"], ["六", "roku/mu", "enam"], ["七", "shichi/nana", "tujuh"], ["八", "hachi/ya", "delapan"], ["九", "kyuu/koko", "sembilan"], ["十", "juu/too", "sepuluh"],
+  ["百", "hyaku", "seratus"], ["千", "sen/chi", "seribu"], ["万", "man/ban", "sepuluh ribu"], ["円", "en/maru", "yen, lingkaran"], ["年", "nen/toshi", "tahun"], ["上", "jou/ue", "atas"], ["下", "ka/shita", "bawah"], ["中", "chuu/naka", "tengah"], ["外", "gai/soto", "luar"], ["右", "u/migi", "kanan"],
+  ["左", "sa/hidari", "kiri"], ["前", "zen/mae", "depan"], ["後", "go/ato", "belakang, setelah"], ["北", "hoku/kita", "utara"], ["南", "nan/minami", "selatan"], ["東", "tou/higashi", "timur"], ["西", "sei/nishi", "barat"], ["高", "kou/taka", "tinggi, mahal"], ["安", "an/yasu", "murah, aman"], ["新", "shin/atara", "baru"],
+  ["古", "ko/furu", "lama, tua"], ["長", "chou/naga", "panjang"], ["短", "tan/mijika", "pendek"], ["白", "haku/shiro", "putih"], ["黒", "koku/kuro", "hitam"], ["赤", "seki/aka", "merah"], ["青", "sei/ao", "biru"], ["先", "sen/saki", "sebelum, depan"], ["生", "sei/i", "hidup, lahir"], ["学", "gaku/mana", "belajar"],
+  ["校", "kou", "sekolah"], ["友", "yuu/tomo", "teman"], ["名", "mei/na", "nama"], ["何", "ka/nani", "apa"], ["時", "ji/toki", "waktu, jam"], ["分", "fun/bun/wa", "menit, bagian"], ["半", "han/naka", "setengah"], ["今", "kon/ima", "sekarang"], ["毎", "mai", "setiap"], ["週", "shuu", "minggu"],
+  ["曜", "you", "hari dalam pekan"], ["朝", "chou/asa", "pagi"], ["昼", "chuu/hiru", "siang"], ["夜", "ya/yoru", "malam"], ["午", "go", "tengah hari"], ["休", "kyuu/yasu", "istirahat"], ["体", "tai/karada", "tubuh"], ["車", "sha/kuruma", "mobil"], ["駅", "eki", "stasiun"], ["電", "den", "listrik"],
+  ["気", "ki", "energi, udara"], ["天", "ten/ama", "langit"], ["雨", "u/ame", "hujan"], ["雪", "setsu/yuki", "salju"], ["花", "ka/hana", "bunga"], ["草", "sou/kusa", "rumput"], ["犬", "ken/inu", "anjing"], ["猫", "neko", "kucing"], ["魚", "gyo/sakana", "ikan"], ["肉", "niku", "daging"],
+  ["米", "bei/kome", "beras"], ["茶", "cha/sa", "teh"], ["飯", "han/meshi", "nasi, makanan"], ["店", "ten/mise", "toko"], ["買", "bai/ka", "membeli"], ["売", "bai/u", "menjual"], ["読", "doku/yo", "membaca"], ["書", "sho/ka", "menulis"], ["聞", "bun/ki", "mendengar"], ["話", "wa/hana", "berbicara"],
+  ["見", "ken/mi", "melihat"], ["行", "kou/i", "pergi"], ["来", "rai/ku", "datang"], ["帰", "ki/kae", "pulang"], ["食", "shoku/ta", "makan"], ["飲", "in/no", "minum"], ["立", "ritsu/ta", "berdiri"], ["入", "nyuu/hai", "masuk"], ["出", "shutsu/de", "keluar"], ["会", "kai/a", "bertemu"],
+  ["社", "sha/yashiro", "perusahaan"], ["員", "in", "anggota"], ["国", "koku/kuni", "negara"], ["語", "go/kata", "bahasa"], ["英", "ei", "Inggris"], ["漢", "kan", "Cina, kanji"], ["字", "ji/aza", "huruf"], ["文", "bun/fumi", "kalimat, tulisan"], ["母", "bo/haha", "ibu"], ["父", "fu/chichi", "ayah"],
+  ["子", "shi/ko", "anak"], ["女", "jo/onna", "perempuan"], ["男", "dan/otoko", "laki-laki"], ["手", "shu/te", "tangan"], ["足", "soku/ashi", "kaki"], ["目", "moku/me", "mata"], ["口", "kou/kuchi", "mulut"], ["耳", "ji/mimi", "telinga"], ["心", "shin/kokoro", "hati"], ["力", "riki/chikara", "kekuatan"],
+  ["間", "kan/aida", "interval, ruang"], ["道", "dou/michi", "jalan"], ["家", "ka/ie", "rumah"], ["室", "shitsu/muro", "ruangan"], ["町", "chou/machi", "kota"], ["村", "son/mura", "desa"], ["市", "shi/ichi", "kota, pasar"], ["場", "jou/ba", "tempat"], ["物", "butsu/mono", "benda"], ["者", "sha/mono", "orang"],
+  ["事", "ji/koto", "hal"], ["料", "ryou", "biaya, bahan"], ["理", "ri", "alasan, prinsip"], ["作", "saku/tsuku", "membuat"], ["使", "shi/tsuka", "memakai"], ["始", "shi/haji", "mulai"], ["終", "shuu/o", "selesai"], ["習", "shuu/nara", "belajar"], ["教", "kyou/oshi", "mengajar"], ["考", "kou/kanga", "berpikir"],
+  ["答", "tou/kota", "jawaban"], ["問", "mon/to", "pertanyaan"], ["題", "dai", "topik, soal"], ["用", "you/mochi", "keperluan"], ["意", "i", "maksud"], ["味", "mi/aji", "rasa"], ["音", "on/oto", "suara"], ["楽", "gaku/tano", "musik, senang"], ["切", "setsu/ki", "memotong"], ["近", "kin/chika", "dekat"],
+  ["遠", "en/too", "jauh"], ["早", "sou/haya", "cepat, pagi"], ["遅", "chi/oso", "lambat"], ["多", "ta/oo", "banyak"], ["少", "shou/suku", "sedikit"], ["強", "kyou/tsuyo", "kuat"], ["弱", "jaku/yowa", "lemah"], ["正", "sei/tada", "benar"], ["同", "dou/ona", "sama"], ["別", "betsu/waka", "berbeda"],
+  ["便", "ben/tayo", "praktis, surat"], ["利", "ri", "keuntungan"], ["不", "fu/bu", "tidak"], ["有", "yuu/a", "ada, punya"], ["無", "mu/na", "tidak ada"], ["化", "ka/ba", "perubahan"], ["主", "shu/nushi", "utama"], ["注", "chuu/soso", "menuang, catatan"], ["医", "i", "dokter"], ["病", "byou/yamai", "sakit"],
+  ["院", "in", "institusi"], ["薬", "yaku/kusuri", "obat"], ["働", "dou/hatar", "bekerja"], ["動", "dou/ugo", "bergerak"], ["勉", "ben", "usaha"], ["強", "kyou/tsuyo", "kuat, belajar"], ["試", "shi/kokoro", "mencoba"], ["験", "ken", "ujian"], ["質", "shitsu", "kualitas, pertanyaan"], ["問", "mon/to", "pertanyaan"]
+];
+
+const vocabularyBank = [
+  ["挨拶", "aisatsu", "salam"], ["おはよう", "ohayou", "selamat pagi"], ["こんにちは", "konnichiwa", "halo/selamat siang"], ["こんばんは", "konbanwa", "selamat malam"], ["ありがとう", "arigatou", "terima kasih"], ["すみません", "sumimasen", "permisi/maaf"], ["お願いします", "onegaishimasu", "tolong"], ["大丈夫", "daijoubu", "baik-baik saja"], ["名前", "namae", "nama"], ["学生", "gakusei", "pelajar"],
+  ["先生", "sensei", "guru"], ["会社員", "kaishain", "pegawai perusahaan"], ["友達", "tomodachi", "teman"], ["家族", "kazoku", "keluarga"], ["母", "haha", "ibu"], ["父", "chichi", "ayah"], ["兄", "ani", "kakak laki-laki"], ["姉", "ane", "kakak perempuan"], ["弟", "otouto", "adik laki-laki"], ["妹", "imouto", "adik perempuan"],
+  ["家", "ie", "rumah"], ["部屋", "heya", "kamar"], ["台所", "daidokoro", "dapur"], ["机", "tsukue", "meja"], ["椅子", "isu", "kursi"], ["窓", "mado", "jendela"], ["ドア", "doa", "pintu"], ["布団", "futon", "kasur"], ["電気", "denki", "lampu/listrik"], ["時計", "tokei", "jam"],
+  ["ご飯", "gohan", "nasi/makanan"], ["水", "mizu", "air"], ["お茶", "ocha", "teh"], ["牛乳", "gyuunyuu", "susu"], ["肉", "niku", "daging"], ["魚", "sakana", "ikan"], ["野菜", "yasai", "sayur"], ["果物", "kudamono", "buah"], ["卵", "tamago", "telur"], ["塩", "shio", "garam"],
+  ["砂糖", "satou", "gula"], ["皿", "sara", "piring"], ["箸", "hashi", "sumpit"], ["包丁", "houchou", "pisau dapur"], ["冷蔵庫", "reizouko", "kulkas"], ["学校", "gakkou", "sekolah"], ["教室", "kyoushitsu", "kelas"], ["宿題", "shukudai", "PR"], ["試験", "shiken", "ujian"], ["勉強", "benkyou", "belajar"],
+  ["本", "hon", "buku"], ["辞書", "jisho", "kamus"], ["鉛筆", "enpitsu", "pensil"], ["紙", "kami", "kertas"], ["質問", "shitsumon", "pertanyaan"], ["駅", "eki", "stasiun"], ["電車", "densha", "kereta"], ["地下鉄", "chikatetsu", "metro"], ["バス", "basu", "bus"], ["車", "kuruma", "mobil"],
+  ["自転車", "jitensha", "sepeda"], ["切符", "kippu", "tiket"], ["空港", "kuukou", "bandara"], ["道", "michi", "jalan"], ["右", "migi", "kanan"], ["左", "hidari", "kiri"], ["前", "mae", "depan"], ["後ろ", "ushiro", "belakang"], ["近い", "chikai", "dekat"], ["遠い", "tooi", "jauh"],
+  ["会社", "kaisha", "perusahaan"], ["仕事", "shigoto", "pekerjaan"], ["会議", "kaigi", "rapat"], ["メール", "meeru", "email"], ["資料", "shiryou", "dokumen"], ["報告", "houkoku", "laporan"], ["上司", "joushi", "atasan"], ["同僚", "douryou", "rekan kerja"], ["予定", "yotei", "jadwal"], ["残業", "zangyou", "lembur"],
+  ["病院", "byouin", "rumah sakit"], ["薬", "kusuri", "obat"], ["頭", "atama", "kepala"], ["お腹", "onaka", "perut"], ["熱", "netsu", "demam"], ["痛い", "itai", "sakit"], ["咳", "seki", "batuk"], ["医者", "isha", "dokter"], ["看護師", "kangoshi", "perawat"], ["予約", "yoyaku", "reservasi"],
+  ["晴れ", "hare", "cerah"], ["雨", "ame", "hujan"], ["雪", "yuki", "salju"], ["暑い", "atsui", "panas"], ["寒い", "samui", "dingin"], ["忙しい", "isogashii", "sibuk"], ["楽しい", "tanoshii", "menyenangkan"], ["難しい", "muzukashii", "sulit"], ["簡単", "kantan", "mudah"], ["便利", "benri", "praktis"],
+  ["買う", "kau", "membeli"], ["売る", "uru", "menjual"], ["読む", "yomu", "membaca"], ["書く", "kaku", "menulis"], ["聞く", "kiku", "mendengar"], ["話す", "hanasu", "berbicara"], ["見る", "miru", "melihat"], ["行く", "iku", "pergi"], ["来る", "kuru", "datang"], ["帰る", "kaeru", "pulang"],
+  ["食べる", "taberu", "makan"], ["飲む", "nomu", "minum"], ["待つ", "matsu", "menunggu"], ["休む", "yasumu", "istirahat"], ["働く", "hataraku", "bekerja"]
+];
+
+function appendUniqueRows(target, rows) {
+  const seen = new Set(target.map((row) => row[0]));
+  rows.forEach((row) => {
+    if (!seen.has(row[0])) {
+      target.push(row);
+      seen.add(row[0]);
+    }
+  });
+}
+
+appendUniqueRows(data.kana.hiragana, supplementalKana.hiragana);
+appendUniqueRows(data.kana.katakana, supplementalKana.katakana);
+appendUniqueRows(data.kana.kanji, kanjiBank);
+
+data.lessonDetails["Hiragana Dasar"].vocab = data.kana.hiragana;
+data.lessonDetails["Hiragana Dasar"].examples = data.kana.hiragana.slice(0, 36).map((row) => `${row[0]} = ${row[1]} = ${row[2]}`);
+data.lessonDetails["Katakana Dasar"].vocab = data.kana.katakana;
+data.lessonDetails["Katakana Dasar"].examples = data.kana.katakana.slice(0, 36).map((row) => `${row[0]} = ${row[1]} = ${row[2]}`);
+data.lessonDetails["Kanji N5-N1"].vocab = data.kana.kanji;
+data.lessonDetails["Kanji N5-N1"].examples = data.kana.kanji.slice(0, 80).map((row) => `${row[0]} = ${row[1]} = ${row[2]}`);
+data.lessonDetails["Kanji N5-N1"].body.push(`Bank kanji sekarang berisi ${data.kana.kanji.length} kanji dasar sampai menengah. Daftar ini dipakai sama untuk halaman Kanji, detail materi Kanji, pencarian, dan flashcard Kanji.`);
+data.lessonDetails["Kamus Kosakata"].vocab = vocabularyBank;
+data.lessonDetails["Kamus Kosakata"].examples = vocabularyBank.slice(0, 80).map((row) => `${row[0]} = ${row[1]} = ${row[2]}`);
+data.lessonDetails["Kamus Kosakata"].body.push(`Bank kosakata utama berisi ${vocabularyBank.length} kata tematik. Isi ini dipakai sama untuk detail Kamus Kosakata, pencarian, dan flashcard kosakata.`);
+data.categories = [
+  ["salam & perkenalan", "10 kosakata"], ["keluarga", "10 kosakata"], ["benda rumah", "10 kosakata"], ["dapur & makanan", "20 kosakata"],
+  ["sekolah", "10 kosakata"], ["transportasi", "15 kosakata"], ["kantor & pekerjaan", "10 kosakata"], ["kesehatan", "10 kosakata"],
+  ["cuaca & sifat", "10 kosakata"], ["kata kerja dasar", "15 kosakata"], ["kanji utama", `${data.kana.kanji.length} kanji`], ["aksara dasar", `${data.kana.hiragana.length + data.kana.katakana.length} huruf`]
+];
+
+const lessonSummaryOverrides = {
+  "Hiragana Dasar": `${data.kana.hiragana.length} huruf Hiragana dasar dan contoh kata untuk latihan baca.`,
+  "Katakana Dasar": `${data.kana.katakana.length} huruf Katakana dan contoh kata serapan untuk latihan visual.`,
+  "Kanji N5-N1": `${data.kana.kanji.length} kanji prioritas dengan bacaan, arti, contoh, dan flashcard.`,
+  "Kamus Kosakata": `${vocabularyBank.length} kosakata tematik dari salam, rumah, dapur, sekolah, kerja, kesehatan, transportasi, dan kata kerja.`
+};
+
+Object.entries(lessonSummaryOverrides).forEach(([title, summary]) => {
+  if (data.lessonDetails[title]) data.lessonDetails[title].summary = summary;
+});
+
+data.lessons = data.lessons.map((lesson) => {
+  const override = lessonSummaryOverrides[lesson[1]];
+  return override ? [lesson[0], lesson[1], lesson[2], override] : lesson;
 });
 
 function loadState() {
@@ -490,24 +596,47 @@ function openLessonFlashcard(title = activeLesson) {
 
 function buildLessonDeck(title, lesson) {
   if (title.includes("Hiragana")) {
-    return data.kana.hiragana.slice(0, 10).map((row) => [title, row[0], `${row[1]} - ${row[2]}`]);
+    return data.kana.hiragana.map((row) => [title, row[0], `${row[1]} - ${row[2]}`]);
   }
 
   if (title.includes("Katakana")) {
-    return data.kana.katakana.slice(0, 10).map((row) => [title, row[0], `${row[1]} - ${row[2]}`]);
+    return data.kana.katakana.map((row) => [title, row[0], `${row[1]} - ${row[2]}`]);
   }
 
   if (title.includes("Kanji")) {
-    return data.kana.kanji.slice(0, 10).map((row) => [title, row[0], `${row[1]} - ${row[2]}`]);
+    return data.kana.kanji.map((row) => [title, row[0], `${row[1]} - ${row[2]}`]);
   }
 
-  return lesson.vocab.map((row) => [title, row[0], `${row[1]} - ${row[2]}`]);
+  const symbol = lesson.symbol || title;
+  const mainCard = [
+    title,
+    symbol,
+    `${title} - ${lesson.summary}`
+  ];
+  const exampleCards = lesson.examples.slice(0, 3).map((example) => [
+    title,
+    example,
+    "Contoh pola dari materi ini"
+  ]);
+  const vocabCards = [...lesson.vocab]
+    .sort((a, b) => Number(b[0] === symbol) - Number(a[0] === symbol))
+    .map((row) => [title, row[0], `${row[1]} - ${row[2]}`]);
+
+  return [mainCard, ...exampleCards, ...vocabCards];
 }
 
 function renderCard() {
   const cards = activeDeckCards || data.cards;
   const card = cards[activeCard % cards.length];
   cardFlipped = false;
+  const heading = document.querySelector("[data-flashcard-heading]");
+  const subtitle = document.querySelector("[data-flashcard-subtitle]");
+  if (heading) heading.textContent = activeDeckCards ? `Review ${activeDeckTitle}` : "Kartu Belajar Pintar";
+  if (subtitle) {
+    subtitle.textContent = activeDeckCards
+      ? "Deck ini dibuat dari isi materi yang sedang Anda buka."
+      : "Balik kartu, nilai daya ingat, dan simpan progres akun lokal.";
+  }
   document.querySelector("[data-card-label]").textContent = activeDeckCards ? `Review ${activeDeckTitle}` : card[0];
   document.querySelector("[data-card-front]").textContent = card[1];
   const back = document.querySelector("[data-card-back]");
