@@ -7,6 +7,8 @@ let cardFlipped = false;
 let activeQuestion = 0;
 let quizAnswered = false;
 let activeLesson = "Hiragana Dasar";
+let activeDeckTitle = "Kosakata N5";
+let activeDeckCards = null;
 
 const data = {
   categories: [
@@ -298,6 +300,13 @@ function setView(view) {
   if (view === "dashboard" && !currentUser()) openAuth("login");
 }
 
+function setGenericDeck() {
+  activeDeckTitle = "Kosakata N5";
+  activeDeckCards = null;
+  activeCard = 0;
+  renderCard();
+}
+
 function randomBetween(min, max) {
   return Math.random() * (max - min) + min;
 }
@@ -395,9 +404,12 @@ function recordActivity(text, xp = 0, reviewed = 0) {
 function renderDashboard() {
   const pathWrap = document.querySelector("[data-daily-path]");
   pathWrap.innerHTML = data.path.map((item) => {
-    const view = item[0] === "問" ? "quiz" : "";
-    const lesson = item[0] === "あ" ? "Hiragana Dasar" : item[0] === "語" ? "Kamus Kosakata" : "Partikel & Grammar";
-    const action = view ? `data-view="${view}"` : `data-lesson-open="${lesson}"`;
+    const lesson = item[0] === "あ" ? "Hiragana Dasar" : item[0] === "語" ? "Kosakata Dapur" : "Partikel & Grammar";
+    const action = item[0] === "問"
+      ? 'data-view="quiz"'
+      : item[0] === "あ"
+        ? `data-flashcard-lesson="${lesson}"`
+        : `data-lesson-open="${lesson}"`;
     return `
       <div class="path-item">
         <span>${item[0]}</span>
@@ -467,10 +479,36 @@ function openLesson(title) {
   setView("lesson-detail");
 }
 
+function openLessonFlashcard(title = activeLesson) {
+  const lesson = data.lessonDetails[title] || data.lessonDetails["Hiragana Dasar"];
+  activeDeckTitle = title;
+  activeDeckCards = buildLessonDeck(title, lesson);
+  activeCard = 0;
+  renderCard();
+  setView("flashcard");
+}
+
+function buildLessonDeck(title, lesson) {
+  if (title.includes("Hiragana")) {
+    return data.kana.hiragana.slice(0, 10).map((row) => [title, row[0], `${row[1]} - ${row[2]}`]);
+  }
+
+  if (title.includes("Katakana")) {
+    return data.kana.katakana.slice(0, 10).map((row) => [title, row[0], `${row[1]} - ${row[2]}`]);
+  }
+
+  if (title.includes("Kanji")) {
+    return data.kana.kanji.slice(0, 10).map((row) => [title, row[0], `${row[1]} - ${row[2]}`]);
+  }
+
+  return lesson.vocab.map((row) => [title, row[0], `${row[1]} - ${row[2]}`]);
+}
+
 function renderCard() {
-  const card = data.cards[activeCard];
+  const cards = activeDeckCards || data.cards;
+  const card = cards[activeCard % cards.length];
   cardFlipped = false;
-  document.querySelector("[data-card-label]").textContent = card[0];
+  document.querySelector("[data-card-label]").textContent = activeDeckCards ? `Review ${activeDeckTitle}` : card[0];
   document.querySelector("[data-card-front]").textContent = card[1];
   const back = document.querySelector("[data-card-back]");
   back.textContent = card[2];
@@ -545,6 +583,7 @@ document.addEventListener("click", (event) => {
   if (target.dataset.view) {
     const rect = target.getBoundingClientRect();
     bloomSakura(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    if (target.dataset.view === "flashcard" && !target.dataset.keepDeck) setGenericDeck();
     setView(target.dataset.view);
   }
 
@@ -572,6 +611,14 @@ document.addEventListener("click", (event) => {
     openLesson(target.dataset.lessonOpen);
   }
 
+  if (target.dataset.flashcardLesson) {
+    openLessonFlashcard(target.dataset.flashcardLesson);
+  }
+
+  if (target.matches("[data-open-lesson-flashcard]")) {
+    openLessonFlashcard(activeLesson);
+  }
+
   if (target.matches("[data-start-learning]")) {
     currentUser() ? setView("dashboard") : openAuth("register");
   }
@@ -584,7 +631,8 @@ document.addEventListener("click", (event) => {
   if (target.dataset.grade) {
     const label = target.textContent.trim();
     recordActivity(`Flashcard dinilai: ${label}`, Number(target.dataset.grade) * 2, 1);
-    activeCard = (activeCard + 1) % data.cards.length;
+    const cards = activeDeckCards || data.cards;
+    activeCard = (activeCard + 1) % cards.length;
     renderCard();
   }
 
