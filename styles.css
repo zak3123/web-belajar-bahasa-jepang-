@@ -1009,34 +1009,99 @@ button {
 
 .study-layout {
   display: grid;
-  grid-template-columns: 1fr 0.55fr;
-  gap: 18px;
+  grid-template-columns: minmax(0, 1fr) 250px;
+  gap: 16px;
+  align-items: start;
+  max-width: 980px;
+  margin: 0 auto;
 }
 
 .study-card {
-  display: grid;
-  place-items: center;
-  min-height: 420px;
-  padding: 34px;
-  border-radius: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 330px;
+  padding: 28px;
+  border-radius: 28px;
   text-align: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(255, 220, 226, 0.62), transparent 16rem),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(255, 250, 244, 0.88));
 }
 
 .study-card strong {
   display: block;
-  font-size: 5rem;
+  max-width: 100%;
+  margin: 38px 0 28px;
+  color: var(--accent);
+  font-family: "Noto Sans JP", "Inter", sans-serif;
+  font-size: clamp(3.2rem, 8vw, 5.4rem);
+  line-height: 1.05;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
 }
 
 .study-card p {
+  max-width: 620px;
+  margin: 0;
+  padding: 12px 18px;
+  border: 1px solid rgba(209, 190, 165, 0.78);
+  border-radius: 999px;
   color: var(--ink-soft);
-  font-size: 1.2rem;
+  background: rgba(255, 253, 249, 0.76);
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+}
+
+.study-card span {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.study-card small {
+  margin-top: auto;
+  color: rgba(71, 85, 105, 0.78);
+  font-size: 0.82rem;
+}
+
+.study-card.is-flipped {
+  box-shadow: 0 22px 70px rgba(201, 59, 43, 0.14);
+}
+
+.study-card.is-flipped strong {
+  margin-bottom: 20px;
 }
 
 .study-controls {
   align-content: start;
   align-items: stretch;
   flex-direction: column;
+  min-width: 0;
+  gap: 10px;
+}
+
+.study-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 253, 249, 0.78);
+}
+
+.study-panel span {
+  color: var(--ink-soft);
+  font-size: 0.84rem;
+}
+
+.study-panel strong {
+  color: var(--accent);
 }
 
 .quiz-shell {
@@ -1400,6 +1465,26 @@ body {
   margin-bottom: 22px;
 }
 
+[data-page="flashcard"] {
+  padding-top: 30px;
+}
+
+[data-page="flashcard"] .app-header {
+  max-width: 980px;
+  margin-inline: auto;
+  margin-bottom: 18px;
+}
+
+[data-page="flashcard"] .app-header h1 {
+  font-size: clamp(2rem, 4.2vw, 3rem);
+  line-height: 1.05;
+}
+
+[data-page="flashcard"] .app-header p {
+  margin-top: 8px;
+  font-size: 1rem;
+}
+
 @keyframes page-rise {
   from {
     opacity: 0;
@@ -1516,6 +1601,19 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .study-layout {
+    max-width: 760px;
+  }
+
+  .study-controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .study-panel {
+    grid-column: 1 / -1;
+  }
+
   .step-grid,
   .dashboard-grid,
   .pricing-grid {
@@ -1539,7 +1637,24 @@ body {
 
   .search-chip {
     width: 100%;
+    max-width: none;
     white-space: normal;
+  }
+
+  .topbar-actions {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: start;
+    gap: 8px;
+  }
+
+  .topbar-actions .search-chip {
+    grid-column: 1 / -1;
+  }
+
+  .topbar-actions .solid-link,
+  .topbar-actions .ghost-link {
+    justify-self: start;
   }
 
   .hero,
@@ -1579,14 +1694,51 @@ body {
 
   .app-header {
     display: grid;
+    min-width: 0;
+  }
+
+  [data-page="flashcard"] {
+    padding-top: 36px;
+  }
+
+  [data-page="flashcard"] .app-header,
+  .study-layout {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  [data-page="flashcard"] .app-header h1 {
+    max-width: 100%;
+    font-size: clamp(1.45rem, 6.9vw, 1.72rem);
+    letter-spacing: -0.03em;
+    overflow-wrap: anywhere;
+  }
+
+  [data-page="flashcard"] .app-header p {
+    font-size: 0.92rem;
+    overflow-wrap: anywhere;
   }
 
   .flashcard-stack,
   .study-card {
-    min-height: 340px;
+    min-height: 280px;
+  }
+
+  .study-card {
+    padding: 22px 16px;
+    border-radius: 24px;
   }
 
   .study-card strong {
-    font-size: 3.5rem;
+    margin: 28px 0 20px;
+    font-size: clamp(2.7rem, 17vw, 4.2rem);
+  }
+
+  .study-card p {
+    border-radius: 18px;
+  }
+
+  .study-controls {
+    grid-template-columns: 1fr;
   }
 }

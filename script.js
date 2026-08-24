@@ -225,7 +225,7 @@ const extraLessonModules = [
   ["際", "Sai Ni", "N2", "Ungkapan formal untuk ketika/saat.", "際に dipakai dalam instruksi, pengumuman, dan dokumen formal, mirip とき tetapi lebih resmi.", ["お帰りの際に受付へお越しください", "申し込む際に身分証明書が必要です", "利用する際は注意してください"], [["受付", "uketsuke", "resepsionis"], ["申し込む", "moushikomu", "mendaftar"], ["身分証明書", "mibun shoumeisho", "identitas"], ["利用", "riyou", "penggunaan"]], "Buat instruksi formal dengan 際に."],
   ["故", "Yue Ni", "N2-N1", "Menyatakan karena/sebab secara formal.", "ゆえに bernuansa tertulis dan formal. Sering dipakai pada esai, berita, atau argumen akademik.", ["彼は努力した。ゆえに成功した", "経験が少ないゆえに失敗も多い", "慎重であるがゆえに時間がかかる"], [["努力", "doryoku", "usaha"], ["成功", "seikou", "sukses"], ["経験", "keiken", "pengalaman"], ["慎重", "shinchou", "hati-hati"]], "Tulis kalimat sebab-akibat formal."],
   ["得", "Uru/Eru", "N2-N1", "Menyatakan kemungkinan secara formal.", "得る berarti dapat terjadi/mungkin, sedangkan 得ない berarti tidak mungkin. Sering muncul dalam teks tertulis.", ["それは起こり得る問題です", "この結果はあり得ません", "誰にでも失敗は起こり得ます"], [["起こる", "okoru", "terjadi"], ["問題", "mondai", "masalah"], ["結果", "kekka", "hasil"], ["失敗", "shippai", "kegagalan"]], "Buat kalimat: kesalahan bisa terjadi pada siapa saja."],
-  ["即", "To Tansuru", "N1", "Segera setelah suatu kejadian, langsung terjadi aksi lain.", "とたん menekankan kejadian yang langsung terjadi setelah momen tertentu, sering di luar kendali subjek.", ["家を出たとたん、雨が降り出した", "立ち上がったとたん、めまいがした", "電話を切ったとたん、また鳴った"], [["出る", "deru", "keluar"], ["降り出す", "furidasu", "mulai turun"], ["めまい", "memai", "pusing"], ["鳴る", "naru", "berbunyi"]], "Buat kalimat: begitu membuka pintu, angin masuk."],
+  ["即", "TOTAN NI", "N2-N3", "Segera setelah suatu kejadian, langsung terjadi aksi lain.", "とたんに menekankan kejadian yang langsung terjadi setelah momen tertentu, sering di luar kendali subjek.", ["家を出たとたん、雨が降り出した", "立ち上がったとたん、めまいがした", "電話を切ったとたん、また鳴った"], [["出る", "deru", "keluar"], ["降り出す", "furidasu", "mulai turun"], ["めまい", "memai", "pusing"], ["鳴る", "naru", "berbunyi"]], "Buat kalimat: begitu membuka pintu, angin masuk."],
   ["抜", "Nuki Ni Shite", "N1", "Tanpa sesuatu yang biasanya dianggap penting.", "抜きにして berarti mengesampingkan atau tanpa mempertimbangkan sesuatu.", ["冗談抜きにして、本当に危険です", "年齢抜きにして能力で判断します", "彼抜きではこの計画は進みません"], [["冗談", "joudan", "bercanda"], ["危険", "kiken", "bahaya"], ["年齢", "nenrei", "usia"], ["判断", "handan", "menilai"]], "Buat kalimat: tanpa bercanda, ini penting."],
   ["家", "Kosakata Rumah", "Tematik", "Nama ruangan, benda rumah, dan kalimat aktivitas di rumah.", "Kosakata rumah sering muncul di percakapan harian dan listening level dasar.", ["部屋を掃除します", "台所で料理します", "椅子に座ります"], [["部屋", "heya", "kamar"], ["台所", "daidokoro", "dapur"], ["椅子", "isu", "kursi"], ["掃除", "souji", "bersih-bersih"]], "Sebutkan 5 benda di kamar Anda dalam bahasa Jepang."],
   ["料", "Kosakata Dapur", "Tematik", "Bahan makanan, alat dapur, dan kata kerja memasak.", "Belajar kosakata dapur membantu membuat kalimat praktis seperti memasak, memotong, mencuci, dan makan.", ["野菜を切ります", "肉を焼きます", "皿を洗います"], [["野菜", "yasai", "sayur"], ["肉", "niku", "daging"], ["皿", "sara", "piring"], ["切る", "kiru", "memotong"]], "Buat kalimat memakai 野菜, 肉, dan 皿."],
@@ -363,7 +363,11 @@ const lessonSummaryOverrides = {
   "Hiragana Dasar": `${data.kana.hiragana.length} huruf Hiragana dasar dan contoh kata untuk latihan baca.`,
   "Katakana Dasar": `${data.kana.katakana.length} huruf Katakana dan contoh kata serapan untuk latihan visual.`,
   "Kanji N5-N1": `${data.kana.kanji.length} kanji prioritas dengan bacaan, arti, contoh, dan flashcard.`,
-  "Kamus Kosakata": `${vocabularyBank.length} kosakata tematik dari salam, rumah, dapur, sekolah, kerja, kesehatan, transportasi, dan kata kerja.`
+  "Kamus Kosakata": `${vocabularyBank.length} kosakata tematik dari salam, rumah, dapur, sekolah, kerja, kesehatan, transportasi, dan kata kerja.`,
+  "Partikel & Grammar": "Pahami partikel inti dan pola kalimat dasar untuk membangun kalimat Jepang yang benar.",
+  "Reading Dokkai": "Latihan membaca teks pendek, pengumuman, jadwal, email, dan dialog JLPT.",
+  "Listening Choukai": "Latihan memahami percakapan, instruksi, jadwal, lokasi, dan respons singkat.",
+  "Flashcard SRS": "Gunakan kartu pintar untuk mengulang materi sesuai tingkat kesulitan daya ingat."
 };
 
 Object.entries(lessonSummaryOverrides).forEach(([title, summary]) => {
@@ -622,6 +626,14 @@ function buildLessonDeck(title, lesson) {
     .sort((a, b) => Number(b[0] === symbol) - Number(a[0] === symbol))
     .map((row) => [title, row[0], `${row[1]} - ${row[2]}`]);
 
+  if (title === "Kamus Kosakata" || title.startsWith("Kosakata ") || title.startsWith("Vokasi ")) {
+    return [...vocabCards, ...exampleCards];
+  }
+
+  if (title.includes("Partikel")) {
+    return [mainCard, ...vocabCards, ...exampleCards];
+  }
+
   return [mainCard, ...exampleCards, ...vocabCards];
 }
 
@@ -629,14 +641,20 @@ function renderCard() {
   const cards = activeDeckCards || data.cards;
   const card = cards[activeCard % cards.length];
   cardFlipped = false;
+  const studyCard = document.querySelector("[data-flip-card]");
   const heading = document.querySelector("[data-flashcard-heading]");
   const subtitle = document.querySelector("[data-flashcard-subtitle]");
+  const progress = document.querySelector("[data-card-progress]");
+  const hint = document.querySelector("[data-card-hint]");
   if (heading) heading.textContent = activeDeckCards ? `Review ${activeDeckTitle}` : "Kartu Belajar Pintar";
   if (subtitle) {
     subtitle.textContent = activeDeckCards
       ? "Deck ini dibuat dari isi materi yang sedang Anda buka."
       : "Balik kartu, nilai daya ingat, dan simpan progres akun lokal.";
   }
+  if (studyCard) studyCard.classList.remove("is-flipped");
+  if (progress) progress.textContent = `${(activeCard % cards.length) + 1}/${cards.length}`;
+  if (hint) hint.textContent = "Klik kartu untuk lihat jawaban";
   document.querySelector("[data-card-label]").textContent = activeDeckCards ? `Review ${activeDeckTitle}` : card[0];
   document.querySelector("[data-card-front]").textContent = card[1];
   const back = document.querySelector("[data-card-back]");
@@ -754,7 +772,10 @@ document.addEventListener("click", (event) => {
 
   if (target.matches("[data-flip-card]")) {
     cardFlipped = !cardFlipped;
+    target.classList.toggle("is-flipped", cardFlipped);
     document.querySelector("[data-card-back]").classList.toggle("is-hidden", !cardFlipped);
+    const hint = document.querySelector("[data-card-hint]");
+    if (hint) hint.textContent = cardFlipped ? "Pilih nilai ingatan di kanan" : "Klik kartu untuk lihat jawaban";
   }
 
   if (target.dataset.grade) {
