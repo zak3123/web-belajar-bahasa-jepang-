@@ -311,7 +311,44 @@ const kanjiBank = [
   ["答", "tou/kota", "jawaban"], ["問", "mon/to", "pertanyaan"], ["題", "dai", "topik, soal"], ["用", "you/mochi", "keperluan"], ["意", "i", "maksud"], ["味", "mi/aji", "rasa"], ["音", "on/oto", "suara"], ["楽", "gaku/tano", "musik, senang"], ["切", "setsu/ki", "memotong"], ["近", "kin/chika", "dekat"],
   ["遠", "en/too", "jauh"], ["早", "sou/haya", "cepat, pagi"], ["遅", "chi/oso", "lambat"], ["多", "ta/oo", "banyak"], ["少", "shou/suku", "sedikit"], ["強", "kyou/tsuyo", "kuat"], ["弱", "jaku/yowa", "lemah"], ["正", "sei/tada", "benar"], ["同", "dou/ona", "sama"], ["別", "betsu/waka", "berbeda"],
   ["便", "ben/tayo", "praktis, surat"], ["利", "ri", "keuntungan"], ["不", "fu/bu", "tidak"], ["有", "yuu/a", "ada, punya"], ["無", "mu/na", "tidak ada"], ["化", "ka/ba", "perubahan"], ["主", "shu/nushi", "utama"], ["注", "chuu/soso", "menuang, catatan"], ["医", "i", "dokter"], ["病", "byou/yamai", "sakit"],
-  ["院", "in", "institusi"], ["薬", "yaku/kusuri", "obat"], ["働", "dou/hatar", "bekerja"], ["動", "dou/ugo", "bergerak"], ["勉", "ben", "usaha"], ["強", "kyou/tsuyo", "kuat, belajar"], ["試", "shi/kokoro", "mencoba"], ["験", "ken", "ujian"], ["質", "shitsu", "kualitas, pertanyaan"], ["問", "mon/to", "pertanyaan"]
+  ["院", "in", "institusi"], ["薬", "yaku/kusuri", "obat"], ["働", "dou/hatara", "bekerja"], ["動", "dou/ugo", "bergerak"], ["勉", "ben", "usaha"], ["強", "kyou/tsuyo", "kuat, belajar"], ["試", "shi/kokoro", "mencoba"], ["験", "ken", "ujian"], ["質", "shitsu", "kualitas, pertanyaan"], ["問", "mon/to", "pertanyaan"]
+];
+
+const extendedKanjiBank = [
+  ["自", "ji/mizuka", "sendiri"], ["転", "ten/koro", "berputar, pindah"], ["空", "kuu/sora", "langit, kosong"], ["港", "kou/minato", "pelabuhan"], ["海", "kai/umi", "laut"], ["森", "shin/mori", "hutan"], ["林", "rin/hayashi", "hutan kecil"], ["田", "den/ta", "sawah"], ["畑", "hatake", "ladang"], ["石", "seki/ishi", "batu"],
+  ["岩", "gan/iwa", "batu besar"], ["虫", "chuu/mushi", "serangga"], ["鳥", "chou/tori", "burung"], ["馬", "ba/uma", "kuda"], ["牛", "gyuu/ushi", "sapi"], ["羊", "you/hitsuji", "domba"], ["貝", "bai/kai", "kerang"], ["竹", "chiku/take", "bambu"], ["糸", "shi/ito", "benang"], ["紙", "shi/kami", "kertas"],
+  ["絵", "kai/e", "gambar"], ["色", "shoku/iro", "warna"], ["声", "sei/koe", "suara"], ["歌", "ka/uta", "lagu"], ["春", "shun/haru", "musim semi"], ["夏", "ka/natsu", "musim panas"], ["秋", "shuu/aki", "musim gugur"], ["冬", "tou/fuyu", "musim dingin"], ["風", "fuu/kaze", "angin"], ["光", "kou/hikari", "cahaya"],
+  ["暑", "sho/atsu", "panas"], ["寒", "kan/samu", "dingin"], ["晴", "sei/ha", "cerah"], ["雲", "un/kumo", "awan"], ["星", "sei/hoshi", "bintang"], ["明", "mei/aka", "terang"], ["暗", "an/kura", "gelap"], ["元", "gen/moto", "asal, sehat"], ["良", "ryou/yo", "baik"], ["悪", "aku/waru", "buruk"],
+  ["忙", "bou/isoga", "sibuk"], ["広", "kou/hiro", "luas"], ["狭", "kyou/sema", "sempit"], ["重", "juu/omo", "berat"], ["軽", "kei/karu", "ringan"], ["太", "tai/futo", "tebal, gemuk"], ["細", "sai/hoso", "tipis, halus"], ["甘", "kan/ama", "manis"], ["辛", "shin/kara", "pedas, sulit"], ["苦", "ku/kuru", "pahit, menderita"],
+  ["若", "jaku/waka", "muda"], ["老", "rou/o", "tua"], ["親", "shin/oya", "orang tua"], ["兄", "kei/ani", "kakak laki-laki"], ["弟", "tei/otouto", "adik laki-laki"], ["姉", "shi/ane", "kakak perempuan"], ["妹", "mai/imouto", "adik perempuan"], ["夫", "fu/otto", "suami"], ["妻", "sai/tsuma", "istri"], ["族", "zoku", "keluarga, suku"],
+  ["私", "shi/watashi", "saya"], ["僕", "boku", "saya pria"], ["君", "kun/kimi", "kamu"], ["彼", "hi/kare", "dia laki-laki"], ["氏", "shi", "tuan, marga"], ["民", "min/tami", "rakyat"], ["官", "kan", "pejabat"], ["客", "kyaku", "tamu"], ["患", "kan/wazura", "menderita sakit"], ["歯", "shi/ha", "gigi"],
+  ["頭", "tou/atama", "kepala"], ["顔", "gan/kao", "wajah"], ["首", "shu/kubi", "leher"], ["胸", "kyou/mune", "dada"], ["腹", "fuku/hara", "perut"], ["指", "shi/yubi", "jari"], ["背", "hai/se", "punggung"], ["血", "ketsu/chi", "darah"], ["骨", "kotsu/hone", "tulang"], ["熱", "netsu/atsu", "panas, demam"],
+  ["痛", "tsuu/ita", "sakit"], ["治", "chi/nao", "sembuh, mengobati"], ["屋", "oku/ya", "toko, atap"], ["台", "dai", "alas, platform"], ["所", "sho/tokoro", "tempat"], ["部", "bu", "bagian"], ["開", "kai/hira", "membuka"], ["閉", "hei/shi", "menutup"], ["門", "mon/kado", "gerbang"], ["戸", "ko/to", "pintu"],
+  ["窓", "sou/mado", "jendela"], ["階", "kai", "lantai, tingkat"], ["建", "ken/ta", "membangun"], ["橋", "kyou/hashi", "jembatan"], ["船", "sen/fune", "kapal"], ["飛", "hi/to", "terbang"], ["機", "ki", "mesin, kesempatan"], ["地", "chi/ji", "tanah, lokasi"], ["図", "zu/to", "gambar, peta"], ["館", "kan", "gedung"],
+  ["園", "en/sono", "taman"], ["寺", "ji/tera", "kuil Buddha"], ["神", "shin/kami", "dewa"], ["交", "kou/maji", "bergaul, bertukar"], ["通", "tsuu/too", "lewat, komunikasi"], ["運", "un/hako", "membawa, nasib"], ["送", "sou/oku", "mengirim"], ["着", "chaku/tsu", "tiba, memakai"], ["乗", "jou/no", "naik kendaraan"], ["降", "kou/o", "turun"],
+  ["歩", "ho/aru", "berjalan"], ["走", "sou/hashi", "berlari"], ["止", "shi/to", "berhenti"], ["待", "tai/ma", "menunggu"], ["持", "ji/mo", "memegang"], ["取", "shu/to", "mengambil"], ["置", "chi/o", "meletakkan"], ["貸", "tai/ka", "meminjamkan"], ["借", "shaku/ka", "meminjam"], ["返", "hen/kae", "mengembalikan"],
+  ["忘", "bou/wasu", "lupa"], ["覚", "kaku/obo", "ingat"], ["住", "juu/su", "tinggal"], ["泊", "haku/to", "menginap"], ["洗", "sen/ara", "mencuci"], ["掃", "sou/ha", "menyapu"], ["起", "ki/o", "bangun, terjadi"], ["寝", "shin/ne", "tidur"], ["遊", "yuu/aso", "bermain"], ["泳", "ei/oyo", "berenang"],
+  ["泣", "kyuu/na", "menangis"], ["笑", "shou/wara", "tertawa"], ["怒", "do/oko", "marah"], ["急", "kyuu/iso", "mendesak, cepat"], ["困", "kon/koma", "kesulitan"], ["疲", "hi/tsuka", "lelah"], ["助", "jo/tasu", "membantu"], ["呼", "ko/yo", "memanggil"], ["吸", "kyuu/su", "menghirup"], ["吹", "sui/fu", "meniup"],
+  ["押", "ou/o", "mendorong"], ["引", "in/hi", "menarik"], ["払", "futsu/hara", "membayar"], ["選", "sen/era", "memilih"], ["決", "ketsu/ki", "memutuskan"], ["定", "tei/sada", "menentukan"], ["予", "yo", "sebelumnya"], ["約", "yaku", "janji, ringkas"], ["計", "kei/haka", "menghitung"], ["画", "ga/kaku", "gambar, rencana"],
+  ["録", "roku", "merekam"], ["写", "sha/utsu", "menyalin, foto"], ["真", "shin/ma", "kebenaran"], ["映", "ei/utsu", "memantulkan, film"], ["放", "hou/hana", "melepas"], ["組", "so/kumi", "kelompok"], ["番", "ban", "nomor, giliran"], ["号", "gou", "nomor"], ["品", "hin/shina", "barang"], ["服", "fuku", "pakaian"],
+  ["靴", "ka/kutsu", "sepatu"], ["帽", "bou", "topi"], ["財", "zai", "harta"], ["布", "fu/nuno", "kain"], ["貨", "ka", "barang, uang"], ["庫", "ko", "gudang"], ["冷", "rei/tsume", "dingin"], ["温", "on/atata", "hangat"], ["暖", "dan/atata", "hangat"], ["酒", "shu/sake", "alkohol"],
+  ["油", "yu/abura", "minyak"], ["塩", "en/shio", "garam"], ["糖", "tou", "gula"], ["卵", "ran/tamago", "telur"], ["乳", "nyuu/chichi", "susu"], ["野", "ya/no", "ladang"], ["菜", "sai/na", "sayur"], ["果", "ka/ha", "buah, hasil"], ["豆", "tou/mame", "kacang"], ["麦", "baku/mugi", "gandum"],
+  ["粉", "fun/ko", "bubuk"], ["皿", "sara", "piring"], ["箸", "hashi", "sumpit"], ["包", "hou/tsutsu", "membungkus"], ["丁", "chou/tei", "blok, alat"], ["刀", "tou/katana", "pedang"], ["工", "kou", "teknik, pekerjaan"], ["業", "gyou/waza", "pekerjaan, industri"], ["産", "san/u", "produksi, melahirkan"], ["農", "nou", "pertanian"],
+  ["商", "shou", "dagang"], ["課", "ka", "bagian, pelajaran"], ["係", "kei/kakari", "petugas"], ["務", "mu", "tugas"], ["勤", "kin/tsuto", "bekerja"], ["役", "yaku", "peran"], ["席", "seki", "kursi, tempat"], ["議", "gi", "diskusi"], ["報", "hou/shira", "laporan"], ["告", "koku/tsu", "memberitahu"],
+  ["資", "shi", "modal, dokumen"], ["表", "hyou/omote", "permukaan, tabel"], ["線", "sen", "garis"], ["点", "ten", "titik"], ["丸", "gan/maru", "bulat"], ["形", "kei/katachi", "bentuk"], ["角", "kaku/kado", "sudut"], ["直", "choku/nao", "langsung, memperbaiki"], ["曲", "kyoku/ma", "lagu, berbelok"], ["平", "hei/taira", "datar"],
+  ["和", "wa/yawa", "harmoni, Jepang"], ["洋", "you", "barat, samudra"], ["界", "kai", "dunia, batas"], ["世", "sei/yo", "dunia, generasi"], ["代", "dai/ka", "generasi, biaya"], ["歴", "reki", "sejarah"], ["史", "shi", "sejarah"], ["昔", "seki/mukashi", "dahulu"], ["未", "mi/mada", "belum"], ["末", "matsu/sue", "akhir"],
+  ["次", "ji/tsugi", "berikutnya"], ["初", "sho/hatsu", "pertama"], ["最", "sai/motto", "paling"], ["回", "kai/mawa", "kali, berputar"], ["度", "do/tabi", "derajat, kali"], ["第", "dai", "urutan"], ["等", "tou/hito", "setara, kelas"], ["級", "kyuu", "tingkat"], ["類", "rui", "jenis"], ["例", "rei/tato", "contoh"],
+  ["数", "suu/kazu", "angka, jumlah"], ["算", "san", "menghitung"], ["辞", "ji", "kata, kamus"], ["典", "ten", "kamus, aturan"], ["説", "setsu/to", "menjelaskan"], ["研", "ken/to", "mengasah, meneliti"], ["究", "kyuu/kiwa", "menyelidiki"], ["宿", "shuku/yado", "penginapan, tugas"], ["卒", "sotsu", "lulus"], ["政", "sei", "politik"],
+  ["済", "sai/su", "selesai, ekonomi"], ["経", "kei/he", "melalui, ekonomi"], ["法", "hou", "hukum, cara"], ["律", "ritsu", "hukum, irama"], ["則", "soku", "aturan"], ["規", "ki", "aturan"], ["制", "sei", "sistem"], ["戦", "sen/ikusa", "perang"], ["争", "sou/araso", "bertengkar"], ["勝", "shou/ka", "menang"],
+  ["負", "fu/ma", "kalah, memikul"], ["敗", "hai/yabu", "kalah"], ["守", "shu/mamo", "melindungi"], ["攻", "kou/se", "menyerang"], ["軍", "gun", "tentara"], ["隊", "tai", "pasukan"], ["兵", "hei", "prajurit"], ["警", "kei", "waspada, polisi"], ["察", "satsu", "memeriksa"], ["消", "shou/ke", "menghapus"],
+  ["防", "bou/fuse", "mencegah"], ["救", "kyuu/suku", "menolong"], ["険", "ken/kewa", "bahaya, curam"], ["危", "ki/abu", "bahaya"], ["害", "gai", "kerugian"], ["全", "zen/matta", "utuh, semua"], ["皆", "kai/mina", "semua orang"], ["各", "kaku", "masing-masing"], ["他", "ta/hoka", "lain"], ["共", "kyou/tomo", "bersama"],
+  ["対", "tai/tsui", "berhadapan"], ["反", "han/so", "melawan"], ["賛", "san", "setuju"], ["協", "kyou", "kerja sama"], ["努", "do/tsuto", "berusaha"], ["労", "rou", "tenaga, kerja"], ["功", "kou", "prestasi"], ["成", "sei/na", "menjadi"], ["失", "shitsu/ushina", "hilang, gagal"], ["得", "toku/e", "mendapat"],
+  ["可", "ka", "boleh, dapat"], ["能", "nou", "kemampuan"], ["許", "kyo/yuru", "mengizinkan"], ["認", "nin/mito", "mengakui"], ["識", "shiki", "pengetahuan"], ["感", "kan", "merasakan"], ["情", "jou/nasa", "perasaan"], ["想", "sou/omo", "pikiran"], ["念", "nen", "pikiran, perhatian"], ["願", "gan/nega", "harapan"],
+  ["望", "bou/nozo", "harapan"], ["希", "ki", "harapan, jarang"], ["愛", "ai", "cinta"], ["好", "kou/su", "suka"], ["嫌", "ken/kira", "benci"], ["悲", "hi/kana", "sedih"], ["喜", "ki/yoroko", "senang"], ["怖", "fu/kowa", "takut"], ["寂", "jaku/sabi", "sepi"], ["静", "sei/shizu", "tenang"],
+  ["賑", "shin/nigi", "ramai"], ["必", "hitsu/kanara", "pasti, perlu"], ["要", "you/i", "perlu, inti"], ["術", "jutsu", "teknik, seni"], ["技", "gi", "teknik"], ["科", "ka", "sains, departemen"], ["管", "kan/kuda", "mengelola, pipa"], ["営", "ei/itona", "mengelola"], ["造", "zou/tsuku", "membuat"], ["築", "chiku/kizu", "membangun"],
+  ["設", "setsu/mou", "mendirikan"], ["備", "bi/sona", "persiapan"], ["準", "jun", "standar, persiapan"], ["量", "ryou/haka", "jumlah"], ["増", "zou/fu", "bertambah"], ["減", "gen/he", "berkurang"], ["比", "hi/kura", "membandingkan"], ["較", "kaku", "membandingkan"], ["差", "sa", "perbedaan"], ["違", "i/chiga", "berbeda"],
+  ["似", "ji/ni", "mirip"], ["変", "hen/ka", "berubah"], ["移", "i/utsu", "pindah"], ["続", "zoku/tsuzu", "lanjut"], ["過", "ka/su", "melewati, berlebih"], ["去", "kyo/sa", "pergi, masa lalu"], ["戻", "rei/modo", "kembali"], ["進", "shin/susu", "maju"], ["退", "tai/shirizo", "mundur"], ["登", "tou/nobo", "naik"],
+  ["落", "raku/o", "jatuh"], ["流", "ryuu/naga", "mengalir"], ["準", "jun", "persiapan"], ["優", "yuu/yasa", "unggul, lembut"], ["易", "eki/yasa", "mudah"], ["難", "nan/muzuka", "sulit"], ["単", "tan", "sederhana"], ["簡", "kan", "sederhana"], ["適", "teki", "cocok"], ["確", "kaku/tashi", "pasti"]
 ];
 
 const vocabularyBank = [
@@ -342,6 +379,58 @@ function appendUniqueRows(target, rows) {
 appendUniqueRows(data.kana.hiragana, supplementalKana.hiragana);
 appendUniqueRows(data.kana.katakana, supplementalKana.katakana);
 appendUniqueRows(data.kana.kanji, kanjiBank);
+appendUniqueRows(data.kana.kanji, extendedKanjiBank);
+
+const kanjiCorrections = {
+  晴: ["sei/hare", "cerah"], 考: ["kou/kangaeru", "berpikir"], 作: ["saku/tsukuru", "membuat"], 使: ["shi/tsukau", "memakai"],
+  始: ["shi/hajimeru", "mulai"], 終: ["shuu/owaru", "selesai"], 習: ["shuu/narau", "belajar"], 教: ["kyou/oshieru", "mengajar"],
+  答: ["tou/kotaeru", "jawaban"], 問: ["mon/tou", "bertanya"], 用: ["you/mochiiru", "keperluan, memakai"], 楽: ["gaku/tanoshii", "musik, senang"],
+  切: ["setsu/kiru", "memotong"], 近: ["kin/chikai", "dekat"], 遠: ["en/tooi", "jauh"], 早: ["sou/hayai", "cepat, pagi"],
+  遅: ["chi/osoi", "lambat"], 多: ["ta/ooi", "banyak"], 少: ["shou/sukunai", "sedikit"], 強: ["kyou/tsuyoi", "kuat, belajar"],
+  弱: ["jaku/yowai", "lemah"], 正: ["sei/tadashii", "benar"], 同: ["dou/onaji", "sama"], 別: ["betsu/wakareru", "berbeda, terpisah"],
+  便: ["ben/tayori", "praktis, surat"], 有: ["yuu/aru", "ada, punya"], 無: ["mu/nai", "tidak ada"], 化: ["ka/bakeru", "perubahan"],
+  注: ["chuu/sosogu", "menuang, catatan"], 働: ["dou/hataraku", "bekerja"], 動: ["dou/ugoku", "bergerak"], 試: ["shi/kokoromiru", "mencoba"],
+  行: ["kou/iku", "pergi"], 来: ["rai/kuru", "datang"], 帰: ["ki/kaeru", "pulang"], 立: ["ritsu/tatsu", "berdiri"],
+  入: ["nyuu/hairu", "masuk"], 出: ["shutsu/deru", "keluar"], 会: ["kai/au", "bertemu"], 語: ["go/kataru", "bahasa"],
+  買: ["bai/kau", "membeli"], 売: ["bai/uru", "menjual"], 読: ["doku/yomu", "membaca"], 書: ["sho/kaku", "menulis"],
+  聞: ["bun/kiku", "mendengar"], 話: ["wa/hanasu", "berbicara"], 見: ["ken/miru", "melihat"], 起: ["ki/okiru", "bangun, terjadi"],
+  寝: ["shin/neru", "tidur"], 遊: ["yuu/asobu", "bermain"], 泳: ["ei/oyogu", "berenang"], 泣: ["kyuu/naku", "menangis"],
+  笑: ["shou/warau", "tertawa"], 怒: ["do/okoru", "marah"], 困: ["kon/komaru", "kesulitan"], 疲: ["hi/tsukareru", "lelah"],
+  助: ["jo/tasukeru", "membantu"], 呼: ["ko/yobu", "memanggil"], 吸: ["kyuu/suu", "menghirup"], 吹: ["sui/fuku", "meniup"],
+  押: ["ou/osu", "mendorong"], 引: ["in/hiku", "menarik"], 払: ["futsu/harau", "membayar"], 選: ["sen/erabu", "memilih"],
+  決: ["ketsu/kimeru", "memutuskan"], 定: ["tei/sadameru", "menentukan"], 計: ["kei/hakaru", "menghitung"], 写: ["sha/utsusu", "menyalin, foto"],
+  映: ["ei/utsuru", "memantulkan, film"], 放: ["hou/hanasu", "melepas"], 住: ["juu/sumu", "tinggal"], 泊: ["haku/tomaru", "menginap"],
+  洗: ["sen/arau", "mencuci"], 掃: ["sou/haku", "menyapu"], 借: ["shaku/kariru", "meminjam"], 返: ["hen/kaesu", "mengembalikan"],
+  忘: ["bou/wasureru", "lupa"], 覚: ["kaku/oboeru", "ingat"], 開: ["kai/hiraku", "membuka"], 閉: ["hei/shimeru", "menutup"],
+  建: ["ken/tateru", "membangun"], 飛: ["hi/tobu", "terbang"], 交: ["kou/majiru", "bergaul, bertukar"], 通: ["tsuu/tooru", "lewat, komunikasi"],
+  運: ["un/hakobu", "membawa, nasib"], 送: ["sou/okuru", "mengirim"], 着: ["chaku/tsuku", "tiba, memakai"], 乗: ["jou/noru", "naik kendaraan"],
+  降: ["kou/oriru", "turun"], 歩: ["ho/aruku", "berjalan"], 走: ["sou/hashiru", "berlari"], 止: ["shi/tomaru", "berhenti"],
+  待: ["tai/matsu", "menunggu"], 持: ["ji/motsu", "memegang"], 取: ["shu/toru", "mengambil"], 置: ["chi/oku", "meletakkan"],
+  貸: ["tai/kasu", "meminjamkan"], 重: ["juu/omoi", "berat"], 軽: ["kei/karui", "ringan"], 太: ["tai/futoi", "tebal, gemuk"],
+  細: ["sai/hosoi", "tipis, halus"], 甘: ["kan/amai", "manis"], 辛: ["shin/karai", "pedas, sulit"], 苦: ["ku/kurushii", "pahit, menderita"],
+  若: ["jaku/wakai", "muda"], 老: ["rou/oiru", "tua"], 広: ["kou/hiroi", "luas"], 狭: ["kyou/semai", "sempit"],
+  良: ["ryou/yoi", "baik"], 悪: ["aku/warui", "buruk"], 忙: ["bou/isogashii", "sibuk"], 痛: ["tsuu/itai", "sakit"],
+  治: ["chi/naoru", "sembuh, mengobati"], 済: ["sai/sumu", "selesai, ekonomi"], 経: ["kei/heru", "melalui, ekonomi"], 争: ["sou/arasou", "bertengkar"],
+  勝: ["shou/katsu", "menang"], 負: ["fu/makeru", "kalah, memikul"], 敗: ["hai/yabureru", "kalah"], 守: ["shu/mamoru", "melindungi"],
+  攻: ["kou/semeru", "menyerang"], 消: ["shou/kesu", "menghapus"], 防: ["bou/fusegu", "mencegah"], 救: ["kyuu/sukuu", "menolong"],
+  険: ["ken/kewashii", "bahaya, curam"], 危: ["ki/abunai", "bahaya"], 全: ["zen/mattaku", "utuh, semua"], 努: ["do/tsutomeru", "berusaha"],
+  成: ["sei/naru", "menjadi"], 失: ["shitsu/ushinau", "hilang, gagal"], 得: ["toku/eru", "mendapat"], 許: ["kyo/yurusu", "mengizinkan"],
+  認: ["nin/mitomeru", "mengakui"], 想: ["sou/omou", "pikiran"], 願: ["gan/negau", "harapan"], 望: ["bou/nozomu", "harapan"],
+  好: ["kou/suki", "suka"], 嫌: ["ken/kirai", "benci"], 悲: ["hi/kanashii", "sedih"], 喜: ["ki/yorokobu", "senang"],
+  怖: ["fu/kowai", "takut"], 寂: ["jaku/sabishii", "sepi"], 静: ["sei/shizuka", "tenang"], 賑: ["shin/nigiyaka", "ramai"],
+  営: ["ei/itonamu", "mengelola"], 造: ["zou/tsukuru", "membuat"], 築: ["chiku/kizuku", "membangun"], 設: ["setsu/moukeru", "mendirikan"],
+  備: ["bi/sonaeru", "persiapan"], 量: ["ryou/hakaru", "jumlah"], 増: ["zou/fueru", "bertambah"], 減: ["gen/heru", "berkurang"],
+  比: ["hi/kuraberu", "membandingkan"], 違: ["i/chigau", "berbeda"], 似: ["ji/niru", "mirip"], 変: ["hen/kawaru", "berubah"],
+  移: ["i/utsuru", "pindah"], 続: ["zoku/tsuzuku", "lanjut"], 過: ["ka/sugiru", "melewati, berlebih"], 去: ["kyo/saru", "pergi, masa lalu"],
+  戻: ["rei/modoru", "kembali"], 進: ["shin/susumu", "maju"], 退: ["tai/shirizoku", "mundur"], 登: ["tou/noboru", "naik"],
+  落: ["raku/ochiru", "jatuh"], 流: ["ryuu/nagareru", "mengalir"], 優: ["yuu/yasashii", "unggul, lembut"], 易: ["eki/yasashii", "mudah"],
+  難: ["nan/muzukashii", "sulit"], 確: ["kaku/tashika", "pasti"]
+};
+
+data.kana.kanji = data.kana.kanji.map((row) => {
+  const correction = kanjiCorrections[row[0]];
+  return correction ? [row[0], correction[0], correction[1]] : row;
+});
 
 data.lessonDetails["Hiragana Dasar"].vocab = data.kana.hiragana;
 data.lessonDetails["Hiragana Dasar"].examples = data.kana.hiragana.slice(0, 36).map((row) => `${row[0]} = ${row[1]} = ${row[2]}`);
@@ -542,8 +631,10 @@ function renderCategories() {
 
 function renderKana() {
   const rows = data.kana[activeKana];
-  document.querySelector("[data-kana-grid]").innerHTML = rows.map(([char, romaji, meaning]) => `
-    <article class="kana-tile">
+  const grid = document.querySelector("[data-kana-grid]");
+  grid.classList.toggle("is-kanji-grid", activeKana === "kanji");
+  grid.innerHTML = rows.map(([char, romaji, meaning]) => `
+    <article class="kana-tile ${activeKana === "kanji" ? "kanji-tile" : ""}">
       <strong>${char}</strong>
       <span>${romaji}</span>
       <small>${meaning}</small>

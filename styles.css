@@ -870,6 +870,11 @@ button {
   gap: 14px;
 }
 
+.kana-grid.is-kanji-grid {
+  grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
+  gap: 12px;
+}
+
 .kana-tile {
   padding: 18px;
   border-radius: 24px;
@@ -881,10 +886,37 @@ button {
   font-size: 2.4rem;
 }
 
+.kanji-tile {
+  min-height: 132px;
+  padding: 14px 10px;
+}
+
+.kanji-tile strong {
+  color: var(--accent);
+  font-size: 2.1rem;
+  line-height: 1.05;
+}
+
 .kana-tile span {
   display: block;
   margin-top: 8px;
   color: var(--ink-soft);
+}
+
+.kanji-tile span,
+.kanji-tile small {
+  overflow-wrap: anywhere;
+}
+
+.kanji-tile span {
+  font-size: 0.9rem;
+  line-height: 1.25;
+}
+
+.kanji-tile small {
+  display: block;
+  margin-top: 4px;
+  line-height: 1.25;
 }
 
 .lesson-grid {
