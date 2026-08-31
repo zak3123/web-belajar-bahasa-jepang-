@@ -299,6 +299,7 @@
             <h2>Kosakata Kunci</h2>
             <div class="vocab-table" data-lesson-vocab></div>
             <button class="cta-primary" data-open-lesson-flashcard>Latih Materi Ini</button>
+            <button class="cta-secondary" data-lesson-quiz>Mulai Kuis Materi Ini</button>
           </aside>
         </div>
       </section>
@@ -344,7 +345,9 @@
             <span data-question-count>Soal 1/5</span>
             <strong data-quiz-score>0 XP</strong>
           </div>
+          <span class="quiz-topic" data-quiz-topic></span>
           <h2 data-question-text></h2>
+          <p class="quiz-explanation is-hidden" data-quiz-explanation></p>
           <div class="quiz-choice-grid" data-quiz-choices></div>
           <button class="cta-secondary" data-next-question>Soal Berikutnya</button>
         </div>
@@ -441,6 +444,7 @@
     </section>
   </div>
 
+  <script src="app-data.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
