@@ -34,13 +34,13 @@ const data = {
       ["水", "mizu/sui", "air"], ["木", "ki/moku", "pohon"], ["金", "kane/kin", "emas, uang"],
       ["土", "tsuchi/do", "tanah"], ["人", "hito/jin", "orang"], ["山", "yama/san", "gunung"],
       ["川", "kawa/sen", "sungai"], ["大", "oo/dai", "besar"], ["小", "chii/shou", "kecil"],
-      ["本", "hon", "buku, asal"], ["語", "go", "bahasa"], ["食", "ta/shoku", "makan"], ["飲", "no/in", "minum"]
+      ["本", "hon", "buku"], ["語", "go", "bahasa"], ["食", "ta/shoku", "makan"], ["飲", "no/in", "minum"]
     ]
   },
   lessons: [
     ["あ", "Hiragana Dasar", "N5", "46 huruf dasar, dakuten, handakuten, youon, dan latihan baca kata pendek."],
     ["ア", "Katakana Dasar", "N5", "Pola baca kata serapan, nama asing, benda modern, dan latihan membedakan bentuk mirip."],
-    ["漢", "Kanji N5-N1", "N5-N1", "Kanji prioritas JLPT dengan onyomi, kunyomi, makna, stroke count, dan contoh kalimat."],
+    ["漢", "Kanji Campuran", "Campuran", "Kumpulan kanji campuran (berbagai level) dengan onyomi, kunyomi, makna, dan contoh kalimat."],
     ["語", "Kamus Kosakata", "Tematik", "Kosakata harian dari rumah, dapur, sekolah, kantor, bisnis, arah, cuaca, dan vokasi."],
     ["は", "Partikel & Grammar", "N5-N3", "Partikel WA, GA, WO, NI, DE, HE, TO, kara, made, dan pola kalimat dasar."],
     ["読", "Reading Dokkai", "N5-N2", "Latihan membaca pengumuman, email pendek, dialog, dan teks informatif."],
@@ -74,9 +74,9 @@ const data = {
       vocab: [["ア", "a", "vokal"], ["カ", "ka", "kamera"], ["シ", "shi", "shatsu"], ["ー", "chouon", "pemanjang vokal"]],
       practice: "Coba baca: カメラ、コーヒー、タクシー、テレビ. Fokus pada vokal panjang."
     },
-    "Kanji N5-N1": {
-      level: "JLPT N5-N1",
-      summary: "Kenali makna, onyomi, kunyomi, dan contoh pemakaian kanji prioritas JLPT.",
+    "Kanji Campuran": {
+      level: "Campuran",
+      summary: "Kenali makna, onyomi, kunyomi, dan contoh pemakaian dari kumpulan kanji campuran (berbagai level).",
       goals: ["Membaca kanji harian N5", "Memahami bedanya onyomi dan kunyomi", "Menghubungkan kanji dengan kosakata nyata"],
       body: [
         "Kanji membawa makna. Satu kanji bisa punya beberapa bacaan. 日 bisa dibaca hi, nichi, atau ka tergantung kata.",
@@ -424,9 +424,9 @@ data.lessonDetails["Hiragana Dasar"].vocab = data.kana.hiragana;
 data.lessonDetails["Hiragana Dasar"].examples = data.kana.hiragana.slice(0, 36).map((row) => `${row[0]} = ${row[1]} = ${row[2]}`);
 data.lessonDetails["Katakana Dasar"].vocab = data.kana.katakana;
 data.lessonDetails["Katakana Dasar"].examples = data.kana.katakana.slice(0, 36).map((row) => `${row[0]} = ${row[1]} = ${row[2]}`);
-data.lessonDetails["Kanji N5-N1"].vocab = data.kana.kanji;
-data.lessonDetails["Kanji N5-N1"].examples = data.kana.kanji.slice(0, 80).map((row) => `${row[0]} = ${row[1]} = ${row[2]}`);
-data.lessonDetails["Kanji N5-N1"].body.push(`Bank kanji sekarang berisi ${data.kana.kanji.length} kanji dasar sampai menengah. Daftar ini dipakai sama untuk halaman Kanji, detail materi Kanji, pencarian, dan flashcard Kanji.`);
+data.lessonDetails["Kanji Campuran"].vocab = data.kana.kanji;
+data.lessonDetails["Kanji Campuran"].examples = data.kana.kanji.slice(0, 80).map((row) => `${row[0]} = ${row[1]} = ${row[2]}`);
+data.lessonDetails["Kanji Campuran"].body.push(`Bank kanji sekarang berisi ${data.kana.kanji.length} kanji dasar sampai menengah. Daftar ini dipakai sama untuk halaman Kanji, detail materi Kanji, pencarian, dan flashcard Kanji.`);
 data.lessonDetails["Kamus Kosakata"].vocab = vocabularyBank;
 data.lessonDetails["Kamus Kosakata"].examples = vocabularyBank.slice(0, 80).map((row) => `${row[0]} = ${row[1]} = ${row[2]}`);
 data.lessonDetails["Kamus Kosakata"].body.push(`Bank kosakata utama berisi ${vocabularyBank.length} kata tematik. Isi ini dipakai sama untuk detail Kamus Kosakata, pencarian, dan flashcard kosakata.`);
@@ -439,7 +439,7 @@ data.categories = [
 const lessonSummaryOverrides = {
   "Hiragana Dasar": `${data.kana.hiragana.length} huruf Hiragana dasar dan contoh kata untuk latihan baca.`,
   "Katakana Dasar": `${data.kana.katakana.length} huruf Katakana dan contoh kata serapan untuk latihan visual.`,
-  "Kanji N5-N1": `${data.kana.kanji.length} kanji prioritas dengan bacaan, arti, contoh, dan flashcard.`,
+  "Kanji Campuran": `${data.kana.kanji.length} kanji campuran dengan bacaan, arti, contoh, dan flashcard.`,
   "Kamus Kosakata": `${vocabularyBank.length} kosakata tematik dari salam, rumah, dapur, sekolah, kerja, kesehatan, transportasi, dan kata kerja.`,
   "Partikel & Grammar": "Pahami partikel inti dan pola kalimat dasar untuk membangun kalimat Jepang yang benar.",
   "Reading Dokkai": "Latihan membaca teks pendek, pengumuman, jadwal, email, dan dialog JLPT.",
@@ -481,7 +481,7 @@ const PARTICLE_INFO = {
 const lessonTypes = {
   "Hiragana Dasar": "kana",
   "Katakana Dasar": "kana",
-  "Kanji N5-N1": "kanji",
+  "Kanji Campuran": "kanji",
   "Kamus Kosakata": "vocabulary",
   "Partikel & Grammar": "grammar",
   "Reading Dokkai": "reading",
@@ -710,27 +710,9 @@ function buildGrammarQuestions(title) {
     });
   }
 
-  if (questions.length < 3) {
-    vocab.forEach((row, idx) => {
-      if (!row[0] || !row[2]) return;
-      const correct = row[2];
-      const pool = shuffle(vocab.filter((v, i) => i !== idx && v[2] && v[2] !== correct).map((v) => v[2]));
-      const set = new Set([correct]);
-      for (const d of pool) { if (set.size >= 4) break; set.add(d); }
-      if (set.size < 2) return;
-      const options = shuffle([...set]);
-      questions.push({
-        id: `${title}__gf${idx}`,
-        lessonId: title,
-        category: lesson.level || "grammar",
-        type: "grammar",
-        question: `Apa fungsi ${row[0]} (${row[1]})?`,
-        options,
-        correctAnswer: options.indexOf(correct),
-        explanation: `${row[0]} (${row[1]}) berfungsi sebagai ${row[2]}.`
-      });
-    });
-  }
+  // Hanya soal grammar berbasis kalimat rumpang yang diizinkan.
+  // Jika tidak ada data terstruktur (mis. modul non-partikel), kembalikan kosong
+  // agar UI menampilkan "Latihan untuk materi ini belum tersedia."
   return questions;
 }
 
@@ -742,8 +724,9 @@ function buildLessonQuestions(title) {
     case "grammar": return buildGrammarQuestions(title);
     case "reading":
     case "listening":
-    case "vocabulary":
     case "flashcard":
+      return [];
+    case "vocabulary":
     default: return buildVocabularyQuestions(title);
   }
 }
@@ -797,9 +780,76 @@ function validateContent() {
   return errors;
 }
 
+function validateStructure() {
+  const errors = [];
+
+  // 1. slug unik & 2. judul unik & 3. setiap lesson punya type
+  const slugs = data.lessons.map((l) => titleToSlug[l[1]]);
+  const slugSet = new Set();
+  const titleSet = new Set();
+  data.lessons.forEach((l) => {
+    const t = l[1];
+    if (titleSet.has(t)) errors.push(`Duplikat judul: ${t}`);
+    titleSet.add(t);
+    const s = titleToSlug[t];
+    if (slugSet.has(s)) errors.push(`Duplikat slug: ${s}`);
+    slugSet.add(s);
+    if (!lessonTypes[t]) errors.push(`Lesson tanpa type: ${t}`);
+  });
+
+  // 4. setiap mapping dashboard mengarah ke lesson valid (round-trip)
+  dashboardPath.forEach((item, i) => {
+    const title = slugToTitle[item.slug];
+    if (!title) { errors.push(`dashboardPath[${i}] slug tidak valid: ${item.slug}`); return; }
+    if (titleToSlug[title] !== item.slug) errors.push(`dashboardPath[${i}] slug tidak round-trip: ${item.slug}`);
+  });
+
+  // 5. kana: romaji valid (tidak kosong)
+  ["hiragana", "katakana"].forEach((k) => {
+    data.kana[k].forEach((row) => {
+      if (!row[0] || !row[1] || !/^[a-z]+$/.test(row[1])) {
+        errors.push(`Kana ${k} tidak valid: ${JSON.stringify(row)}`);
+      }
+    });
+  });
+
+  // 6. vocabulary: kata, reading, arti lengkap
+  data.lessons.forEach((l) => {
+    const t = l[1];
+    if (!["vocabulary", "kana", "kanji", "grammar", "reading", "listening", "flashcard"].includes(lessonTypes[t])) return;
+    if (lessonTypes[t] !== "vocabulary") return;
+    (data.lessonDetails[t].vocab || []).forEach((row) => {
+      if (!row[0] || !row[1] || !row[2]) errors.push(`Vocab tidak lengkap di "${t}": ${JSON.stringify(row)}`);
+    });
+  });
+
+  // 7. grammar TIDAK memakai generator vocabulary
+  data.lessons.forEach((l) => {
+    const t = l[1];
+    if (lessonTypes[t] !== "grammar") return;
+    const qs = buildLessonQuestions(t);
+    qs.forEach((q) => {
+      if (q.type === "vocabulary") errors.push(`Grammar "${t}" menghasilkan soal vocabulary (seharusnya kalimat): ${q.question}`);
+      if (!q.question.includes("___")) errors.push(`Soal grammar "${t}" tidak punya konteks kalimat: ${q.question}`);
+    });
+  });
+
+  // 8. reading/listening TIDAK memakai generator vocabulary
+  data.lessons.forEach((l) => {
+    const t = l[1];
+    if (lessonTypes[t] === "reading" || lessonTypes[t] === "listening") {
+      const qs = buildLessonQuestions(t);
+      if (qs.length) errors.push(`Reading/Listening "${t}" menghasilkan soal padahal seharusnya kosong: ${qs.length}`);
+    }
+  });
+
+  return errors;
+}
+
 const contentErrors = validateContent();
-if (typeof window !== "undefined" && contentErrors.length) {
-  console.warn("[HiraKataKan] Masalah validasi materi/soal:", contentErrors);
+const structureErrors = validateStructure();
+if (typeof window !== "undefined" && (contentErrors.length || structureErrors.length)) {
+  console.warn("[HiraKataKan] Masalah validasi:", [...contentErrors, ...structureErrors]);
 }
 
 if (typeof module !== "undefined" && module.exports) {
@@ -820,7 +870,8 @@ if (typeof module !== "undefined" && module.exports) {
     buildGrammarQuestions,
     buildLessonQuestions,
     buildGeneralQuestions,
-    validateContent
+    validateContent,
+    validateStructure
   };
 }
 

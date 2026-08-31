@@ -135,7 +135,7 @@ check("KUIS PARTIKEL WO berisi kalimat rumpang, bukan sekadar kosakata", () => {
 });
 
 check("KANJI dibatasi per sesi (maks 15, tidak 600 sekaligus)", () => {
-  const qs = mod.buildKanjiQuestions("Kanji N5-N1", 0);
+  const qs = mod.buildKanjiQuestions("Kanji Campuran", 0);
   assert.ok(qs.length > 0 && qs.length <= 15, "jumlah soal kanji per sesi harus 1-15, dapat " + qs.length);
   const ids = new Set(qs.map((q) => q.id));
   assert.strictEqual(ids.size, qs.length, "tidak boleh ada duplikat dalam satu sesi");
@@ -143,6 +143,38 @@ check("KANJI dibatasi per sesi (maks 15, tidak 600 sekaligus)", () => {
 
 check("materi tanpa soal mengembalikan array kosong", () => {
   assert.strictEqual(mod.buildLessonQuestions("__tidak_ada__").length, 0);
+});
+
+check("validateStructure lolos tanpa error", () => {
+  const errs = mod.validateStructure();
+  assert.strictEqual(errs.length, 0, "Error struktur:\n" + errs.join("\n"));
+});
+
+check("READING/LISTENING tidak menghasilkan soal (bukan kuis kosakata)", () => {
+  const reading = data.lessons.filter((l) => lessonTypes[l[1]] === "reading").map((l) => l[1]);
+  const listening = data.lessons.filter((l) => lessonTypes[l[1]] === "listening").map((l) => l[1]);
+  [...reading, ...listening].forEach((t) => {
+    assert.strictEqual(buildLessonQuestions(t).length, 0, `${t} seharusnya kosong`);
+  });
+});
+
+check("GRAMMAR non-partikel mengembalikan kosong (tanpa fallback kosakata)", () => {
+  const nonParticle = [
+    "Waktu & Jam", "Angka & Counter Dasar", "Kata Kerja Bentuk MASU",
+    "Kata Sifat I dan NA", "Bentuk TE Dasar", "Bentuk TE IMASU", "Tai Form Keinginan"
+  ];
+  nonParticle.forEach((t) => {
+    assert.strictEqual(buildLessonQuestions(t).length, 0, `${t} seharusnya kosong (data tidak terstruktur)`);
+  });
+});
+
+check("GRAMMAR partikel menghasilkan soal kalimat rumpang (bukan kosakata)", () => {
+  ["Partikel WA vs GA", "Partikel WO untuk Objek", "Partikel NI Waktu & Tujuan", "Partikel DE Tempat Aksi"]
+    .forEach((t) => {
+      const qs = buildLessonQuestions(t);
+      assert.ok(qs.length > 0, `${t} harus punya soal`);
+      assert.ok(qs.every((q) => q.question.includes("___")), `${t} harus berupa kalimat rumpang`);
+    });
 });
 
 console.log(`\nSelesai: ${passed} cek lolos.`);

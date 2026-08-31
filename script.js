@@ -368,7 +368,7 @@ function renderQuestion() {
     if (countEl) countEl.textContent = activeQuizLesson ? `Materi: ${activeQuizLesson}` : "Latihan Soal";
     if (topicEl) topicEl.textContent = "";
     if (textEl) textEl.textContent = activeQuizLesson
-      ? `Materi "${activeQuizLesson}" belum memiliki soal latihan. Coba latihan campuran di bawah ini.`
+      ? `Latihan untuk materi ini belum tersedia.`
       : "Belum ada soal tersedia.";
     if (choicesEl) choicesEl.innerHTML = "";
     if (nextBtn) {
