@@ -30,15 +30,12 @@
         <button class="nav-action" data-view="kana">Aksara Jepang</button>
         <button class="nav-action" data-view="lessons">Materi Belajar</button>
         <button class="nav-action" data-view="quiz">Latihan Soal</button>
-        <button class="nav-action" data-view="leaderboard">Peringkat</button>
-        <button class="nav-action" data-view="premium">Premium</button>
+        <button class="nav-action" data-view="premium">Fitur Lengkap</button>
       </nav>
 
       <div class="topbar-actions">
         <button class="search-chip" data-open-search>Cari kanji, kosakata, materi... <span>Ctrl K</span></button>
-        <button class="ghost-link" data-open-auth="login">Masuk</button>
-        <button class="solid-link" data-open-auth="register">Daftar</button>
-        <button class="user-pill is-hidden" data-view="dashboard" aria-label="Buka dashboard akun"></button>
+        <button class="ghost-link" data-view="dashboard">Progres</button>
       </div>
     </header>
 
@@ -199,8 +196,8 @@
               <p>Ya. Materi disusun bertahap dari N5 sampai N1, termasuk kanji, grammar, reading, listening, dan kosakata.</p>
             </details>
             <details>
-              <summary>Apakah akun gratis bisa menyimpan progres?</summary>
-              <p>Bisa untuk versi lokal ini. Progres, XP, dan akun tersimpan di browser yang sama memakai localStorage.</p>
+              <summary>Apakah progres tersimpan tanpa akun?</summary>
+              <p>Ya. Progres, XP, dan statistik kuis tersimpan di browser ini melalui localStorage. Tidak perlu daftar atau masuk.</p>
             </details>
           </div>
         </div>
@@ -209,33 +206,35 @@
           <span class="eyebrow">Mari Mulai Bersama Kami</span>
           <h2>Siap Berbicara Bahasa Jepang dengan Percaya Diri?</h2>
           <p>Bergabunglah sekarang dan bangun rutinitas belajar dari huruf dasar sampai simulasi JLPT.</p>
-          <button class="cta-primary" data-open-auth="register">Daftar Akun Gratis Sekarang</button>
+          <button class="cta-primary" data-view="lessons">Mulai Belajar Sekarang</button>
         </div>
       </section>
 
       <section class="view app-view" data-page="dashboard">
         <div class="app-header">
           <div>
-            <span class="eyebrow">Dashboard</span>
-            <h1>Ringkasan Belajar</h1>
-            <p data-dashboard-greeting>Masuk untuk melihat progres belajar Anda.</p>
+            <span class="eyebrow">Progres Belajar</span>
+            <h1>Ringkasan Belajar Lokal</h1>
+            <p>Progres disimpan di browser ini melalui localStorage. Tidak perlu akun.</p>
           </div>
-          <button class="cta-secondary" data-logout>Keluar</button>
         </div>
         <div class="dashboard-grid">
-          <article class="metric-card"><span>XP Hari Ini</span><strong data-xp>0</strong></article>
-          <article class="metric-card"><span>Streak</span><strong data-streak>0 hari</strong></article>
-          <article class="metric-card"><span>Kartu Diulang</span><strong data-reviewed>0</strong></article>
-          <article class="metric-card"><span>Level Target</span><strong data-target-level>N5</strong></article>
+          <article class="metric-card"><span>XP</span><strong data-xp>0</strong></article>
+          <article class="metric-card"><span>Benar</span><strong data-correct>0</strong></article>
+          <article class="metric-card"><span>Salah</span><strong data-wrong>0</strong></article>
+          <article class="metric-card"><span>Materi Selesai</span><strong data-completed>0</strong></article>
         </div>
         <div class="content-grid">
           <article class="learning-path">
-            <h2>Jalur Belajar Hari Ini</h2>
+            <h2>Terakhir Dibuka</h2>
+            <p data-last-lesson>Belum ada.</p>
+            <h2 style="margin-top:18px">Jalur Belajar Hari Ini</h2>
             <div data-daily-path></div>
           </article>
           <article class="mini-panel">
             <h2>Aktivitas Terakhir</h2>
             <ul data-activity-log></ul>
+            <button class="cta-secondary" data-reset-progress>Reset Progres</button>
           </article>
         </div>
       </section>
@@ -337,7 +336,7 @@
           <div>
             <span class="eyebrow">Latihan Soal</span>
             <h1>Kuis Cepat JLPT</h1>
-            <p>Jawab soal pilihan ganda dan kumpulkan XP untuk peringkat.</p>
+            <p>Jawab soal pilihan ganda dan kumpulkan XP untuk melacak progres belajarmu.</p>
           </div>
         </div>
         <div class="quiz-shell">
@@ -347,90 +346,67 @@
           </div>
           <span class="quiz-topic" data-quiz-topic></span>
           <h2 data-question-text></h2>
+          <div class="quiz-feedback is-hidden" data-quiz-feedback></div>
           <p class="quiz-explanation is-hidden" data-quiz-explanation></p>
           <div class="quiz-choice-grid" data-quiz-choices></div>
           <button class="cta-secondary" data-next-question>Soal Berikutnya</button>
-        </div>
-      </section>
-
-      <section class="view app-view" data-page="leaderboard">
-        <div class="app-header">
-          <div>
-            <span class="eyebrow">Peringkat</span>
-            <h1>Leaderboard Mingguan</h1>
-            <p>Lihat posisi berdasarkan XP latihan. Akun lokal Anda ikut muncul setelah daftar.</p>
+          <div class="quiz-summary is-hidden" data-quiz-summary>
+            <h2>Hasil Kuis</h2>
+            <ul class="summary-list">
+              <li>Benar: <strong data-summary-correct>0</strong></li>
+              <li>Salah: <strong data-summary-wrong>0</strong></li>
+              <li>Skor XP: <strong data-summary-xp>0</strong></li>
+            </ul>
+            <div class="summary-actions">
+              <button class="cta-primary" data-quiz-retry>Ulangi Kuis</button>
+              <button class="cta-secondary" data-quiz-back>Kembali ke Materi</button>
+            </div>
           </div>
         </div>
-        <div class="leaderboard-list" data-leaderboard></div>
       </section>
 
       <section class="view app-view" data-page="premium">
         <div class="app-header">
           <div>
-            <span class="eyebrow">Premium</span>
-            <h1>Paket Langganan Premium</h1>
-            <p>Akses simulasi JLPT, review listening, statistik mendalam, dan mode belajar intensif.</p>
+            <span class="eyebrow">Fitur Lengkap</span>
+            <h1>Semua Fitur Belajar</h1>
+            <p>Aplikasi belajar pribadi gratis. Semua materi terbuka tanpa akun dan tanpa biaya.</p>
           </div>
         </div>
-        <div class="pricing-grid">
+        <div class="feature-grid">
           <article>
-            <h2>Gratis</h2>
-            <strong>Rp0</strong>
-            <p>Huruf dasar, kuis harian, dan flashcard terbatas.</p>
-            <button class="cta-secondary" data-open-auth="register">Mulai Gratis</button>
+            <h2>Belajar Dasar</h2>
+            <p>Hiragana, Katakana, dan fondasi bahasa Jepang.</p>
+            <button class="cta-secondary" data-lesson-slug="hiragana-dasar">Buka Hiragana</button>
           </article>
           <article class="featured">
-            <h2>Premium</h2>
-            <strong>Rp29.000/bln</strong>
-            <p>Semua dek, simulasi JLPT, listening, reading, dan laporan progres penuh.</p>
-            <button class="cta-primary" data-open-auth="register">Aktifkan Premium</button>
+            <h2>Grammar</h2>
+            <p>Partikel WA, GA, WO, NI, DE dan pola kalimat.</p>
+            <button class="cta-secondary" data-lesson-slug="partikel-wa-vs-ga">Buka Grammar</button>
           </article>
           <article>
-            <h2>Vokasi</h2>
-            <strong>Rp49.000/bln</strong>
-            <p>Bahasa Jepang kerja, wawancara, kaigo, restoran, dan manufaktur.</p>
-            <button class="cta-secondary" data-open-auth="register">Pilih Vokasi</button>
+            <h2>Kanji</h2>
+            <p>Kumpulan kanji campuran dengan bacaan dan arti.</p>
+            <button class="cta-secondary" data-lesson-slug="kanji-campuran">Buka Kanji</button>
+          </article>
+          <article>
+            <h2>Reading</h2>
+            <p>Latih pemahaman bacaan Jepang.</p>
+            <button class="cta-secondary" data-lesson-slug="reading-dokkai">Buka Reading</button>
+          </article>
+          <article>
+            <h2>Listening</h2>
+            <p>Latih pemahaman percakapan.</p>
+            <button class="cta-secondary" data-lesson-slug="listening-choukai">Buka Listening</button>
+          </article>
+          <article>
+            <h2>Bahasa Jepang Vokasi</h2>
+            <p>Kosakata kerja, restoran, kaigo, pabrik.</p>
+            <button class="cta-secondary" data-lesson-slug="vokasi-kaigo">Buka Vokasi</button>
           </article>
         </div>
       </section>
     </main>
-  </div>
-
-  <div class="modal is-hidden" data-auth-modal>
-    <div class="modal-backdrop" data-close-modal></div>
-    <section class="modal-panel" aria-modal="true" role="dialog">
-      <button class="modal-close" data-close-modal aria-label="Tutup">×</button>
-      <div class="auth-tabs">
-        <button class="auth-tab is-active" data-auth-tab="login">Masuk</button>
-        <button class="auth-tab" data-auth-tab="register">Daftar</button>
-      </div>
-
-      <form class="auth-form" data-auth-form="login">
-        <h2>Masuk ke Akun</h2>
-        <label>Email<input type="email" name="email" placeholder="nama@email.com" required></label>
-        <label>Password<input type="password" name="password" placeholder="Password" required></label>
-        <button class="cta-primary" type="submit">Masuk</button>
-        <p class="form-message" data-login-message></p>
-      </form>
-
-      <form class="auth-form is-hidden" data-auth-form="register">
-        <h2>Buat Akun Gratis</h2>
-        <label>Nama<input type="text" name="name" placeholder="Nama belajar" required></label>
-        <label>Email<input type="email" name="email" placeholder="nama@email.com" required></label>
-        <label>Password<input type="password" name="password" placeholder="Minimal 6 karakter" minlength="6" required></label>
-        <label>Target JLPT
-          <select name="target">
-            <option value="N5">N5 - Pemula</option>
-            <option value="N4">N4 - Dasar</option>
-            <option value="N3">N3 - Menengah</option>
-            <option value="N2">N2 - Lanjut</option>
-            <option value="N1">N1 - Mahir</option>
-          </select>
-        </label>
-        <button class="cta-primary" type="submit">Daftar Sekarang</button>
-        <p class="form-message" data-register-message></p>
-      </form>
-    </section>
   </div>
 
   <div class="modal is-hidden" data-search-modal>

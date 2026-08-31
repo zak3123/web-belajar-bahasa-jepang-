@@ -6,16 +6,24 @@ let activeCard = 0;
 let cardFlipped = false;
 let activeQuestion = 0;
 let quizAnswered = false;
+let quizCorrect = 0;
+let quizWrong = 0;
+let quizXp = 0;
 let activeLesson = "Hiragana Dasar";
 let activeDeckTitle = "Kosakata N5";
 let activeDeckCards = null;
 let activeQuizQuestions = [];
 let activeQuizLesson = null;
 
+function freshProfile() {
+  return { xp: 0, correct: 0, wrong: 0, lastLesson: "", completed: [], activities: [] };
+}
+
 function loadState() {
-  const fallback = { users: [], currentEmail: "" };
+  const fallback = { profile: freshProfile() };
   try {
-    return { ...fallback, ...JSON.parse(localStorage.getItem(storeKey) || "{}") };
+    const saved = JSON.parse(localStorage.getItem(storeKey) || "{}");
+    return { ...fallback, profile: { ...fallback.profile, ...(saved.profile || {}) } };
   } catch {
     return fallback;
   }
@@ -26,7 +34,7 @@ function saveState() {
 }
 
 function currentUser() {
-  return state.users.find((user) => user.email === state.currentEmail);
+  return state.profile;
 }
 
 function setView(view) {
@@ -40,7 +48,6 @@ function setView(view) {
   document.querySelector(".topbar")?.classList.remove("menu-open");
   window.scrollTo({ top: 0, behavior: "smooth" });
   bloomSakura();
-  if (view === "dashboard" && !currentUser()) openAuth("login");
 }
 
 function setGenericDeck() {
@@ -97,51 +104,20 @@ function bloomSakura(originX = window.innerWidth * 0.5, originY = 120) {
   }
 }
 
-function openAuth(tab = "login") {
-  document.querySelector("[data-auth-modal]").classList.remove("is-hidden");
-  setAuthTab(tab);
-}
-
-function closeAuth() {
-  document.querySelector("[data-auth-modal]").classList.add("is-hidden");
-}
-
-function setAuthTab(tab) {
-  document.querySelectorAll("[data-auth-tab]").forEach((button) => {
-    button.classList.toggle("is-active", button.dataset.authTab === tab);
-  });
-  document.querySelectorAll("[data-auth-form]").forEach((form) => {
-    form.classList.toggle("is-hidden", form.dataset.authForm !== tab);
-  });
-}
-
-function updateAuthUI() {
-  const user = currentUser();
-  document.querySelectorAll("[data-open-auth]").forEach((button) => button.classList.toggle("is-hidden", Boolean(user)));
-  const pill = document.querySelector(".user-pill");
-  pill.classList.toggle("is-hidden", !user);
-  pill.textContent = user ? user.name.slice(0, 1).toUpperCase() : "";
-
-  if (!user) return;
-  document.querySelector("[data-dashboard-greeting]").textContent = `Selamat datang, ${user.name}. Target belajar Anda ${user.target}.`;
-  document.querySelector("[data-xp]").textContent = user.xp;
-  document.querySelector("[data-streak]").textContent = `${user.streak} hari`;
-  document.querySelector("[data-reviewed]").textContent = user.reviewed;
-  document.querySelector("[data-target-level]").textContent = user.target;
-}
-
-function recordActivity(text, xp = 0, reviewed = 0) {
-  const user = currentUser();
-  if (!user) return;
-  user.xp += xp;
-  user.reviewed += reviewed;
-  user.streak = Math.max(user.streak, 1);
-  user.activities.unshift(text);
-  user.activities = user.activities.slice(0, 6);
+function recordActivity(text, xp = 0, delta = 0) {
+  const p = state.profile;
+  p.activities.unshift(text);
+  if (p.activities.length > 8) p.activities.length = 8;
+  p.xp += xp;
+  if (delta > 0) p.correct += delta;
+  else if (delta < 0) p.wrong += -delta;
   saveState();
-  updateAuthUI();
   renderDashboard();
-  renderLeaderboard();
+}
+
+function resetProfile() {
+  state.profile = freshProfile();
+  saveState();
 }
 
 function renderDashboard() {
@@ -161,8 +137,15 @@ function renderDashboard() {
     `;
   }).join("");
 
-  const user = currentUser();
-  const logs = user?.activities?.length ? user.activities : ["Belum ada aktivitas. Mulai dari flashcard atau kuis cepat."];
+  const p = state.profile;
+  const setText = (sel, val) => { const el = document.querySelector(sel); if (el) el.textContent = val; };
+  setText("[data-xp]", p.xp);
+  setText("[data-correct]", p.correct);
+  setText("[data-wrong]", p.wrong);
+  setText("[data-completed]", p.completed.length);
+  setText("[data-last-lesson]", p.lastLesson || "Belum ada.");
+
+  const logs = p.activities.length ? p.activities : ["Belum ada aktivitas. Mulai dari flashcard atau kuis cepat."];
   document.querySelector("[data-activity-log]").innerHTML = logs.map((log) => `<li>${log}</li>`).join("");
 }
 
@@ -235,6 +218,7 @@ function renderLessonDetail() {
 function openLesson(title) {
   if (!data.lessonDetails[title]) { showLessonNotFound(); return; }
   activeLesson = title;
+  state.profile.lastLesson = title;
   const targetHash = "lesson=" + encodeURIComponent(titleToSlug[title] || slugify(title));
   if (typeof location !== "undefined" && (location.hash || "").replace(/^#/, "") !== targetHash) {
     location.hash = targetHash;
@@ -336,6 +320,9 @@ function renderCard() {
 function startQuiz(lessonTitle) {
   activeQuestion = 0;
   quizAnswered = false;
+  quizCorrect = 0;
+  quizWrong = 0;
+  quizXp = 0;
   if (lessonTitle) {
     const qs = buildLessonQuestions(lessonTitle);
     if (qs.length) {
@@ -361,8 +348,12 @@ function renderQuestion() {
   const topicEl = document.querySelector("[data-quiz-topic]");
   const nextBtn = document.querySelector("[data-next-question]");
   const explainBox = document.querySelector("[data-quiz-explanation]");
+  const feedbackBox = document.querySelector("[data-quiz-feedback]");
+  const summaryBox = document.querySelector("[data-quiz-summary]");
   if (explainBox) explainBox.classList.add("is-hidden");
-  if (scoreEl) scoreEl.textContent = `${currentUser()?.xp || 0} XP`;
+  if (feedbackBox) feedbackBox.classList.add("is-hidden");
+  if (summaryBox) summaryBox.classList.add("is-hidden");
+  if (scoreEl) scoreEl.textContent = `${quizXp} XP`;
 
   if (!activeQuizQuestions.length) {
     if (countEl) countEl.textContent = activeQuizLesson ? `Materi: ${activeQuizLesson}` : "Latihan Soal";
@@ -374,6 +365,8 @@ function renderQuestion() {
     if (nextBtn) {
       nextBtn.textContent = "Coba Latihan Campuran";
       nextBtn.dataset.quizFallback = "1";
+      nextBtn.classList.remove("is-hidden");
+      nextBtn.disabled = false;
     }
     return;
   }
@@ -383,6 +376,8 @@ function renderQuestion() {
   if (nextBtn) {
     nextBtn.textContent = "Soal Berikutnya";
     delete nextBtn.dataset.quizFallback;
+    nextBtn.classList.remove("is-hidden");
+    nextBtn.disabled = true;
   }
   if (countEl) {
     countEl.textContent = `Soal ${activeQuestion + 1}/${activeQuizQuestions.length}`;
@@ -396,22 +391,33 @@ function renderQuestion() {
   }
 }
 
-function renderLeaderboard() {
-  const users = state.users.map((user) => ({ name: user.name, xp: user.xp, target: user.target }));
-  const rows = [
-    { name: "Alya Sakura", xp: 1280, target: "N4" },
-    { name: "Raka Nihongo", xp: 980, target: "N3" },
-    { name: "Dina Kanji", xp: 740, target: "N5" },
-    ...users
-  ].sort((a, b) => b.xp - a.xp).slice(0, 8);
-
-  document.querySelector("[data-leaderboard]").innerHTML = rows.map((row, index) => `
-    <article class="leaderboard-row">
-      <span class="rank">${index + 1}</span>
-      <div><strong>${row.name}</strong><p>Target JLPT ${row.target}</p></div>
-      <strong>${row.xp} XP</strong>
-    </article>
-  `).join("");
+function showQuizSummary() {
+  if (activeQuizLesson && !state.profile.completed.includes(activeQuizLesson)) {
+    state.profile.completed.push(activeQuizLesson);
+    saveState();
+  }
+  const summaryBox = document.querySelector("[data-quiz-summary]");
+  if (summaryBox) {
+    const c = summaryBox.querySelector("[data-summary-correct]");
+    const w = summaryBox.querySelector("[data-summary-wrong]");
+    const x = summaryBox.querySelector("[data-summary-xp]");
+    if (c) c.textContent = quizCorrect;
+    if (w) w.textContent = quizWrong;
+    if (x) x.textContent = quizXp;
+    summaryBox.classList.remove("is-hidden");
+  }
+  const choicesEl = document.querySelector("[data-quiz-choices]");
+  if (choicesEl) choicesEl.innerHTML = "";
+  const textEl = document.querySelector("[data-question-text]");
+  if (textEl) textEl.textContent = "Kuis selesai.";
+  const topicEl = document.querySelector("[data-quiz-topic]");
+  if (topicEl) topicEl.textContent = "";
+  const feedbackBox = document.querySelector("[data-quiz-feedback]");
+  if (feedbackBox) feedbackBox.classList.add("is-hidden");
+  const explainBox = document.querySelector("[data-quiz-explanation]");
+  if (explainBox) explainBox.classList.add("is-hidden");
+  const nextBtn = document.querySelector("[data-next-question]");
+  if (nextBtn) nextBtn.classList.add("is-hidden");
 }
 
 function renderSearch(query = "") {
@@ -437,8 +443,6 @@ function renderSearch(query = "") {
 }
 
 document.addEventListener("click", (event) => {
-  if (event.target.closest("[data-close-modal]")) closeAuth();
-
   if (event.target.closest("[data-close-search]")) {
     document.querySelector("[data-search-modal]").classList.add("is-hidden");
   }
@@ -461,17 +465,11 @@ document.addEventListener("click", (event) => {
     setView(target.dataset.view);
   }
 
-  if (target.dataset.openAuth) {
-    openAuth(target.dataset.openAuth);
-  }
-
   if (target.matches("[data-open-search]")) {
     document.querySelector("[data-search-modal]").classList.remove("is-hidden");
     renderSearch();
     document.querySelector("[data-search-input]").focus();
   }
-
-  if (target.dataset.authTab) setAuthTab(target.dataset.authTab);
 
   if (target.dataset.kanaTab) {
     activeKana = target.dataset.kanaTab;
@@ -506,7 +504,7 @@ document.addEventListener("click", (event) => {
   }
 
   if (target.matches("[data-start-learning]")) {
-    currentUser() ? setView("dashboard") : openAuth("register");
+    setView("lessons");
   }
 
   if (target.matches("[data-flip-card]")) {
@@ -519,7 +517,7 @@ document.addEventListener("click", (event) => {
 
   if (target.dataset.grade) {
     const label = target.textContent.trim();
-    recordActivity(`Flashcard dinilai: ${label}`, Number(target.dataset.grade) * 2, 1);
+      recordActivity(`Flashcard dinilai: ${label}`, Number(target.dataset.grade) * 2, 0);
     const cards = activeDeckCards || data.cards;
     activeCard = (activeCard + 1) % cards.length;
     renderCard();
@@ -529,15 +527,41 @@ document.addEventListener("click", (event) => {
     quizAnswered = true;
     const question = activeQuizQuestions[activeQuestion];
     const index = Number(target.dataset.choice);
-    target.classList.add(index === question.correctAnswer ? "is-correct" : "is-wrong");
-    if (index === question.correctAnswer) {
-      recordActivity(`Menjawab kuis dengan benar (${question.lessonId})`, 10, 0);
-    }
+    const isCorrect = index === question.correctAnswer;
+
+    document.querySelectorAll("[data-quiz-choices] button").forEach((btn) => {
+      btn.classList.add("is-locked");
+      const i = Number(btn.dataset.choice);
+      if (i === question.correctAnswer) btn.classList.add("is-correct");
+      if (i === index && !isCorrect) btn.classList.add("is-wrong");
+    });
+
+    const feedbackBox = document.querySelector("[data-quiz-feedback]");
     const explainBox = document.querySelector("[data-quiz-explanation]");
+    if (isCorrect) {
+      quizCorrect += 1;
+      quizXp += 10;
+      if (feedbackBox) {
+        feedbackBox.textContent = "Benar!";
+        feedbackBox.className = "quiz-feedback is-correct-fb";
+      }
+      recordActivity(`Menjawab kuis dengan benar (${question.lessonId})`, 10, 1);
+    } else {
+      quizWrong += 1;
+      recordActivity(`Menjawab kuis salah (${question.lessonId})`, 0, -1);
+      if (feedbackBox) {
+        feedbackBox.textContent = "Belum tepat";
+        feedbackBox.className = "quiz-feedback is-wrong-fb";
+      }
+    }
     if (explainBox) {
       explainBox.textContent = question.explanation || "";
       explainBox.classList.toggle("is-hidden", !question.explanation);
     }
+    const scoreEl = document.querySelector("[data-quiz-score]");
+    if (scoreEl) scoreEl.textContent = `${quizXp} XP`;
+    const nextBtn = document.querySelector("[data-next-question]");
+    if (nextBtn && !nextBtn.dataset.quizFallback) nextBtn.disabled = false;
   }
 
   if (target.matches("[data-next-question]")) {
@@ -545,80 +569,40 @@ document.addEventListener("click", (event) => {
       startQuiz(null);
       return;
     }
-    activeQuestion = (activeQuestion + 1) % activeQuizQuestions.length;
+    if (activeQuestion >= activeQuizQuestions.length - 1) {
+      showQuizSummary();
+      return;
+    }
+    activeQuestion = activeQuestion + 1;
     renderQuestion();
   }
 
-  if (target.matches("[data-logout]")) {
-    state.currentEmail = "";
-    saveState();
-    updateAuthUI();
-    setView("home");
+  if (target.matches("[data-quiz-retry]")) {
+    startQuiz(activeQuizLesson);
+    return;
+  }
+
+  if (target.matches("[data-quiz-back]")) {
+    if (activeQuizLesson) {
+      openLesson(activeQuizLesson);
+    } else {
+      setView("lessons");
+    }
+    return;
+  }
+
+  if (target.matches("[data-reset-progress]")) {
+    if (window.confirm("Hapus semua progres lokal? Tindakan ini tidak dapat dibatalkan.")) {
+      resetProfile();
+      renderDashboard();
+      setView("dashboard");
+    }
   }
 
   if (target.dataset.searchTarget) {
     document.querySelector("[data-search-modal]").classList.add("is-hidden");
     if (!target.dataset.lessonOpen) setView(target.dataset.searchTarget);
   }
-});
-
-document.querySelector("[data-auth-form='register']").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const formData = new FormData(form);
-  const email = String(formData.get("email")).toLowerCase();
-  const message = document.querySelector("[data-register-message]");
-
-  if (state.users.some((user) => user.email === email)) {
-    message.textContent = "Email sudah terdaftar. Silakan masuk.";
-    return;
-  }
-
-  const user = {
-    name: String(formData.get("name")).trim(),
-    email,
-    password: String(formData.get("password")),
-    target: String(formData.get("target")),
-    xp: 25,
-    streak: 1,
-    reviewed: 0,
-    activities: ["Akun gratis berhasil dibuat", "Bonus awal +25 XP"]
-  };
-  state.users.push(user);
-  state.currentEmail = email;
-  saveState();
-  form.reset();
-  message.textContent = "";
-  closeAuth();
-  updateAuthUI();
-  renderDashboard();
-  renderLeaderboard();
-  setView("dashboard");
-});
-
-document.querySelector("[data-auth-form='login']").addEventListener("submit", (event) => {
-  event.preventDefault();
-  const form = event.currentTarget;
-  const formData = new FormData(form);
-  const email = String(formData.get("email")).toLowerCase();
-  const password = String(formData.get("password"));
-  const user = state.users.find((item) => item.email === email && item.password === password);
-  const message = document.querySelector("[data-login-message]");
-
-  if (!user) {
-    message.textContent = "Email atau password tidak cocok.";
-    return;
-  }
-
-  state.currentEmail = email;
-  saveState();
-  form.reset();
-  message.textContent = "";
-  closeAuth();
-  updateAuthUI();
-  renderDashboard();
-  renderLeaderboard();
-  setView("dashboard");
 });
 
 document.querySelector("[data-search-input]").addEventListener("input", (event) => {
@@ -634,7 +618,6 @@ document.addEventListener("keydown", (event) => {
   }
 
   if (event.key === "Escape") {
-    closeAuth();
     document.querySelector("[data-search-modal]").classList.add("is-hidden");
   }
 });
@@ -654,8 +637,6 @@ renderCard();
 activeQuizQuestions = buildGeneralQuestions();
 renderQuestion();
 renderDashboard();
-renderLeaderboard();
-updateAuthUI();
 initSakura();
 
 if (typeof window !== "undefined" && window.addEventListener) {
