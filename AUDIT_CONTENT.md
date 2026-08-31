@@ -4,9 +4,9 @@ Tanggal audit: 2026-08-31
 
 ## Ringkasan Status
 
-- VALID: **29**
+- VALID: **22**
 - PERLU DIPERBAIKI: **0**
-- TIDAK CUKUP DATA: **35**
+- TIDAK CUKUP DATA: **42**
 
 > Catatan: test programatik hanya membuktikan struktur data konsisten (slug unik, type ada, correctAnswer dalam options, generator sesuai tipe). Ia TIDAK membuktikan kebenaran linguistik setiap entri Jepang; hal itu diberi tanda berdasarkan aturan di bawah dan catatan audit.
 
@@ -71,13 +71,13 @@ Tanggal audit: 2026-08-31
 | vokasi-restoran | Vokasi Restoran | vocabulary | lesson.vocab | 4 | 注文 / chuumon / pesanan  \|  席 / seki / kursi | buildVocabularyQuestions | VALID | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
 | vokasi-pabrik | Vokasi Pabrik | vocabulary | lesson.vocab | 4 | 安全 / anzen / aman  \|  機械 / kikai / mesin | buildVocabularyQuestions | VALID | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
 | wawancara-kerja | Wawancara Kerja | vocabulary | lesson.vocab | 4 | 自己紹介 / jikoshoukai / perkenalan diri  \|  経験 / keiken / pengalaman | buildVocabularyQuestions | VALID | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
-| reading-pengumuman | Reading Pengumuman | vocabulary | lesson.vocab | 4 | 休館日 / kyuukanbi / hari tutup  \|  入口 / iriguchi / pintu masuk | buildVocabularyQuestions | VALID | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
-| reading-email-pendek | Reading Email Pendek | vocabulary | lesson.vocab | 4 | 会議 / kaigi / rapat  \|  変わる / kawaru / berubah | buildVocabularyQuestions | VALID | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
-| listening-angka-and-harga | Listening Angka & Harga | vocabulary | lesson.vocab | 4 | 番号 / bangou / nomor  \|  半 / han / setengah | buildVocabularyQuestions | VALID | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
-| listening-dialog-harian | Listening Dialog Harian | vocabulary | lesson.vocab | 4 | 映画 / eiga / film  \|  前 / mae / depan | buildVocabularyQuestions | VALID | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
-| simulasi-jlpt-n5 | Simulasi JLPT N5 | vocabulary | lesson.vocab | 4 | 問題 / mondai / soal  \|  正しい / tadashii / benar | buildVocabularyQuestions | VALID | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
-| simulasi-jlpt-n4 | Simulasi JLPT N4 | vocabulary | lesson.vocab | 4 | 読める / yomeru / bisa membaca  \|  経験 / keiken / pengalaman | buildVocabularyQuestions | VALID | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
-| simulasi-jlpt-n3 | Simulasi JLPT N3 | vocabulary | lesson.vocab | 4 | 条件 / jouken / kondisi  \|  受身 / ukemi / pasif | buildVocabularyQuestions | VALID | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
+| reading-pengumuman | Reading Pengumuman | reading | lesson.examples | 3 | 休館日は月曜日です  \|  入口は右側です | — (kosong) | TIDAK CUKUP DATA | Tidak ada teks bacaan + pertanyaan terstruktur -> kuis dinonaktifkan. |
+| reading-email-pendek | Reading Email Pendek | reading | lesson.examples | 3 | 会議は金曜日に変わりました  \|  資料を送ってください | — (kosong) | TIDAK CUKUP DATA | Tidak ada teks bacaan + pertanyaan terstruktur -> kuis dinonaktifkan. |
+| listening-angka-and-harga | Listening Angka & Harga | listening | lesson.examples | 3 | 500円です  \|  電話番号は1234です | — (kosong) | TIDAK CUKUP DATA | Tidak ada audio/speech/transkrip -> kuis dinonaktifkan. |
+| listening-dialog-harian | Listening Dialog Harian | listening | lesson.examples | 3 | 今日は映画を見ません  \|  駅の前で会います | — (kosong) | TIDAK CUKUP DATA | Tidak ada audio/speech/transkrip -> kuis dinonaktifkan. |
+| simulasi-jlpt-n5 | Simulasi JLPT N5 | reading | lesson.examples | 3 | 問題を読んでください  \|  正しい答えを選んでください | — (kosong) | TIDAK CUKUP DATA | Tidak ada teks bacaan + pertanyaan terstruktur -> kuis dinonaktifkan. |
+| simulasi-jlpt-n4 | Simulasi JLPT N4 | reading | lesson.examples | 3 | 日本語が読めます  \|  行ったことがあります | — (kosong) | TIDAK CUKUP DATA | Tidak ada teks bacaan + pertanyaan terstruktur -> kuis dinonaktifkan. |
+| simulasi-jlpt-n3 | Simulasi JLPT N3 | reading | lesson.examples | 3 | 安ければ買います  \|  先生にほめられました | — (kosong) | TIDAK CUKUP DATA | Tidak ada teks bacaan + pertanyaan terstruktur -> kuis dinonaktifkan. |
 
 ## Catatan Audit Linguistik (spot-check)
 
@@ -98,21 +98,3 @@ Tanggal audit: 2026-08-31
 
 ### Reading & Listening (TIDAK CUKUP DATA)
 - Tidak ada teks bacaan + pertanyaan, maupun sumber audio/transkrip. Kuis dinonaktifkan agar tidak menyamar sebagai kuis kosakata.
-
-## Koreksi Konten yang Dilakukan
-
-| Lokasi file | Nilai lama | Nilai baru | Alasan |
-|---|---|---|---|
-| `app-data.js` (data.kana.kanji / kanjiBank, entri 本) | `["本", "hon", "buku, asal"]` | `["本", "hon", "buku"]` | 本 (hon) berarti "buku"; "asal" bukan makna 本 (asal = 元/始). Dihapus agar tidak menyesatkan pada kuis kanji. Entri `vocabularyBank` untuk 本 sudah benar ("buku"). |
-
-## Materi yang Kuisnya Dinonaktifkan (TIDAK CUKUP DATA)
-- **32 modul grammar non-partikel** (Waktu & Jam, Angka, Kata Kerja MASU, Kata Sifat, Bentuk TE, Potensial, Tai, Pengalaman, TE MO II, TE WA IKENAI, NAKEREBA, TSUMORI, YORI, ICHIBAN, SOU Kabar/Terlihat, TARA, BA, NARA, Passive, Causative, Keigo, Wake, Hazu, Hodo, Kagiri, Sai, Yue, Uru/Eru, TOTAN, Nuki, dst.) → `buildGrammarQuestions` mengembalikan `[]` karena tidak ada struktur soal grammar (hanya contoh kalimat). UI menampilkan "Latihan untuk materi ini belum tersedia."
-- **Reading Dokkai, Listening Choukai, Reading/Lisning simulasi** → `buildLessonQuestions` mengembalikan `[]` (tidak memakai generator vocabulary).
-- **Flashcard SRS** → tidak punya soal kuis (hanya flashcard).
-
-## Hasil Semua Test
-- `node tests/validate.test.cjs` → 16/16 lolos.
-- `node tests/runtime-sim.cjs` → eksekusi penuh tanpa error.
-- `node tests/browser-test.cjs` (Playwright/Chromium) → 14/14 lolos, tanpa console error.
-- `validateStructure()` → 0 error (slug unik, judul unik, tiap lesson punya type, mapping dashboard valid, kana romaji valid, grammar tidak pakai generator vocabulary, reading/listening kosong).
-

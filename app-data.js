@@ -536,13 +536,13 @@ const lessonTypes = {
   "Vokasi Restoran": "vocabulary",
   "Vokasi Pabrik": "vocabulary",
   "Wawancara Kerja": "vocabulary",
-  "Reading Pengumuman": "vocabulary",
-  "Reading Email Pendek": "vocabulary",
-  "Listening Angka & Harga": "vocabulary",
-  "Listening Dialog Harian": "vocabulary",
-  "Simulasi JLPT N5": "vocabulary",
-  "Simulasi JLPT N4": "vocabulary",
-  "Simulasi JLPT N3": "vocabulary"
+  "Reading Pengumuman": "reading",
+  "Reading Email Pendek": "reading",
+  "Listening Angka & Harga": "listening",
+  "Listening Dialog Harian": "listening",
+  "Simulasi JLPT N5": "reading",
+  "Simulasi JLPT N4": "reading",
+  "Simulasi JLPT N3": "reading"
 };
 
 function slugify(s) {
