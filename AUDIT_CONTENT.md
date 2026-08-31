@@ -4,9 +4,19 @@ Tanggal audit: 2026-08-31
 
 ## Ringkasan Status
 
-- VALID: **22**
+- VALID: **0**
+- BELUM DIVERIFIKASI: **22**
 - PERLU DIPERBAIKI: **0**
 - TIDAK CUKUP DATA: **42**
+
+> **Definisi status**
+> - **VALID**: struktur dan seluruh konten utama sudah diperiksa.
+> - **PERLU DIPERBAIKI**: ditemukan data salah atau meragukan.
+> - **TIDAK CUKUP DATA**: materi/latihan belum mempunyai data yang diperlukan.
+> - **BELUM DIVERIFIKASI**: struktur valid, tetapi seluruh konten linguistik belum diperiksa.
+
+> Catatan: test programatik hanya membuktikan struktur data konsisten (slug unik, type ada, correctAnswer dalam options, generator sesuai tipe). Ia TIDAK membuktikan kebenaran linguistik setiap entri Jepang. Verifikasi linguistik baru dilakukan spot-check; materi berisi konten (kana, kosakata, kanji, grammar partikel) berstatus BELUM DIVERIFIKASI sampai audit linguistik penuh dilakukan.
+
 
 > Catatan: test programatik hanya membuktikan struktur data konsisten (slug unik, type ada, correctAnswer dalam options, generator sesuai tipe). Ia TIDAK membuktikan kebenaran linguistik setiap entri Jepang; hal itu diberi tanda berdasarkan aturan di bawah dan catatan audit.
 
@@ -14,21 +24,21 @@ Tanggal audit: 2026-08-31
 
 | slug | title | type | contentSource | jumlahData | contohData | generator | status | masalah |
 |---|---|---|---|---|---|---|---|---|
-| hiragana-dasar | Hiragana Dasar | kana | data.kana.hiragana | 46 | あ / a / asa - pagi  \|  い / i / inu - anjing | buildKanaQuestions | VALID | Romaji standar; contoh kata hanya label 'contoh kata', bukan jawaban. |
-| katakana-dasar | Katakana Dasar | kana | data.kana.katakana | 46 | ア / a / amerika  \|  イ / i / indo | buildKanaQuestions | VALID | Romaji standar; contoh kata hanya label 'contoh kata', bukan jawaban. |
-| kanji-campuran | Kanji Campuran | kanji | data.kana.kanji | 520 | 日 / hi/nichi / hari, matahari  \|  月 / tsuki/getsu / bulan | buildKanjiQuestions(15/sesi) | VALID | Label diubah 'Kanji N5-N1' -> 'Kanji Campuran' karena data tidak punya field level JLPT. |
-| kamus-kosakata | Kamus Kosakata | vocabulary | lesson.vocab | 115 | 挨拶 / aisatsu / salam  \|  おはよう / ohayou / selamat pagi | buildVocabularyQuestions | VALID | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
-| partikel-and-grammar | Partikel & Grammar | grammar | lesson.examples | 4 | 私は学生です = Saya pelajar  \|  水を飲みます = Minum air | buildGrammarQuestions | VALID | Partikel terdeteksi; soal kalimat rumpang tersedia. |
+| hiragana-dasar | Hiragana Dasar | kana | data.kana.hiragana | 46 | あ / a / asa - pagi  \|  い / i / inu - anjing | buildKanaQuestions | BELUM DIVERIFIKASI | Romaji standar; contoh kata hanya label 'contoh kata', bukan jawaban. |
+| katakana-dasar | Katakana Dasar | kana | data.kana.katakana | 46 | ア / a / amerika  \|  イ / i / indo | buildKanaQuestions | BELUM DIVERIFIKASI | Romaji standar; contoh kata hanya label 'contoh kata', bukan jawaban. |
+| kanji-campuran | Kanji Campuran | kanji | data.kana.kanji | 520 | 日 / hi/nichi / hari, matahari  \|  月 / tsuki/getsu / bulan | buildKanjiQuestions(15/sesi) | BELUM DIVERIFIKASI | Label diubah 'Kanji N5-N1' -> 'Kanji Campuran' karena data tidak punya field level JLPT. |
+| kamus-kosakata | Kamus Kosakata | vocabulary | lesson.vocab | 115 | 挨拶 / aisatsu / salam  \|  おはよう / ohayou / selamat pagi | buildVocabularyQuestions | BELUM DIVERIFIKASI | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
+| partikel-and-grammar | Partikel & Grammar | grammar | lesson.examples | 4 | 私は学生です = Saya pelajar  \|  水を飲みます = Minum air | buildGrammarQuestions | BELUM DIVERIFIKASI | Partikel terdeteksi; soal kalimat rumpang tersedia. |
 | reading-dokkai | Reading Dokkai | reading | lesson.examples | 3 | あした 9じに 学校へ 行きます。  \|  スーパーは 8じから 10じまでです。 | — (kosong) | TIDAK CUKUP DATA | Tidak ada teks bacaan + pertanyaan terstruktur -> kuis dinonaktifkan. |
 | listening-choukai | Listening Choukai | listening | lesson.examples | 3 | A: 何時ですか。B: 9時です。  \|  A: 駅はどこですか。B: 右です。 | — (kosong) | TIDAK CUKUP DATA | Tidak ada audio/speech/transkrip -> kuis dinonaktifkan. |
 | flashcard-srs | Flashcard SRS | flashcard | lesson.examples | 4 | Lagi / 0 / ulang cepat  \|  Sulit / 3 / ulang agak cepat | — (kosong) | TIDAK CUKUP DATA | Tidak ada soal kuis (hanya flashcard). |
-| partikel-wa-vs-ga | Partikel WA vs GA | grammar | lesson.examples | 3 | 私は学生です  \|  雨が降っています | buildGrammarQuestions | VALID | Partikel terdeteksi; soal kalimat rumpang tersedia. |
-| partikel-wo-untuk-objek | Partikel WO untuk Objek | grammar | lesson.examples | 3 | ご飯を食べます  \|  水を飲みます | buildGrammarQuestions | VALID | Partikel terdeteksi; soal kalimat rumpang tersedia. |
-| partikel-ni-waktu-and-tujuan | Partikel NI Waktu & Tujuan | grammar | lesson.examples | 3 | 7時に起きます  \|  学校に行きます | buildGrammarQuestions | VALID | Partikel terdeteksi; soal kalimat rumpang tersedia. |
-| partikel-de-tempat-aksi | Partikel DE Tempat Aksi | grammar | lesson.examples | 3 | 図書館で勉強します  \|  バスで行きます | buildGrammarQuestions | VALID | Partikel terdeteksi; soal kalimat rumpang tersedia. |
-| partikel-e-arah | Partikel E Arah | grammar | lesson.examples | 3 | 日本へ行きます  \|  家へ帰ります | buildGrammarQuestions | VALID | Partikel terdeteksi; soal kalimat rumpang tersedia. |
-| partikel-mo | Partikel MO | grammar | lesson.examples | 3 | 私も学生です  \|  これも本です | buildGrammarQuestions | VALID | Partikel terdeteksi; soal kalimat rumpang tersedia. |
-| partikel-no-kepemilikan | Partikel NO Kepemilikan | grammar | lesson.examples | 3 | 私の本  \|  日本語の先生 | buildGrammarQuestions | VALID | Partikel terdeteksi; soal kalimat rumpang tersedia. |
+| partikel-wa-vs-ga | Partikel WA vs GA | grammar | lesson.examples | 3 | 私は学生です  \|  雨が降っています | buildGrammarQuestions | BELUM DIVERIFIKASI | Partikel terdeteksi; soal kalimat rumpang tersedia. |
+| partikel-wo-untuk-objek | Partikel WO untuk Objek | grammar | lesson.examples | 3 | ご飯を食べます  \|  水を飲みます | buildGrammarQuestions | BELUM DIVERIFIKASI | Partikel terdeteksi; soal kalimat rumpang tersedia. |
+| partikel-ni-waktu-and-tujuan | Partikel NI Waktu & Tujuan | grammar | lesson.examples | 3 | 7時に起きます  \|  学校に行きます | buildGrammarQuestions | BELUM DIVERIFIKASI | Partikel terdeteksi; soal kalimat rumpang tersedia. |
+| partikel-de-tempat-aksi | Partikel DE Tempat Aksi | grammar | lesson.examples | 3 | 図書館で勉強します  \|  バスで行きます | buildGrammarQuestions | BELUM DIVERIFIKASI | Partikel terdeteksi; soal kalimat rumpang tersedia. |
+| partikel-e-arah | Partikel E Arah | grammar | lesson.examples | 3 | 日本へ行きます  \|  家へ帰ります | buildGrammarQuestions | BELUM DIVERIFIKASI | Partikel terdeteksi; soal kalimat rumpang tersedia. |
+| partikel-mo | Partikel MO | grammar | lesson.examples | 3 | 私も学生です  \|  これも本です | buildGrammarQuestions | BELUM DIVERIFIKASI | Partikel terdeteksi; soal kalimat rumpang tersedia. |
+| partikel-no-kepemilikan | Partikel NO Kepemilikan | grammar | lesson.examples | 3 | 私の本  \|  日本語の先生 | buildGrammarQuestions | BELUM DIVERIFIKASI | Partikel terdeteksi; soal kalimat rumpang tersedia. |
 | waktu-and-jam | Waktu & Jam | grammar | lesson.examples | 3 | 今は8時です  \|  月曜日に会います | — (kosong) | TIDAK CUKUP DATA | Modul non-partikel: ada contoh tapi tidak ada struktur soal grammar -> kuis dinonaktifkan. |
 | angka-and-counter-dasar | Angka & Counter Dasar | grammar | lesson.examples | 3 | りんごを三つください  \|  500円です | — (kosong) | TIDAK CUKUP DATA | Modul non-partikel: ada contoh tapi tidak ada struktur soal grammar -> kuis dinonaktifkan. |
 | kata-kerja-bentuk-masu | Kata Kerja Bentuk MASU | grammar | lesson.examples | 3 | 食べます  \|  飲みません | — (kosong) | TIDAK CUKUP DATA | Modul non-partikel: ada contoh tapi tidak ada struktur soal grammar -> kuis dinonaktifkan. |
@@ -61,16 +71,16 @@ Tanggal audit: 2026-08-31
 | uru-eru | Uru/Eru | grammar | lesson.examples | 3 | それは起こり得る問題です  \|  この結果はあり得ません | — (kosong) | TIDAK CUKUP DATA | Modul non-partikel: ada contoh tapi tidak ada struktur soal grammar -> kuis dinonaktifkan. |
 | totan-ni | TOTAN NI | grammar | lesson.examples | 3 | 家を出たとたん、雨が降り出した  \|  立ち上がったとたん、めまいがした | — (kosong) | TIDAK CUKUP DATA | Modul non-partikel: ada contoh tapi tidak ada struktur soal grammar -> kuis dinonaktifkan. |
 | nuki-ni-shite | Nuki Ni Shite | grammar | lesson.examples | 3 | 冗談抜きにして、本当に危険です  \|  年齢抜きにして能力で判断します | — (kosong) | TIDAK CUKUP DATA | Modul non-partikel: ada contoh tapi tidak ada struktur soal grammar -> kuis dinonaktifkan. |
-| kosakata-rumah | Kosakata Rumah | vocabulary | lesson.vocab | 4 | 部屋 / heya / kamar  \|  台所 / daidokoro / dapur | buildVocabularyQuestions | VALID | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
-| kosakata-dapur | Kosakata Dapur | vocabulary | lesson.vocab | 4 | 野菜 / yasai / sayur  \|  肉 / niku / daging | buildVocabularyQuestions | VALID | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
-| kosakata-transportasi | Kosakata Transportasi | vocabulary | lesson.vocab | 4 | 駅 / eki / stasiun  \|  電車 / densha / kereta | buildVocabularyQuestions | VALID | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
-| kosakata-belanja | Kosakata Belanja | vocabulary | lesson.vocab | 4 | いくら / ikura / berapa harga  \|  払う / harau / membayar | buildVocabularyQuestions | VALID | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
-| kosakata-kesehatan | Kosakata Kesehatan | vocabulary | lesson.vocab | 4 | 頭 / atama / kepala  \|  痛い / itai / sakit | buildVocabularyQuestions | VALID | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
-| kosakata-kantor | Kosakata Kantor | vocabulary | lesson.vocab | 4 | 会議 / kaigi / rapat  \|  送る / okuru / mengirim | buildVocabularyQuestions | VALID | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
-| vokasi-kaigo | Vokasi Kaigo | vocabulary | lesson.vocab | 4 | 手伝う / tetsudau / membantu  \|  歩く / aruku / berjalan | buildVocabularyQuestions | VALID | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
-| vokasi-restoran | Vokasi Restoran | vocabulary | lesson.vocab | 4 | 注文 / chuumon / pesanan  \|  席 / seki / kursi | buildVocabularyQuestions | VALID | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
-| vokasi-pabrik | Vokasi Pabrik | vocabulary | lesson.vocab | 4 | 安全 / anzen / aman  \|  機械 / kikai / mesin | buildVocabularyQuestions | VALID | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
-| wawancara-kerja | Wawancara Kerja | vocabulary | lesson.vocab | 4 | 自己紹介 / jikoshoukai / perkenalan diri  \|  経験 / keiken / pengalaman | buildVocabularyQuestions | VALID | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
+| kosakata-rumah | Kosakata Rumah | vocabulary | lesson.vocab | 4 | 部屋 / heya / kamar  \|  台所 / daidokoro / dapur | buildVocabularyQuestions | BELUM DIVERIFIKASI | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
+| kosakata-dapur | Kosakata Dapur | vocabulary | lesson.vocab | 4 | 野菜 / yasai / sayur  \|  肉 / niku / daging | buildVocabularyQuestions | BELUM DIVERIFIKASI | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
+| kosakata-transportasi | Kosakata Transportasi | vocabulary | lesson.vocab | 4 | 駅 / eki / stasiun  \|  電車 / densha / kereta | buildVocabularyQuestions | BELUM DIVERIFIKASI | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
+| kosakata-belanja | Kosakata Belanja | vocabulary | lesson.vocab | 4 | いくら / ikura / berapa harga  \|  払う / harau / membayar | buildVocabularyQuestions | BELUM DIVERIFIKASI | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
+| kosakata-kesehatan | Kosakata Kesehatan | vocabulary | lesson.vocab | 4 | 頭 / atama / kepala  \|  痛い / itai / sakit | buildVocabularyQuestions | BELUM DIVERIFIKASI | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
+| kosakata-kantor | Kosakata Kantor | vocabulary | lesson.vocab | 4 | 会議 / kaigi / rapat  \|  送る / okuru / mengirim | buildVocabularyQuestions | BELUM DIVERIFIKASI | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
+| vokasi-kaigo | Vokasi Kaigo | vocabulary | lesson.vocab | 4 | 手伝う / tetsudau / membantu  \|  歩く / aruku / berjalan | buildVocabularyQuestions | BELUM DIVERIFIKASI | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
+| vokasi-restoran | Vokasi Restoran | vocabulary | lesson.vocab | 4 | 注文 / chuumon / pesanan  \|  席 / seki / kursi | buildVocabularyQuestions | BELUM DIVERIFIKASI | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
+| vokasi-pabrik | Vokasi Pabrik | vocabulary | lesson.vocab | 4 | 安全 / anzen / aman  \|  機械 / kikai / mesin | buildVocabularyQuestions | BELUM DIVERIFIKASI | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
+| wawancara-kerja | Wawancara Kerja | vocabulary | lesson.vocab | 4 | 自己紹介 / jikoshoukai / perkenalan diri  \|  経験 / keiken / pengalaman | buildVocabularyQuestions | BELUM DIVERIFIKASI | Sebagian entri perlu review linguistik (lihat Catatan Audit). |
 | reading-pengumuman | Reading Pengumuman | reading | lesson.examples | 3 | 休館日は月曜日です  \|  入口は右側です | — (kosong) | TIDAK CUKUP DATA | Tidak ada teks bacaan + pertanyaan terstruktur -> kuis dinonaktifkan. |
 | reading-email-pendek | Reading Email Pendek | reading | lesson.examples | 3 | 会議は金曜日に変わりました  \|  資料を送ってください | — (kosong) | TIDAK CUKUP DATA | Tidak ada teks bacaan + pertanyaan terstruktur -> kuis dinonaktifkan. |
 | listening-angka-and-harga | Listening Angka & Harga | listening | lesson.examples | 3 | 500円です  \|  電話番号は1234です | — (kosong) | TIDAK CUKUP DATA | Tidak ada audio/speech/transkrip -> kuis dinonaktifkan. |
@@ -81,20 +91,38 @@ Tanggal audit: 2026-08-31
 
 ## Catatan Audit Linguistik (spot-check)
 
-### Kana (VALID)
+### Kana (BELUM DIVERIFIKASI)
 - あ=a, い=i, う=u, ア=a, イ=i, ウ=u, し=shi, ち=chi, つ=tsu, ふ=fu, を=wo/o, ん=n — sesuai standar.
 - Contoh kata di kolom ke-3 hanya dipakai sebagai label 'contoh kata' pada penjelasan, bukan sebagai jawaban.
 
-### Vocabulary (VALID, perlu review terbatas)
+### Vocabulary (BELUM DIVERIFIKASI)
 - 本 (hon): data mencantumkan 'buku, asal'. 'asal' kurang tepat sebagai arti 本; sebaiknya 'buku' (atau 'asal-usul' hanya dalam frasa tertentu). Tidak diubah otomatis karena butuh konfirmasi sumber.
 - Sebagian besar entri vocabularyBank sudah benar (gohan=nasi, mizu=air, sensei=guru, dsb).
 
-### Grammar (8 VALID partikel, 32 TIDAK CUKUP DATA)
-- Partikel WA/GA/WO/NI/DE/HE/MO/NO: menghasilkan soal 'Lengkapi kalimat' (fill-in) -> VALID.
+### Grammar (8 BELUM DIVERIFIKASI partikel, 32 TIDAK CUKUP DATA)
+- Partikel WA/GA/WO/NI/DE/HE/MO/NO: menghasilkan soal 'Lengkapi kalimat' (fill-in) -> BELUM DIVERIFIKASI (soal terbentuk, namun contoh kalimat belum diaudit penuh).
 - Modul non-partikel (Waktu & Jam, Angka, Kata Kerja MASU, Kata Sifat, Bentuk TE, Potensial, Tai, Passive, Causative, Keigo, dsb.): hanya punya contoh kalimat, tidak ada struktur soal grammar -> kuis sengaja dikosongkan ('Latihan untuk materi ini belum tersedia.').
 
-### Kanji (VALID setelah relabel)
+### Kanji (BELUM DIVERIFIKASI)
 - Judul 'Kanji N5-N1' diubah menjadi 'Kanji Campuran' karena data tidak memiliki field level JLPT; kuis dibatasi 15 soal/sesi tanpa klaim filter level.
 
 ### Reading & Listening (TIDAK CUKUP DATA)
 - Tidak ada teks bacaan + pertanyaan, maupun sumber audio/transkrip. Kuis dinonaktifkan agar tidak menyamar sebagai kuis kosakata.
+
+## Koreksi Konten yang Dilakukan
+
+| Lokasi file | Nilai lama | Nilai baru | Alasan |
+|---|---|---|---|
+| `app-data.js` (data.kana.kanji / kanjiBank, entri 本) | `["本", "hon", "buku, asal"]` | `["本", "hon", "buku"]` | 本 (hon) berarti "buku"; "asal" bukan makna 本 (asal = 元/始). Entri `vocabularyBank` untuk 本 sudah benar ("buku"). |
+| Label materi kanji | `Kanji N5-N1` + level `JLPT N5-N1` | `Kanji Campuran` + level `Campuran` | Data tidak punya field level JLPT; klaim level dihapus, kuis dibatasi 15 soal/sesi tanpa filter level. |
+
+## Materi yang Kuisnya Dinonaktifkan (TIDAK CUKUP DATA)
+- **32 modul grammar non-partikel** (Waktu & Jam, Angka, Kata Kerja MASU, Kata Sifat, Bentuk TE, Potensial, Tai, Pengalaman, TE MO II, TE WA IKENAI, NAKEREBA, TSUMORI, YORI, ICHIBAN, SOU Kabar/Terlihat, TARA, BA, NARA, Passive, Causative, Keigo, Wake, Hazu, Hodo, Kagiri, Sai, Yue, Uru/Eru, TOTAN, Nuki, dst.) -> `buildGrammarQuestions` mengembalikan `[]` karena tidak ada struktur soal grammar (hanya contoh kalimat). UI menampilkan "Latihan untuk materi ini belum tersedia."
+- **9 reading/listening** (Reading Dokkai, Listening Choukai, Reading Pengumuman, Reading Email, Listening Angka, Listening Dialog, Simulasi JLPT N5/N4/N3) -> `buildLessonQuestions` mengembalikan `[]` (tidak memakai generator vocabulary).
+- **Flashcard SRS** -> tidak punya soal kuis (hanya flashcard).
+
+## Hasil Semua Test
+- `node tests/validate.test.cjs` -> 16/16 lolos.
+- `node tests/runtime-sim.cjs` -> eksekusi penuh tanpa error.
+- `node tests/browser-test.cjs` (Playwright/Chromium) -> 14/14 lolos, tanpa console error.
+- `validateStructure()` -> 0 error (slug unik, judul unik, tiap lesson punya type, mapping dashboard valid, kana romaji valid, grammar tidak pakai generator vocabulary, reading/listening kosong).
