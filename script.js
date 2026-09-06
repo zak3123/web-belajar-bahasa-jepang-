@@ -225,6 +225,16 @@ function renderLessonDetail() {
 
 function openLesson(title) {
   if (!data.lessonDetails[title]) { showLessonNotFound(); return; }
+  
+  // Reset quiz/flashcard state ketika buka materi baru
+  activeQuestion = 0;
+  quizAnswered = false;
+  quizCorrect = 0;
+  quizWrong = 0;
+  quizXp = 0;
+  activeQuizQuestions = [];
+  activeQuizLesson = null;
+  
   activeLesson = title;
   state.profile.lastLesson = title;
   const targetHash = "lesson=" + encodeURIComponent(titleToSlug[title] || slugify(title));
@@ -244,6 +254,16 @@ function openLessonBySlug(slug) {
 
 function applyHash() {
   if (typeof location === "undefined") return;
+  
+  // Reset semua state sebelumnya (quiz, flashcard)
+  activeQuestion = 0;
+  quizAnswered = false;
+  quizCorrect = 0;
+  quizWrong = 0;
+  quizXp = 0;
+  activeQuizQuestions = [];
+  activeQuizLesson = null;
+  
   const m = (location.hash || "").match(/lesson=([^&]+)/);
   if (!m) return;
   const slug = decodeURIComponent(m[1]);
@@ -253,6 +273,15 @@ function applyHash() {
 }
 
 function openLessonFlashcard(title = activeLesson) {
+  // Reset quiz state sebelum buka flashcard
+  activeQuestion = 0;
+  quizAnswered = false;
+  quizCorrect = 0;
+  quizWrong = 0;
+  quizXp = 0;
+  activeQuizQuestions = [];
+  activeQuizLesson = null;
+  
   const lesson = data.lessonDetails[title] || data.lessonDetails["Hiragana Dasar"];
   activeDeckTitle = title;
   activeDeckCards = buildLessonDeck(title, lesson);

@@ -827,8 +827,21 @@ const dashboardPath = [
   { slug: titleToSlug["Hiragana Dasar"], task: "Review 10 kartu Hiragana", time: "5 menit", action: "flashcard" },
   { slug: titleToSlug["Kamus Kosakata"], task: "Tambah 8 kosakata dapur", time: "10 menit", action: "lesson" },
   { slug: titleToSlug["Partikel WA vs GA"], task: "Baca ulang partikel WA dan GA", time: "12 menit", action: "lesson" },
-  { slug: titleToSlug["Kamus Kosakata"], task: "Kerjakan kuis cepat JLPT N5", time: "8 menit", action: "quiz" }
+  { slug: titleToSlug["Simulasi JLPT N5"], task: "Kerjakan kuis cepat JLPT (Pilih jumlah soal)", time: "8 menit", action: "jlpt_quick_quiz", options: { questionCount: 10, levels: ["N5"] } }
 ];
+
+// JLPT Quick Quiz Configuration
+const JLPT_QUIZ_CONFIG = {
+  defaultQuestionCount: 10, // Default jumlah soal jika tidak ditentukan
+  availableOptions: [5, 10, 15, 20, "All"], // Opsi jumlah soal yang tersedia
+  questionPool: {
+    "N5": [], // Akan diisi dengan soal-soal JLPT N5 dari berbagai materi
+    "N4": [],
+    "N3": [],
+    "N2": [],
+    "N1": []
+  }
+};
 
 function buildKanaQuestions(title) {
   const lesson = data.lessonDetails[title];
