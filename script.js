@@ -500,6 +500,11 @@ document.addEventListener("click", (event) => {
     document.querySelector(".topbar").classList.toggle("menu-open");
   }
 
+  if (target.dataset.jlptDirectQuiz) {
+    startJLPTDirectQuiz(Number(target.dataset.jlptDirectQuiz));
+    return;
+  }
+
   if (target.dataset.view) {
     const rect = target.getBoundingClientRect();
     bloomSakura(rect.left + rect.width / 2, rect.top + rect.height / 2);
