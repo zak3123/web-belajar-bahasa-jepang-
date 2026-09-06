@@ -282,6 +282,106 @@ const supplementalKana = {
   ]
 };
 
+const comprehensionQuizBank = {
+  "Reading Dokkai": [
+    ["あした 9 じに 学校へ行きます。", "Kapan pergi ke sekolah?", "Besok pukul 9", ["Besok pukul 9", "Hari ini pukul 9", "Besok pukul 10", "Minggu pagi"]],
+    ["スーパーは 8 じから 10 じまでです。", "Supermarket buka sampai pukul berapa?", "Pukul 10", ["Pukul 8", "Pukul 9", "Pukul 10", "Pukul 11"]],
+    ["田中さんは 駅で 待っています。", "Di mana Tanaka-san sedang menunggu?", "Di stasiun", ["Di sekolah", "Di rumah", "Di stasiun", "Di supermarket"]]
+  ],
+  "Listening Choukai": [
+    ["A: 何時ですか。B: 9 時です。", "Jawaban untuk pertanyaan jam tersebut adalah...", "Pukul 9", ["Pukul 7", "Pukul 8", "Pukul 9", "Pukul 10"]],
+    ["A: 駅はどこですか。B: 右です。", "Stasiun berada di mana?", "Di kanan", ["Di kiri", "Di kanan", "Di depan", "Di belakang"]],
+    ["A: コーヒーを飲みますか。B: はい、飲みます。", "Apakah B akan minum kopi?", "Ya, akan minum", ["Tidak, tidak minum", "Ya, akan minum", "Akan makan", "Tidak tahu"]]
+  ],
+  "Reading Pengumuman": [
+    ["休館日は月曜日です", "Kapan hari tutup fasilitas?", "Hari Senin", ["Hari Senin", "Hari Selasa", "Hari Jumat", "Hari Minggu"]],
+    ["入口は右側です", "Di sisi mana pintu masuk berada?", "Sebelah kanan", ["Sebelah kiri", "Sebelah kanan", "Di belakang", "Di lantai dua"]],
+    ["午後 6 時まで利用できます", "Fasilitas dapat digunakan sampai kapan?", "Sampai pukul 6 sore", ["Sampai pukul 6 pagi", "Sampai pukul 12 siang", "Sampai pukul 6 sore", "Sampai pukul 8 malam"]]
+  ],
+  "Reading Email Pendek": [
+    ["会議は金曜日に変わりました", "Rapat dipindahkan ke hari apa?", "Hari Jumat", ["Hari Senin", "Hari Rabu", "Hari Jumat", "Hari Sabtu"]],
+    ["資料を送ってください", "Apa yang diminta pengirim email?", "Mengirim dokumen", ["Membeli dokumen", "Mengirim dokumen", "Membaca buku", "Menunggu di rumah"]],
+    ["駅で会いましょう", "Di mana mereka akan bertemu?", "Di stasiun", ["Di kantor", "Di sekolah", "Di stasiun", "Di restoran"]]
+  ],
+  "Listening Angka & Harga": [
+    ["500 円です", "Berapa harga yang disebutkan?", "500 yen", ["50 yen", "100 yen", "500 yen", "5.000 yen"]],
+    ["電話番号は 1234 です", "Apa nomor telepon yang disebutkan?", "1234", ["1234", "1324", "1243", "4321"]],
+    ["3 時半に来てください", "Datang pukul berapa?", "Pukul 3.30", ["Pukul 3.00", "Pukul 3.30", "Pukul 4.00", "Pukul 4.30"]]
+  ],
+  "Listening Dialog Harian": [
+    ["今日は映画を見ません", "Apa yang tidak dilakukan hari ini?", "Tidak menonton film", ["Tidak pergi ke sekolah", "Tidak menonton film", "Tidak naik bus", "Tidak minum kopi"]],
+    ["駅の前で会います", "Mereka bertemu di mana?", "Di depan stasiun", ["Di dalam stasiun", "Di depan stasiun", "Di rumah", "Di kantor"]],
+    ["雨なのでバスで行きます", "Mengapa pergi naik bus?", "Karena hujan", ["Karena panas", "Karena terlambat", "Karena hujan", "Karena libur"]]
+  ],
+  "Simulasi JLPT N5": [
+    ["問題を読んでください", "Instruksi tersebut meminta Anda untuk...", "Membaca soal", ["Membaca soal", "Menulis email", "Membeli tiket", "Menunggu teman"]],
+    ["正しい答えを選んでください", "Apa yang harus dipilih?", "Jawaban yang benar", ["Jawaban yang benar", "Kanji tersulit", "Kata terpanjang", "Waktu tercepat"]],
+    ["時間を計って練習します", "Apa yang dilakukan saat berlatih?", "Mengukur waktu", ["Menghafal warna", "Mengukur waktu", "Membeli buku", "Menutup pintu"]]
+  ],
+  "Simulasi JLPT N4": [
+    ["日本語が読めます", "Apa kemampuan pembicara?", "Bisa membaca bahasa Jepang", ["Bisa menulis bahasa Jepang", "Bisa membaca bahasa Jepang", "Tidak bisa berbicara", "Sedang pergi ke Jepang"]],
+    ["行ったことがあります", "Apa makna pola tersebut?", "Pernah pergi", ["Akan pergi", "Sedang pergi", "Pernah pergi", "Tidak pergi"]],
+    ["勉強しなければなりません", "Apa yang harus dilakukan?", "Harus belajar", ["Tidak boleh belajar", "Harus belajar", "Pernah belajar", "Ingin belajar"]]
+  ],
+  "Simulasi JLPT N3": [
+    ["安ければ買います", "Dalam kondisi apa pembicara akan membeli?", "Jika murah", ["Jika mahal", "Jika murah", "Jika hujan", "Jika libur"]],
+    ["先生にほめられました", "Apa yang terjadi pada pembicara?", "Dipuji guru", ["Memuji guru", "Dipuji guru", "Menunggu guru", "Mengajar guru"]],
+    ["休ませてください", "Apa permintaan pembicara?", "Mohon izinkan saya beristirahat", ["Mohon izinkan saya beristirahat", "Mohon pergi ke sekolah", "Mohon membeli makanan", "Mohon membaca buku"]]
+  ],
+
+  "Reading Teks Panjang": [
+    ["昨日、駅で財布を落としました。困っていたら、親切な人が届けてくれました。", "誰が何をしましたか？", "親切な人が届けてくれました", ["自分が拾いました", "警察に届けました", "親切な人が届けてくれました", "捨てました"]],
+    ["日本の四季は美しいです。春は桜、秋は紅葉が有名です。", "秋に有名なものは何ですか？", "紅葉", ["桜", "紅葉", "雪", "花火"]],
+    ["田中さんは毎朝ジョギングをしてから出社します。健康のために毎日続けています。", "田中さんはなぜジョギングをしていますか？", "健康のため", ["暇つぶし", "健康のため", "仕事のため", "友達と会うため"]]
+  ],
+  "Listening Dialog Panjang": [
+    ["A：週末どこか行きませんか？B：海もいいですね。でも混んでいます。A：じゃあ、美術館はどうですか？B：いいえ、雨だし、博物館にしましょう。", "最終的な決定はどこに行くことになりましたか？", "博物館", ["海", "美術館", "博物館", "映画館"]],
+    ["A：食事、何にする？B：イタリアンは？A：ちょっと高いね。B：中華料理は？", "二人は何の話をしていますか？", "食事の選択", ["移動手段", "宿の手配", "食事の選択", "買い物の予算"]]
+  ],
+  "Reading Email ビジネス": [
+    ["件名：会議の日程変更について\n田中様へ\n平素よりお世話になっております。来週の会議を木曜日から金曜日に変更いたしました。", "このメールの主な内容は何ですか？", "会議日程の変更", ["新プロジェクトの発表", "出張の報告", "会議日程の変更", "謝罪のお知らせ"]],
+    ["ご連絡ありがとうございます。予定を確認しております。後日改めてご連絡いたします。", "書き手の立場はどれですか？", "相手の連絡を受け取り、確認后会連する", ["相手に謝罪する", "相手を招待する", "情報を求める", "相手に断る"]]
+  ],
+  "Listening Instruksi & Panduan": [
+    ["ボタンを押して電源を入れてください。設定メニューから言語を選択してください。", "最初のアクションは何ですか？", "ボタンを押す", ["言語を選択する", "電源を入れる", "メニューを開く"]],
+    ["この券を改札口にお入れください。入場の前に係員に渡してください。", "チケットをどこに入れますか？", "改札口", ["窓口", "自動販売機", "ロッカー"]]
+  ],
+  "Reading Artikel Pendek": [
+    ["日本のお正月は毎年一月一日です。家族が集まって、初詣に行きます。", "お正月に家族は何をしますか？", "集まって初詣に行く", ["旅行に行く", "掃除をする", "料理を作る"]],
+    ["夏祭りでは、屋台が出ます。焼きそばやかき氷を食べます。", "夏祭りで食べられるものは？", "焼きそばとかき氷", ["寿司と味噌汁", "天ぷらとお茶", "うどんと抹茶", "ラーメンとアイス"]]
+  ],
+  "Listening Pengumuman Stasiun": [
+    ["次は渋谷です。渋谷方面の方は、右側にご注意ください。", "次の駅はどこですか？", "渋谷", ["新宿", "池袋", "東京"]],
+    ["終電が三分遅れています。申し訳ございません。", "何が起きていますか？", "終電が遅れている", ["列車が止まっている", "駅が閉まっている", "電車が来る"]]
+  ],
+  "Reading Resepsionis & Hotel": [
+    ["チェックインは午後三時からです。パスポートをご提示ください。", "チェックインできる時間はいつからですか？", "午後三時から", ["午後二時から", "午後四時から", "すぐに"]]
+  ],
+  "Listening Diskusi Grup": [
+    ["A：図書館はどうですか？B：静かでいいですね。C：じゃあ、明日図書館で勉強しましょう。", "三人の結論は？", "図書館で勉強する", ["カフェで飲む", "家で行う", "やめる"]],
+    ["A：何時がいい？B：三時は無理。C：四点はどう？A：四点、OK！", "何時に会うことになりましたか？", "四点", ["三点", "五点", "六時"]]
+  ],
+  "Reading Tutorial Produk": [
+    ["アプリを起動するには、アイコンを長押ししてください。", "アプリを起動する方法は？", "アイコンを長押し", ["タップする", "ダブルタップ", "消去"]]
+  ],
+  "Listening Telefon Resepsionis": [
+    ["恐れ入りますが、山田様はいらっしゃいますでしょうか。かしこまりました。折り返しお電話いたします。", "話し手が求めていることは？", "山田様に会いたい", ["山田さんから電話を受けたい", "山田様に会いたい", "山田さんにメッセージを残したい"]],
+    ["Message: 佐藤さんが電話していました。用件は見積もりの件です。", "佐藤さんの用件は？", "見積もり", ["請求書", "納期", "品質"]]
+  ],
+  "Reading Ulasan & Review": [
+    ["このレストランはとてもお勧めです。料理もサービスも完璧でした。", "レビューの全体のトーンは？", "非常に良い", ["悪い", "中立", "Mixed"]],
+    ["ホテルは立地が良いですが、部屋が狭くて残念でした。", "ホテルの欠点は？", "部屋が狭い", ["立地が悪い", "サービスが悪い", "料理がいけない"]]
+  ],
+  "Listening Podcast Edukasi": [
+    ["日本の食文化は多様です。米だけでなく、麺類も重要です。", "podcast の主題は何ですか？", "日本の食文化", ["日本の音楽", "日本の美術", "日本のスポーツ"]],
+    ["茶道は日本の伝統で、抹茶を使って行われます。", "茶道で使われるものは？", "抹茶", ["煎茶", "玄茶", "緑茶"]]
+  ],
+  "Reading Laporan Harian": [
+    ["本日の業務：顧客対応 3 件、報告書作成完了。明日は見積もり作成を予定。", "明日の予定は？", "見積もり作成", ["顧客対応", "会議", "書類整理"]],
+    ["問題発生により、納期が三日延びました。対応責任者は佐藤です。", "納期が延びた理由は？", "問題発生", ["人員不足", "設備故障", "在庫切れ"]]
+  ]
+};
+
 const kanjiBank = [
   ["一", "ichi/hito", "satu"], ["二", "ni/futa", "dua"], ["三", "san/mi", "tiga"], ["四", "shi/yon", "empat"], ["五", "go/itsu", "lima"], ["六", "roku/mu", "enam"], ["七", "shichi/nana", "tujuh"], ["八", "hachi/ya", "delapan"], ["九", "kyuu/koko", "sembilan"], ["十", "juu/too", "sepuluh"],
   ["百", "hyaku", "seratus"], ["千", "sen/chi", "seribu"], ["万", "man/ban", "sepuluh ribu"], ["円", "en/maru", "yen, lingkaran"], ["年", "nen/toshi", "tahun"], ["上", "jou/ue", "atas"], ["下", "ka/shita", "bawah"], ["中", "chuu/naka", "tengah"], ["外", "gai/soto", "luar"], ["右", "u/migi", "kanan"],
@@ -465,7 +565,172 @@ function shuffle(array) {
   return arr;
 }
 
-const KNOWN_PARTICLES = ["は", "が", "を", "に", "で", "へ", "も", "の", "から", "まで", "と", "や"];
+const KNOWN_PARTICLES = ["は", "が", "を", "に", "で", "へ", "も", "の", "から", "まで", "と", "ya"];;
+
+
+const grammarQuizTargets = {
+  "Waktu & Jam": [
+    ["今何時ですか", "jikan"],
+    ["学校へ行く时间是 8 時です", "time"],
+    ["毎朝七時に起きます", "seven o'clock"]
+  ],
+  "Angka & Counter Dasar": [
+    ["何人いますか", "person counter"],
+    ["三冊の本があります", "book counter"],
+    ["五个りんごがあります", "apple counter"]
+  ],
+  "Kata Kerja Bentuk MASU": [
+    ["食事をします", "eat verb"],
+    ["勉強します", "study verb"],
+    ["日本へ行きます", "go verb"]
+  ],
+  "Kata Sifat I dan NA": [
+    ["この本は面白い", "i-adjective"],
+    ["あの店は静かだ", "na-adjective"],
+    ["天气は良いです", "weather adjective"]
+  ],
+  "Bentuk TE Dasar": [
+    ["行ってください", "te-form"],
+    ["食べてみましょう", "te-form suggestion"],
+    ["会ってみたいです", "te-form wish"]
+  ],
+  "Bentuk TE IMASU": [
+    ["待っています", "te-imasu progressive"],
+    ["着ています", "te-imasu state"],
+    ["走っています", "te-imasu action"]
+  ],
+  "Bentuk Potensial": [
+    ["読めます", "potential form"],
+    ["行けます", "can go"],
+    ["作れます", "can make"]
+  ],
+  "Tai Form Keinginan": [
+    ["見たいです", "want to see"],
+    ["食べたい", "want to eat"],
+    ["会いたい", "want to meet"]
+  ],
+  "Pengalaman TA KOTO GA ARU": [
+    ["行ったことがあります", "experienced"],
+    ["食べたことがあります", "have eaten"],
+    ["見たことがあります", "have seen"]
+  ],
+  "TE MO II": [
+    ["行ってもいいです", "permission"],
+    ["食べてもいいですか", "ask permission"],
+    ["寝てもいいですか", "ask for sleep"]
+  ],
+  "TE WA IKENAI": [
+    ["行いてはいけません", "prohibition"],
+    ["食べてはいけません", "must not eat"],
+    ["泣いてはいけません", "must not cry"]
+  ],
+  "NAKEREBA NARANAI": [
+    ["勉強しなければなりません", "must study"],
+    ["行かなければなりません", "must go"],
+    ["働かなければなりません", "must work"]
+  ],
+  "TSUMORI": [
+    ["来るつもりです", "plan to come"],
+    ["買うつもり", "plan to buy"],
+    ["休むつもり", "plan to rest"]
+  ],
+  "Perbandingan YORI": [
+    ["猫より犬が好きです", "comparison"],
+    ["北京よりも上海の方が好きです", "city comparison"],
+    ["冬より夏が好き", "season comparison"]
+  ],
+  "Superlatif ICHIBAN": [
+    ["一番好きな色", "favorite color"],
+    ["いちばん高い建物", "tallest building"],
+    ["一番美味しい食べ物", "most delicious food"]
+  ],
+  "SOU DESU Kabar": [
+    ["雨だそうです", "hear it rains"],
+    ["暇そうですね", "look busy"],
+    ["忙しいそうです", "heard he is busy"]
+  ],
+  "SOU DESU Terlihat": [
+    ["おいしそう", "looks delicious"],
+    ["楽しそうですね", "looks fun"],
+    ["难しそうですね", "looks difficult"]
+  ],
+  "TARA Conditional": [
+    ["来たら教えてください", "when you come"],
+    ["雨が降ったら中止", "if it rains"],
+    ["時間がなかったら断る", "if no time"]
+  ],
+  "BA Conditional": [
+    ["行けばわかります", "if you go"],
+    ["食べれば饱きます", "if you eat"],
+    ["聞けば教えてくれる", "if you ask"]
+  ],
+  "NARA Conditional": [
+    ["東京なら行きたい", "if Tokyo"],
+    ["暑いなら冷やしてください", "if hot"],
+    ["暇なら手伝う", "if free"]
+  ],
+  "Passive Ukemi": [
+    ["話されました", "was told"],
+    ["見られた", "was seen"],
+    ["褒められました", "was praised"]
+  ],
+  "Causative Shieki": [
+    ["飲ませます", "make drink"],
+    ["立たせました", "made stand"],
+    ["休ませて", "let rest"]
+  ],
+  "Keigo Dasar": [
+    ["お話しになります", "honorific speak"],
+    ["ご案内いたします", "humble guide"],
+    ["お待ちください", "humble wait"]
+  ],
+  "Wake Da": [
+    ["上手なわけです", "explain reason"],
+    ["遅れるわけです", "reason for delay"],
+    ["困るわけです", "consequence"]
+  ],
+  "Hazu Da": [
+    ["来るはずです", "should come"],
+    ["休みのはずです", "should rest"],
+    ["成功するはず", "should succeed"]
+  ],
+  "Hodo": [
+    ["泣きたいほど", "so much want to cry"],
+    ["昨日ほど寒くない", "not as cold as yesterday"],
+    ["思ったほど簡単", "easier than expected"]
+  ],
+  "Kagiri": [
+    ["知っている限り", "as far as I know"],
+    ["ある限り", "as long as there is"],
+    ["許す限り", "to the extent permitted"]
+  ],
+  "Sai Ni": [
+    ["際に注意", "when paying attention"],
+    ["機会があれば", "if opportunity arises"],
+    ["際はご連絡", "when contacting"]
+  ],
+  "Yue Ni": [
+    ["ゆえに", "therefore"],
+    ["故に結果", "consequently"],
+    ["がゆえに", "because of"]
+  ],
+  "Uru/Eru": [
+    ["起こり得る", "possible to occur"],
+    ["あり得ません", "cannot exist"],
+    ["起こり得ます", "can occur"]
+  ],
+  "TOTAN NI": [
+    ["出たとたん", "just as left"],
+    ["立ち上がったとたん", "stood up and..."],
+    ["切ったとたん", "just cut and..."]
+  ],
+  "Nuki Ni Shite": [
+    ["抜きにして", "excluding"],
+    ["抜きにして考えて", "considering without"],
+    ["抜きではできない", "cannot without"]
+  ]
+};
+
 
 const PARTICLE_INFO = {
   "を": "objek langsung",
@@ -710,10 +975,71 @@ function buildGrammarQuestions(title) {
     });
   }
 
-  // Hanya soal grammar berbasis kalimat rumpang yang diizinkan.
-  // Jika tidak ada data terstruktur (mis. modul non-partikel), kembalikan kosong
-  // agar UI menampilkan "Latihan untuk materi ini belum tersedia."
+  // Jika tidak ada partikel target, coba gunakan pola kata dari grammarQuizTargets
+  const targets = grammarQuizTargets[title];
+  if (targets && targets.length) {
+    // Gunakan contoh kalimat untuk membuat soal rumpang
+    // Ambil 3 kalimat pertama sebagai contoh
+    const sampleSentences = targets.slice(0, 3).map((t, idx) => t[0]);
+    
+    // Untuk setiap kalimat, buat blank dari kata yang disebutkan
+    sampleSentences.forEach((sentence, idx) => {
+      if (!sentence || !sentence || typeof sentence !== 'string') return;
+      
+      // Temukan kemungkinan pola vocabulary di dalam kalimat
+      const possibleWords = sentence.match(/[\u3040-\u309f\u30a0-\u30ff\u4e00-\u9fff]+/g); // Chinese/Japanese characters
+      
+      if (possibleWords && possibleWords.length > 0) {
+        // Ambil satu karakter/kata acak untuk diblank
+        const focalWord = possibleWords[Math.floor(Math.random() * possibleWords.length)];
+        const blankedSentence = sentence.replace(focalWord, '___');
+        
+        // Buat opsi dengan distraktor sederhana (gunakan bagian lain dari sententensah)
+        // Pastikan minimal ada 2 opsi unik yang valid
+        let uniqueOptions = [...new Set([...possibleWords.filter(w => w !== focalWord), focalWord])];
+        // Jika hanya ada 1 kata dalam kalimat seluruhnya, tambahkan dummy distraktor
+        while (uniqueOptions.length < 2) {
+          const dummies = ['何か', '他のも'];
+          dummies.forEach(d => { if (!uniqueOptions.includes(d)) uniqueOptions.push(d); });
+        }
+        const options = shuffle(uniqueOptions).slice(0, 4);
+        
+        questions.push({
+          id: `${title}__g${idx}`,
+          lessonId: title,
+          category: lesson.level || "grammar",
+          type: "grammar",
+          question: `Lengkapi kalimat: 「${blankedSentence}」`,
+          options,
+          correctAnswer: options.indexOf(focalWord),
+          explanation: `Kata「${focalWord}」adalah bagian penting dari pola grammar ini.`
+        });
+      }
+    });
+  }
+
   return questions;
+}
+
+function buildComprehensionQuestions(title) {
+  const lesson = data.lessonDetails[title];
+  if (!lesson) return [];
+  const bank = comprehensionQuizBank[title];
+  if (!bank || !bank.length) return [];
+
+  return bank.map(([passage, question, correct, choiceList], idx) => {
+    const options = shuffle(choiceList);
+    return {
+      id: `${title}__c${idx}`,
+      lessonId: title,
+      category: lesson.level || "comprehension",
+      type: lessonTypes[title],
+      question: `Bacaan/Percakapan: "${passage}"\n${question}`,
+      options,
+      correctAnswer: options.indexOf(correct),
+      explanation: `Jawaban benar: "${correct}", berdasarkan teks "${passage}".`
+    };
+  });
 }
 
 function buildLessonQuestions(title) {
@@ -723,9 +1049,8 @@ function buildLessonQuestions(title) {
     case "kanji": return buildKanjiQuestions(title);
     case "grammar": return buildGrammarQuestions(title);
     case "reading":
-    case "listening":
-    case "flashcard":
-      return [];
+    case "listening": return buildComprehensionQuestions(title);
+    case "flashcard": return [];
     case "vocabulary":
     default: return buildVocabularyQuestions(title);
   }
@@ -834,12 +1159,16 @@ function validateStructure() {
     });
   });
 
-  // 8. reading/listening TIDAK memakai generator vocabulary
+  // 8. reading/listening harus punya soal pemahaman (bukan kosong)
   data.lessons.forEach((l) => {
     const t = l[1];
     if (lessonTypes[t] === "reading" || lessonTypes[t] === "listening") {
       const qs = buildLessonQuestions(t);
-      if (qs.length) errors.push(`Reading/Listening "${t}" menghasilkan soal padahal seharusnya kosong: ${qs.length}`);
+      if (!qs.length) errors.push(`Reading/Listening "${t}" TIDAK menghasilkan soal padahal seharusnya ada soal pemahaman`);
+      else {
+        // Check that questions are comprehension type (not vocabulary)
+        if (qs.some(q => q.type === "vocabulary")) errors.push(`Reading/Listening "${t}" punya soal vocabulary: ${qs.find(q => q.type === "vocabulary").question}`);
+      }
     }
   });
 
@@ -858,6 +1187,7 @@ if (typeof module !== "undefined" && module.exports) {
     extraLessonModules,
     vocabularyBank,
     kanjiBank,
+    comprehensionQuizBank,
     shuffle,
     lessonTypes,
     titleToSlug,
@@ -868,6 +1198,7 @@ if (typeof module !== "undefined" && module.exports) {
     buildVocabularyQuestions,
     buildKanjiQuestions,
     buildGrammarQuestions,
+    buildComprehensionQuestions,
     buildLessonQuestions,
     buildGeneralQuestions,
     validateContent,

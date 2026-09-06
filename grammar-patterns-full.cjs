@@ -1,0 +1,152 @@
+// === MATERI GRAMMAR LENGKAP DENGAN CONTOH KALIMAT DAN PENJELASAN ===
+// File ini berisi pattern lengkap untuk pembelajaran grammar Jepang
+
+const fs = require("fs");
+
+const grammarPatterns = [
+  {
+    title: "Kata Kerja Bentuk MASU",
+    level: "N5",
+    description: "Bentuk sopan positif, negatif, lampau, dan lampau negatif",
+    patterns: [
+      {
+        pattern: "V+ます (positif)",
+        explanation: "Bentuk sopan untuk menyatakan aksi di masa kini atau kebiasaan",
+        examples: [
+          { jp: "朝7時に起きます", romaji: "Asa 7-ji okimasu", id: "Bangun jam 7 pagi" },
+          { jp: "毎日電車で働きます", romaji: "Mainichi densha de hatarakimasu", id: "Bekerja naik kereta setiap hari" },
+          { jp: "図書館で勉強します", romaji: "Toshokan de benkyou shimasu", id: "Belajar di perpustakaan" }
+        ]
+      },
+      {
+        pattern: "V+ません (negatif)",
+        explanation: "Bentuk sopan negatif - tidak melakukan aksi",
+        examples: [
+          { jp: "ご飯を食べません", romaji: "Gohan o tabemasen", id: "Tidak makan nasi" },
+          { jp: "水は飲みません", romaji: "Mizu wa nomasen", id: "Tidak minum air" },
+          { jp: "今日は働きません", romaji: "Kyou wa hatarakimasen", id: "Hari ini tidak bekerja" }
+        ]
+      },
+      {
+        pattern: "V+ました (lampau)",
+        explanation: "Bentuk lampau sopan - sudah melakukan aksi",
+        examples: [
+          { jp: "昨日映画を見ました", romaji: "Kinou eiga o mimashita", id: "Kemarin menonton film" },
+          { jp: "朝ごはんを食べました", romaji: "Asagohan o tabemashita", id: "Sarapan pagi ini" },
+          { jp: "友だちにあいました", romaji: "Tomodachi ni aimashita", id: "Bertemu teman" }
+        ]
+      },
+      {
+        pattern: "V+ませんでした (negatif lampau)",
+        explanation: "Bentuk negatif lampau - tidak melakukan aksi di masa lalu",
+        examples: [
+          { jp: "昨日学校を休みました", romaji: "Kinou gakkou o yasumimashita", id: "Sakit tidak masuk sekolah kemarin" },
+          { jp: "コーヒーを飲みませんでした", romaji: "Koohii o nomimasendeshita", id: "Tidak minum kopi" },
+          { jp: "電話をかけませんでした", romaji: "Denwa o kakemasendeshita", id: "Tidak menelepon" }
+        ]
+      }
+    ],
+    connectives: [
+      "そして (sore wa - kemudian/lalu)",
+      "でも (demo - tetapi/tetapi)"
+    ]
+  },
+  {
+    title: "Partikel WO untuk Objek",
+    level: "N5",
+    description: "Menandai objek langsung dalam kalimat transitif",
+    patterns: [
+      {
+        pattern: "Objek + を + V",
+        explanation: "Partikel を menandai benda yang menjadi target aksi kerja",
+        examples: [
+          { jp: "ご飯を食べます", romaji: "Gohan o tabemasu", id: "Makan nasi" },
+          { jp: "水を飲みます", romaji: "Mizu o nomimasu", id: "Minum air" },
+          { jp: "本を読みます", romaji: "Hon o yomimasu", id: "Membaca buku" },
+          { jp: "映画を見ます", romaji: "Eiga o mimasu", id: "Menonton film" }
+        ]
+      }
+    ],
+    connectives: ["でも (juga/pun)"]
+  },
+  {
+    title: "Tara Conditional",
+    level: "N4-N3",
+    description: "Jika suatu kondisi terjadi, maka aksi lain akan terjadi",
+    patterns: [
+      {
+        pattern: "Vたら + [aksi selanjutnya]",
+        explanation: "Jika/Apa setelah... maka..., menunjukkan urutan waktu atau kondisi",
+        examples: [
+          { jp: "日本へ行ったら寿司を食べたいです", romaji: "Nihon e ittara sushi o tabetai desu", id: "Kalau ke Jepang, ingin makan sushi" },
+          { jp: "時間があったら行きます", romaji: "Jikan ga attara ikimasu", id: "Kalau ada waktu, akan pergi" },
+          { jp: "家に帰ったら電話します", romaji: "Ie ni kaettara denwa shimasu", id: "Setelah pulang ke rumah, akan telepon" },
+          { jp: "雨だったら中止です", romaji: "Ame dattara chushi desu", id: "Kalau hujan, dibatalkan" }
+        ]
+      }
+    ],
+    connectives: [
+      "それから (sorekara - setelah itu/lalu)",
+      "もし (moshi - jika/apa saja)"
+    ]
+  },
+  {
+    title: "BA Conditional",
+    level: "N3",
+    description: "Menyatakan syarat umum yang selalu benar jika terpenuhi",
+    patterns: [
+      {
+        pattern: "Adj/Vば + [hasil otomatis]",
+        explanation: "Jika... maka..., menunjukkan hubungan sebab-akibat logis",
+        examples: [
+          { jp: "安ければ買います", romaji: "Yasukereba kaimasu", id: "Kalau murah, beli" },
+          { jp: "練習すれば上手になります", romaji: "Renshu sure jouzu ni narimasu", id: "Kalau berlatih jadi terampil" },
+          { jp: "雨が降れば行きません", romaji: "Ame ga fureba ikimasen", id: "Kalau hujan, tidak pergi" }
+        ]
+      }
+    ],
+    connectives: ["ですから (desukara - karena itu/karenanya)"]
+  },
+  {
+    title: "Te Mo II - Izin",
+    level: "N4",
+    description: "Meminta izin atau memberi izin melakukan sesuatu",
+    patterns: [
+      {
+        pattern: "Vて + もいいですか/です",
+        explanation: "Bolehkah...? / Boleh...",
+        examples: [
+          { jp: "ここに座ってもいいですか", romaji: "Koko ni suwattemo ii desu ka", id: "Boleh duduk di sini?" },
+          { jp: "写真を撮ってもいいです", romaji: "Shashin o tottemo ii desu", id: "Boleh mengambil foto" },
+          { jp: "入ってもいいですか", romaji: " Haitte mo ii desu ka", id: "Boleh masuk?" }
+        ]
+      }
+    ],
+    connectives: ["ありがとう (arigatou - terima kasih)", "すみません (sumimasen - maaf/permisi"]
+  },
+  {
+    title: "Passive Ukemi",
+    level: "N3",
+    description: "Menyatakan dikenai aksi oleh orang lain",
+    patterns: [
+      {
+        pattern: "V受身 (diterima aksi dari orang lain)",
+        explanation: "Dikenai/menerima aksi dari pihak lain",
+        examples: [
+          { jp: "先生にほめられました", romaji: "Sensei ni homeraremashita", id: "Dipuji guru" },
+          { jp: "財布を盗まれました", romaji: "Saifu o nusumararemashita", id: "Dompet dicuri" },
+          { jp: "友達に誘われました", romaji: "Tomodachi ni sasowaremashita", id: "Diajak teman" }
+        ]
+      }
+    ],
+    connectives: ["でも (demo - tetapi)", "だから (dakara - karena itu"]
+  }
+];
+
+// Output ke file JSON untuk referensi
+const outputPath = "grammar-reference.json";
+fs.writeFileSync(outputPath, JSON.stringify(grammarPatterns, null, 2));
+
+console.log(`✅ Ditulis ${grammarPatterns.length} materi grammar lengkap ke ${outputPath}`);
+console.log("Total patterns:", grammarPatterns.reduce((sum, m) => sum + m.patterns.length, 0));
+console.log("Total contoh kalimat:", grammarPatterns.reduce((sum, m) => sum + m.patterns.reduce((pSum, p) => pSum + p.examples.length, 0), 0));

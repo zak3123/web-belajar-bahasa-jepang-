@@ -1,0 +1,472 @@
+/* =============================================
+   ENHANCED JAPANESE WALLPAPER & QUIZ UI
+   Traditional patterns + Clear correct/wrong distinction
+   ============================================= */
+
+:root {
+  /* Japanese Color Palette */
+  --jp-red: #c91818;           /* Shu (Vermillion Red) */
+  --jp-red-dark: #a01818;
+  --jp-red-light: #e63737;
+  
+  --jp-gold: #d4af37;          /* Metallic Gold */
+  --jp-gold-light: #f0e130;
+  --jp-gold-dark: #b88a21;
+  
+  --jp-green: #2e5a27;         /* Mori Green */
+  --jp-green-light: #4a7a42;
+  --jp-green-dark: #1a3a15;
+  
+  --jp-blue: #1e3d59;          /* Indigo Blue */
+  --jp-blue-light: #3a5a7a;
+  
+  --jp-black: #1a1a1a;         /* Sumi (Ink Black) */
+  --jp-gray: #4a4a4a;
+  
+  --jp-washi: #faf8f5;         /* Rice Paper White */
+  --jp-washi-dark: #f0ede5;
+  
+  /* Sakura Gradients */
+  --sakura-1: #ffd7df;
+  --sakura-2: #ffb7c5;
+  --sakura-3: #ff9eb5;
+  
+  /* Answer States */
+  --answer-correct-bg: rgba(46, 90, 39, 0.95);
+  --answer-correct-border: #4a7a42;
+  --answer-wrong-bg: rgba(201, 24, 24, 0.95);
+  --answer-wrong-border: #e63737;
+}
+
+/* =============================================
+   TRADITIONAL JAPANESE BACKGROUND PATTERNS
+   ============================================= */
+
+body {
+  position: relative;
+  margin: 0;
+  color: var(--jp-black);
+  font-family: "Inter", "Noto Sans JP", sans-serif;
+  background-color: var(--jp-washi);
+  
+  /* Layered Traditional Background */
+  background-image:
+    /* Top layer: Seigaiha wave pattern */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath d='M60 0c33.1 0 60 26.9 60 60s-26.9 60-60 60S0 93.1 0 60 26.9 0 60 0zm0 6c30 0 54 24 54 54s-24 54-54 54S6 90 6 60 30 6 60 6z' fill='%23c91818' fill-opacity='0.03'/%3E%3Cpath d='M60 18c23.2 0 42 18.8 42 42s-18.8 42-42 42S18 83.2 18 60 36.8 18 60 18z' fill='%23c91818' fill-opacity='0.05'/%3E%3Cpath d='M60 36c13.3 0 24 10.7 24 24s-10.7 24-24 24-24-10.7-24-24 10.7-24 24-24z' fill='%23c91818' fill-opacity='0.08'/%3E%3C/svg%3E"),
+    
+    /* Second layer: Toro-nagare flowing lines */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cpath d='M0 60 Q50 40 100 60 T200 60 M0 100 Q50 80 100 100 T200 100 M0 140 Q50 120 100 140 T200 140' stroke='%231e3d59' stroke-width='0.5' fill='none' opacity='0.04'/%3E%3C/svg%3E"),
+    
+    /* Third layer: Subtle dot pattern */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Ccircle cx='2' cy='2' r='1.5' fill='%23d4af37' opacity='0.06'/%3E%3C/svg%3E"),
+    
+    /* Gradient overlay for depth */
+    linear-gradient(180deg, rgba(250, 248, 245, 0.98) 0%, rgba(255, 250, 246, 0.95) 50%, rgba(250, 248, 245, 0.98) 100%),
+    
+    /* Corner decorations */
+    radial-gradient(circle at top left, rgba(201, 24, 24, 0.08), transparent 25%),
+    radial-gradient(circle at top right, rgba(212, 175, 55, 0.06), transparent 25%),
+    radial-gradient(circle at bottom left, rgba(46, 90, 39, 0.06), transparent 25%),
+    radial-gradient(circle at bottom right, rgba(30, 61, 89, 0.07), transparent 25%);
+  
+  overflow-x: hidden;
+}
+
+/* Decorative corner borders with Japanese motifs */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  
+  /* Corner decorative elements */
+  background-image:
+    /* Top-left: Cherry blossom cluster */
+    radial-gradient(circle at 40px 40px, 
+      radial-gradient(circle, var(--sakura-1) 0, transparent 8px) 0% 100%,
+      radial-gradient(circle, var(--sakura-2) 0, transparent 6px) 25% 75%,
+      radial-gradient(circle, var(--sakura-3) 0, transparent 5px) 50% 50%,
+      radial-gradient(circle, var(--sakura-1) 0, transparent 7px) 75% 25%,
+      radial-gradient(circle, var(--sakura-2) 0, transparent 6px) 100% 0%,
+      transparent 20px) no-repeat,
+    
+    /* Top-right: Gold circles */
+    radial-gradient(circle at calc(100% - 40px) 40px, 
+      circle 0 5px, var(--jp-gold) 5px 12px, transparent 12px) no-repeat,
+    
+    /* Bottom-left: Green waves */
+    radial-gradient(circle at 40px calc(100% - 40px), 
+      path at 0 0, var(--jp-green) 0 8px, transparent 8px) no-repeat,
+    
+    /* Bottom-right: Blue pattern */
+    radial-gradient(circle at calc(100% - 40px) calc(100% - 40px), 
+      circle 0 6px, var(--jp-blue) 6px 14px, transparent 14px) no-repeat;
+  
+  opacity: 0.6;
+}
+
+/* Full-screen seigaiha overlay */
+body::before {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  content: "";
+  pointer-events: none;
+  opacity: 0.08;
+  
+  background-image:
+    /* Concentric circles pattern (Seigaiha) */
+    radial-gradient(circle at center, 
+      transparent 0,
+      transparent 15%,
+      rgba(201, 24, 24, 0.08) 15%,
+      rgba(201, 24, 24, 0.08) 16%,
+      transparent 16%,
+      transparent 35%,
+      rgba(201, 24, 24, 0.06) 35%,
+      rgba(201, 24, 24, 0.06) 36%,
+      transparent 36%,
+      transparent 55%,
+      rgba(201, 24, 24, 0.04) 55%,
+      rgba(201, 24, 24, 0.04) 56%,
+      transparent 56%
+    );
+}
+
+/* Floating sakura petals (enhanced) */
+.sakura-layer {
+  z-index: 70;
+}
+
+.sakura-petal {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.95) 0%, transparent 50%),
+    linear-gradient(135deg, var(--sakura-1) 0%, var(--sakura-2) 50%, var(--sakura-3) 100%);
+  box-shadow: 
+    0 4px 12px rgba(255, 183, 197, 0.3),
+    0 0 20px rgba(255, 215, 223, 0.2);
+}
+
+/* =============================================
+   ENHANCED QUIZ ANSWER UI - CLEAR DISTINCTION
+   ============================================= */
+
+/* Correct Answer Style */
+.correct-btn {
+  background: linear-gradient(135deg, 
+    var(--answer-correct-bg) 0%, 
+    var(--jp-green-dark) 100%) !important;
+  border: 2px solid var(--answer-correct-border) !important;
+  color: white !important;
+  position: relative;
+  overflow: hidden;
+  
+  /* Left accent bar */
+  box-shadow: 
+    inset 5px 0 0 var(--jp-gold),
+    0 4px 16px rgba(46, 90, 39, 0.4);
+}
+
+.correct-btn::before {
+  content: "✅";
+  position: absolute;
+  left: 12px;
+  font-size: 1.4rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.correct-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.correct-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 
+    inset 5px 0 0 var(--jp-gold),
+    0 8px 24px rgba(46, 90, 39, 0.5);
+}
+
+/* Wrong Answer Style */
+.wrong-btn {
+  background: linear-gradient(135deg, 
+    var(--answer-wrong-bg) 0%, 
+    var(--jp-red-dark) 100%) !important;
+  border: 2px solid var(--answer-wrong-border) !important;
+  color: white !important;
+  position: relative;
+  overflow: hidden;
+  
+  /* Left accent bar */
+  box-shadow: 
+    inset 5px 0 0 var(--jp-gold),
+    0 4px 16px rgba(201, 24, 24, 0.4);
+}
+
+.wrong-btn::before {
+  content: "❌";
+  position: absolute;
+  left: 12px;
+  font-size: 1.4rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.wrong-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.wrong-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 
+    inset 5px 0 0 var(--jp-gold),
+    0 8px 24px rgba(201, 24, 24, 0.5);
+}
+
+/* Neutral Button */
+.neutral-btn {
+  background: linear-gradient(135deg, 
+    var(--jp-blue) 0%, 
+    var(--jp-blue-light) 100%) !important;
+  border: 2px solid rgba(212, 175, 55, 0.6) !important;
+  color: white !important;
+  box-shadow: 0 4px 16px rgba(30, 61, 89, 0.3);
+}
+
+.neutral-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(30, 61, 89, 0.4);
+}
+
+/* =============================================
+   ANSWER FEEDBACK BOX WITH JAPANESE STYLE
+   ============================================= */
+
+.answer-feedback {
+  display: inline-block;
+  padding: 18px 24px;
+  border-radius: 20px;
+  margin-top: 20px;
+  max-width: 600px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  
+  /* Dynamic background based on answer */
+  background: var(--feedback-bg, var(--jp-washi));
+  border: 2px dashed var(--feedback-border, var(--jp-gold));
+  box-shadow: 
+    0 8px 24px rgba(212, 175, 55, 0.15),
+    inset 0 0 0 1px rgba(212, 175, 55, 0.1);
+}
+
+.answer-feedback.is-correct {
+  --feedback-bg: linear-gradient(135deg, 
+    rgba(46, 90, 39, 0.08) 0%, 
+    rgba(74, 122, 66, 0.05) 100%);
+  --feedback-border: var(--jp-green);
+  border-style: solid;
+}
+
+.answer-feedback.is-wrong {
+  --feedback-bg: linear-gradient(135deg, 
+    rgba(201, 24, 24, 0.08) 0%, 
+    rgba(230, 55, 55, 0.05) 100%);
+  --feedback-border: var(--jp-red);
+  border-style: solid;
+}
+
+.answer-feedback strong {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.answer-feedback.is-correct strong {
+  color: var(--jp-green);
+}
+
+.answer-feedback.is-wrong strong {
+  color: var(--jp-red);
+}
+
+/* Explanation icon */
+.answer-feedback .explanation-icon {
+  font-size: 1.5rem;
+}
+
+/* =============================================
+   PROGRESS BAR WITH JAPANESE COLORS
+   ============================================= */
+
+.quiz-progress-bar {
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, 
+    var(--jp-red) 0%,
+    var(--jp-gold) 50%,
+    var(--jp-green) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.quiz-progress-bar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, 
+    transparent 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%);
+  animation: progress-shine 2s infinite;
+}
+
+@keyframes progress-shine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* =============================================
+   RESULT CARD WITH JAPANESE THEME
+   ============================================= */
+
+.result-summary {
+  background: linear-gradient(135deg,
+    var(--jp-washi) 0%,
+    var(--jp-washi-dark) 100%);
+  border: 3px solid var(--jp-gold);
+  border-radius: 24px;
+  padding: 32px;
+  text-align: center;
+  box-shadow: 
+    0 12px 40px rgba(212, 175, 55, 0.2),
+    inset 0 0 60px rgba(212, 175, 55, 0.05);
+}
+
+.result-summary .score-display {
+  font-size: 4rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--jp-red), var(--jp-gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 16px 0;
+}
+
+.result-summary .japanese-flag {
+  font-size: 3rem;
+  margin-bottom: 12px;
+  display: block;
+}
+
+/* =============================================
+   SECTION DIVIDERS WITH JAPANESE MOTIFS
+   ============================================= */
+
+.section-divider {
+  height: 4px;
+  background: linear-gradient(90deg,
+    var(--jp-red) 0%,
+    var(--jp-gold) 50%,
+    var(--jp-green) 100%);
+  border-radius: 2px;
+  margin: 32px 0;
+  position: relative;
+}
+
+.section-divider::after {
+  content: "・";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--jp-washi);
+  padding: 0 16px;
+  color: var(--jp-gold);
+  font-size: 1.2rem;
+}
+
+/* =============================================
+   CARD ENHANCEMENTS
+   ============================================= */
+
+.lesson-card,
+.reader-main,
+.reader-sidebar,
+.reader-block,
+.practice-box,
+.study-card {
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.96) 0%,
+    rgba(250, 248, 245, 0.92) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 
+    0 8px 32px rgba(26, 26, 26, 0.08),
+    inset 0 0 0 1px rgba(212, 175, 55, 0.08);
+}
+
+.lesson-card:hover,
+.reader-main:hover,
+.reader-sidebar:hover {
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 
+    0 16px 48px rgba(26, 26, 26, 0.12),
+    inset 0 0 0 1px rgba(212, 175, 55, 0.2),
+    0 0 0 4px rgba(212, 175, 55, 0.03);
+  transform: translateY(-4px);
+}
+
+/* =============================================
+   WASHI PAPER TEXTURE OVERLAY
+   ============================================= */
+
+.washi-texture {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1000;
+  opacity: 0.03;
+  background-image: 
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* =============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================= */
+
+@media (max-width: 768px) {
+  .correct-btn::before,
+  .wrong-btn::before {
+    font-size: 1.2rem;
+    left: 10px;
+  }
+  
+  .answer-feedback {
+    padding: 14px 18px;
+    font-size: 0.95rem;
+  }
+  
+  .result-summary .score-display {
+    font-size: 3rem;
+  }
+}

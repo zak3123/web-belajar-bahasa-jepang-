@@ -1,0 +1,427 @@
+[
+  {
+    "type": "vocabulary",
+    "level": "JLPT N5",
+    "title": "N5 Vocab 1: 私"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N5",
+    "title": "N5 Vocab 2: あなた"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N5",
+    "title": "N5 Vocab 3: 先生"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N5",
+    "title": "N5 Vocab 4: 学生"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N5",
+    "title": "N5 Vocab 5: 学校"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N5",
+    "title": "N5 Vocab 6: 友達"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N5",
+    "title": "N5 Vocab 7: 父"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N5",
+    "title": "N5 Vocab 8: 母"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N5",
+    "title": "N5 Vocab 9: 日曜日"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N5",
+    "title": "N5 Vocab 10: 月曜日"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N5",
+    "title": "N5 Vocab 11: 水"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N5",
+    "title": "N5 Vocab 12: 火"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N5",
+    "title": "N5 Vocab 13: 木"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N5",
+    "title": "N5 Vocab 14: 金"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N5",
+    "title": "N5 Vocab 15: 土"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N5",
+    "title": "N5 Vocab 16: 食べる"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N5",
+    "title": "N5 Vocab 17: 飲む"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N5",
+    "title": "N5 Vocab 18: 行く"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N5",
+    "title": "N5 Vocab 19: 来る"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N5",
+    "title": "N5 Vocab 20: 見る"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N4",
+    "title": "N4 Vocab 1: 会議"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N4",
+    "title": "N4 Vocab 2: 連絡"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N4",
+    "title": "N4 Vocab 3: 準備"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N4",
+    "title": "N4 Vocab 4: 計画"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N4",
+    "title": "N4 Vocab 5: 説明"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N4",
+    "title": "N4 Vocab 6: 訪問"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N4",
+    "title": "N4 Vocab 7: 経験"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N4",
+    "title": "N4 Vocab 8: 提案"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N4",
+    "title": "N4 Vocab 9: 管理"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N4",
+    "title": "N4 Vocab 10: 設計"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N4",
+    "title": "N4 Vocab 11: 健康"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N4",
+    "title": "N4 Vocab 12: 病気"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N4",
+    "title": "N4 Vocab 13: 病院"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N4",
+    "title": "N4 Vocab 14: 薬"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N4",
+    "title": "N4 Vocab 15: 熱"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N4",
+    "title": "N4 Vocab 16: 晴れ"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N4",
+    "title": "N4 Vocab 17: 雨"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N4",
+    "title": "N4 Vocab 18: 雪"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N4",
+    "title": "N4 Vocab 19: 風"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N4",
+    "title": "N4 Vocab 20: 曇り"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N3",
+    "title": "N3 Vocab 1: 方針"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N3",
+    "title": "N3 Vocab 2: 基準"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N3",
+    "title": "N3 Vocab 3: 評価"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N3",
+    "title": "N3 Vocab 4: 検討"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N3",
+    "title": "N3 Vocab 5: 実現"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N3",
+    "title": "N3 Vocab 6: 対応"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N3",
+    "title": "N3 Vocab 7: 改善"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N3",
+    "title": "N3 Vocab 8: 効率"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N3",
+    "title": "N3 Vocab 9: 影響"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N3",
+    "title": "N3 Vocab 10: 確保"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N3",
+    "title": "N3 Vocab 11: 仕事"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N3",
+    "title": "N3 Vocab 12: 職務"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N3",
+    "title": "N3 Vocab 13: 責任"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N3",
+    "title": "N3 Vocab 14: 任務"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N3",
+    "title": "N3 Vocab 15: 役割"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N2",
+    "title": "N2 Vocab 1: 措置"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N2",
+    "title": "N2 Vocab 2: 施策"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N2",
+    "title": "N2 Vocab 3: 動向"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N2",
+    "title": "N2 Vocab 4: 見解"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N2",
+    "title": "N2 Vocab 5: 配慮"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N2",
+    "title": "N2 Vocab 6: 調整"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N2",
+    "title": "N2 Vocab 7: 反映"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N2",
+    "title": "N2 Vocab 8: 促進"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N2",
+    "title": "N2 Vocab 9: 経済"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N2",
+    "title": "N2 Vocab 10: 財政"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N2",
+    "title": "N2 Vocab 11: 政策"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N2",
+    "title": "N2 Vocab 12: 制度"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N2",
+    "title": "N2 Vocab 13: 法規"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N2",
+    "title": "N2 Vocab 14: 条例"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N2",
+    "title": "N2 Vocab 15: 義務"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N1",
+    "title": "N1 Vocab 1: 懸念"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N1",
+    "title": "N1 Vocab 2: 覚悟"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N1",
+    "title": "N1 Vocab 3: 趣旨"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N1",
+    "title": "N1 Vocab 4: 趣向"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N1",
+    "title": "N1 Vocab 5: 根底"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N1",
+    "title": "N1 Vocab 6: 基調"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N1",
+    "title": "N1 Vocab 7: 妥当"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N1",
+    "title": "N1 Vocab 8: 断片的"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N1",
+    "title": "N1 Vocab 9: 包括的"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N1",
+    "title": "N1 Vocab 10: 相応"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N1",
+    "title": "N1 Vocab 11: 深遠"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N1",
+    "title": "N1 Vocab 12: 抽象的"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N1",
+    "title": "N1 Vocab 13: 具体的"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N1",
+    "title": "N1 Vocab 14: 形式的"
+  },
+  {
+    "type": "vocabulary",
+    "level": "JLPT N1",
+    "title": "N1 Vocab 15: 実質的"
+  }
+]

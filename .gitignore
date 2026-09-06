@@ -1,7 +1,9 @@
-outputs/
-work/
+node_modules/
+.env
+.env.local
+*.log
 .DS_Store
 Thumbs.db
-
-node_modules/
-package-lock.json
+.vercel
+.netlify
+server.log

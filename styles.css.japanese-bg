@@ -1,0 +1,428 @@
+/* ========================================
+   JAPANESE TRADITIONAL BACKGROUND & STYLES
+   ======================================== */
+
+:root {
+    --japanese-red: #c91818;
+    --japanese-gold: #d4af37;
+    --japanese-green: #2e5a27;
+    --japanese-blue: #1e3d59;
+    --sakura-light: #ffb7c5;
+    --sakura-dark: #ff6b8b;
+}
+
+/* ========== TRADITIONAL JAPANESE PATTERNS ========== */
+
+/* Seigaiha pattern (wave pattern - luck & prosperity) */
+.seigaiha-pattern {
+    background-image: 
+        radial-gradient(circle at 50% 50%, transparent 50%, var(--pattern-color, rgba(30, 61, 89, 0.1)) 50%),
+        radial-gradient(circle at 100% 0%, transparent 50%, var(--pattern-color, rgba(30, 61, 89, 0.1)) 50%),
+        radial-gradient(circle at 50% 100%, transparent 50%, var(--pattern-color, rgba(30, 61, 89, 0.1)) 50%),
+        radial-gradient(circle at 0% 0%, transparent 50%, var(--pattern-color, rgba(30, 61, 89, 0.1)) 50%);
+    background-size: 50px 50px;
+}
+
+/* Kikko pattern (hexagon - longevity) */
+.kikko-pattern {
+    background-image: 
+        linear-gradient(60deg, transparent 50%, var(--pattern-color, rgba(212, 175, 55, 0.15)) 50%),
+        linear-gradient(-60deg, transparent 50%, var(--pattern-color, rgba(212, 175, 55, 0.15)) 50%),
+        linear-gradient(180deg, transparent 50%, var(--pattern-color, rgba(212, 175, 55, 0.15)) 50%);
+    background-size: 40px 69px;
+}
+
+/* Senbon Zakura (cherry blossom petals) */
+.senbon-zakura {
+    background-image: 
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="50" cy="20" r="8" fill="%23ffb7c5" opacity="0.4"/><circle cx="80" cy="60" r="6" fill="%23ffb7c5" opacity="0.3"/><circle cx="20" cy="80" r="7" fill="%23ffb7c5" opacity="0.35"/><circle cx="50" cy="90" r="5" fill="%23ffb7c5" opacity="0.25"/><circle cx="90" cy="40" r="6" fill="%23ffb7c5" opacity="0.3"/><circle cx="10" cy="30" r="5" fill="%23ffb7c5" opacity="0.28"/></svg>');
+    background-size: 100px 100px;
+    background-position: center;
+}
+
+/* Shibori pattern (tie-dye inspired) */
+.shibori-pattern {
+    background-image: repeating-radial-gradient(
+        circle at 0% 0%,
+        transparent 0,
+        transparent 10px,
+        rgba(123, 31, 16, 0.05) 10px,
+        rgba(123, 31, 16, 0.05) 20px
+    );
+}
+
+/* Asanoha pattern (hemp leaf - growth) */
+.asanoha-pattern {
+    background-image: 
+        linear-gradient(60deg, transparent 50%, rgba(123, 31, 16, 0.08) 50%),
+        linear-gradient(-60deg, transparent 50%, rgba(123, 31, 16, 0.08) 50%),
+        linear-gradient(60deg, transparent 50%, rgba(123, 31, 16, 0.08) 50%),
+        linear-gradient(-60deg, transparent 50%, rgba(123, 31, 16, 0.08) 50%);
+    background-size: 30px 52px;
+}
+
+/* ========== BODY BACKGROUND WITH JAPANESE MOTIFS ========== */
+
+body {
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(
+        135deg,
+        #faf8f5 0%,
+        #fffefb 40%,
+        #f5efe6 80%,
+        #faeae2 100%
+    );
+}
+
+/* Layered traditional patterns */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.5;
+    
+    /* Multiple layered patterns */
+    background-image: 
+        /* Base seigaiha (blue waves) */
+        radial-gradient(circle at 50% 50%, transparent 50%, rgba(30, 61, 89, 0.05) 50%),
+        radial-gradient(circle at 100% 0%, transparent 50%, rgba(30, 61, 89, 0.05) 50%),
+        radial-gradient(circle at 50% 100%, transparent 50%, rgba(30, 61, 89, 0.05) 50%),
+        radial-gradient(circle at 0% 0%, transparent 50%, rgba(30, 61, 89, 0.05) 50%),
+        
+        /* Senbon zakura overlay */
+        url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Ccircle cx="50" cy="20" r="8" fill="%23ffb7c5" opacity="0.3"/%3E%3Ccircle cx="80" cy="60" r="6" fill="%23ffb7c5" opacity="0.25"/%3E%3Ccircle cx="20" cy="80" r="7" fill="%23ffb7c5" opacity="0.28"/%3E%3Ccircle cx="50" cy="90" r="5" fill="%23ffb7c5" opacity="0.22"/%3E%3Ccircle cx="90" cy="40" r="6" fill="%23ffb7c5" opacity="0.25"/%3E%3Ccircle cx="10" cy="30" r="5" fill="%23ffb7c5" opacity="0.23"/%3E%3C/svg%3E'),
+        
+        /* Subtle asanoha grid */
+        linear-gradient(60deg, transparent 50%, rgba(212, 175, 55, 0.03) 50%),
+        linear-gradient(-60deg, transparent 50%, rgba(212, 175, 55, 0.03) 50%),
+        
+        /* Gold dust effect */
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 20px,
+            rgba(212, 175, 55, 0.02) 20px,
+            rgba(212, 175, 55, 0.02) 40px
+        );
+    
+    pointer-events: none;
+}
+
+/* Corner decorations with kanji motifs */
+body::after {
+    content: '🌸';
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 48px;
+    opacity: 0.3;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* ========== IMPROVED QUIZ ANSWER UI ========== */
+
+/* Container for quiz answers */
+.answer-container {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #fff 0%, #faf8f5 100%);
+    box-shadow: 
+        0 4px 12px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Correct answer styling */
+.correct-answer {
+    background: linear-gradient(
+        135deg,
+        rgba(46, 90, 39, 0.08) 0%,
+        rgba(46, 90, 39, 0.03) 100%
+    );
+    border: 2px solid rgba(46, 90, 39, 0.3);
+    border-left: 5px solid rgba(46, 90, 39, 0.8);
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin: 10px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.correct-answer::before {
+    content: '✅';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    opacity: 0.6;
+}
+
+.correct-answer .answer-header {
+    color: var(--japanese-green);
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+
+.correct-answer .answer-text {
+    color: #1a1a1a;
+    line-height: 1.6;
+}
+
+/* Wrong answer styling */
+.wrong-answer {
+    background: linear-gradient(
+        135deg,
+        rgba(201, 59, 43, 0.08) 0%,
+        rgba(201, 59, 43, 0.03) 100%
+    );
+    border: 2px solid rgba(201, 59, 43, 0.3);
+    border-left: 5px solid rgba(201, 59, 43, 0.8);
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin: 10px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.wrong-answer::before {
+    content: '❌';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    opacity: 0.6;
+}
+
+.wrong-answer .answer-header {
+    color: var(--japanese-red);
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 8px;
+}
+
+.wrong-answer .answer-text {
+    color: #1a1a1a;
+    line-height: 1.6;
+}
+
+/* Answer explanation box */
+.answer-explanation {
+    background: linear-gradient(135deg, rgba(30, 61, 89, 0.05) 0%, rgba(30, 61, 89, 0.02) 100%);
+    border: 1px dashed rgba(30, 61, 89, 0.3);
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 15px;
+}
+
+.answer-explanation .explanation-title {
+    color: var(--japanese-blue);
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.answer-explanation .explanation-title::before {
+    content: '💡';
+}
+
+.answer-explanation .explanation-text {
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Progress indicator with Japanese colors */
+.progress-bar-container {
+    background: rgba(201, 59, 43, 0.1);
+    border-radius: 10px;
+    height: 8px;
+    margin: 15px 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        var(--japanese-red) 0%,
+        var(--japanese-gold) 50%,
+        var(--japanese-green) 100%
+    );
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+/* Result summary card */
+.result-summary {
+    background: linear-gradient(135deg, #fff 0%, #faf8f5 100%);
+    border: 2px solid rgba(201, 59, 43, 0.2);
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+}
+
+.result-summary::before {
+    content: '🎌';
+    font-size: 36px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.score-display {
+    font-size: 3em;
+    font-weight: bold;
+    color: var(--japanese-red);
+    margin: 15px 0;
+    text-shadow: 2px 2px 4px rgba(201, 59, 43, 0.2);
+}
+
+.streak-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--japanese-gold), #e8c547);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* ========== ENHANCED SAKURA WITH JAPANESE COLORS ========== */
+
+.sakura-petal {
+    background: linear-gradient(
+        145deg,
+        #ffd7df 0%,
+        #ffb7c5 40%,
+        #ff9eb5 80%
+    );
+    box-shadow: 
+        0 4px 12px rgba(255, 183, 197, 0.4),
+        inset 0 -2px 4px rgba(255, 255, 255, 0.5);
+}
+
+.sakura-petal::after {
+    background: radial-gradient(
+        circle,
+        rgba(255, 255, 255, 0.7),
+        rgba(255, 183, 197, 0.3) 70%
+    );
+}
+
+/* Multi-layer sakura for depth */
+.sakura-layer-foreground {
+    z-index: 80;
+    filter: blur(0);
+}
+
+.sakura-layer-midground {
+    z-index: 75;
+    filter: blur(1px);
+}
+
+.sakura-layer-background {
+    z-index: 70;
+    filter: blur(2px);
+    opacity: 0.7;
+}
+
+/* ========== JAPANESE-STYLED BUTTONS ========== */
+
+.correct-btn {
+    background: linear-gradient(135deg, var(--japanese-green) 0%, #3d7a36 100%);
+    color: white;
+    border: 2px solid rgba(46, 90, 39, 0.5);
+    box-shadow: 0 4px 12px rgba(46, 90, 39, 0.3);
+}
+
+.correct-btn:hover {
+    background: linear-gradient(135deg, #3d7a36 0%, var(--japanese-green) 100%);
+    box-shadow: 0 6px 16px rgba(46, 90, 39, 0.4);
+    transform: translateY(-2px);
+}
+
+.wrong-btn {
+    background: linear-gradient(135deg, var(--japanese-red) 0%, #c93838 100%);
+    color: white;
+    border: 2px solid rgba(201, 59, 43, 0.5);
+    box-shadow: 0 4px 12px rgba(201, 59, 43, 0.3);
+}
+
+.wrong-btn:hover {
+    background: linear-gradient(135deg, #c93838 0%, var(--japanese-red) 100%);
+    box-shadow: 0 6px 16px rgba(201, 59, 43, 0.4);
+    transform: translateY(-2px);
+}
+
+.neutral-btn {
+    background: linear-gradient(135deg, var(--japanese-blue) 0%, #2a4d6e 100%);
+    color: white;
+    border: 2px solid rgba(30, 61, 89, 0.5);
+    box-shadow: 0 4px 12px rgba(30, 61, 89, 0.3);
+}
+
+.neutral-btn:hover {
+    background: linear-gradient(135deg, #2a4d6e 0%, var(--japanese-blue) 100%);
+    box-shadow: 0 6px 16px rgba(30, 61, 89, 0.4);
+    transform: translateY(-2px);
+}
+
+/* ========== SECTION DIVIDERS ========== */
+
+.japanese-divider {
+    height: 3px;
+    margin: 30px 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--japanese-red) 20%,
+        var(--japanese-gold) 50%,
+        var(--japanese-green) 80%,
+        transparent 100%
+    );
+    position: relative;
+}
+
+.japanese-divider::before {
+    content: '・';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--japanese-red);
+    font-size: 20px;
+    background: inherit;
+    padding: 0 20px;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .correct-answer::before,
+    .wrong-answer::before {
+        font-size: 18px;
+        top: 8px;
+        right: 8px;
+    }
+    
+    body::after {
+        font-size: 32px;
+        top: 10px;
+        right: 10px;
+    }
+    
+    .score-display {
+        font-size: 2em;
+    }
+}

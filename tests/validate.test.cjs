@@ -108,11 +108,14 @@ check("soal tiap materi terelasi, jawaban benar dalam opsi, sesuai tipe", () => 
           assert.ok(m, "soal kana reverse harus menyebutkan romaji");
           assert.strictEqual(chosen, romajiToChar[m[1]], `romaji ${m[1]} harus -> ${romajiToChar[m[1]]}, dapat ${chosen}`);
         }
-      } else if (type === "vocabulary" || type === "kanji" || type === "reading" || type === "listening") {
+      } else if (type === "vocabulary" || type === "kanji") {
         if (type === "vocabulary") vocabCount++; if (type === "kanji") kanjiCount++;
         const mm = q.explanation.match(/artinya (.+)\.$/);
         assert.ok(mm, "explanation harus berisi arti");
         assert.strictEqual(chosen, mm[1], "opsi benar harus sama dengan arti di explanation");
+      } else if (type === "reading" || type === "listening") {
+        assert.ok(q.question.includes("Bacaan/Percakapan:"), "soal harus menyertakan teks/konteks");
+        assert.ok(q.explanation.includes(chosen), "penjelasan harus menyebutkan jawaban benar");
       } else if (type === "grammar") {
         grammarCount++;
         assert.ok(q.explanation.length > 0);
@@ -150,21 +153,33 @@ check("validateStructure lolos tanpa error", () => {
   assert.strictEqual(errs.length, 0, "Error struktur:\n" + errs.join("\n"));
 });
 
-check("READING/LISTENING tidak menghasilkan soal (bukan kuis kosakata)", () => {
+check("READING/LISTENING menghasilkan soal pemahaman (comprehension), bukan kuis kosakata acak", () => {
   const reading = data.lessons.filter((l) => lessonTypes[l[1]] === "reading").map((l) => l[1]);
   const listening = data.lessons.filter((l) => lessonTypes[l[1]] === "listening").map((l) => l[1]);
   [...reading, ...listening].forEach((t) => {
-    assert.strictEqual(buildLessonQuestions(t).length, 0, `${t} seharusnya kosong`);
+    const qs = buildLessonQuestions(t);
+    assert.ok(qs.length > 0, `${t} seharusnya punya soal pemahaman`);
+    qs.forEach((q) => {
+      assert.strictEqual(q.lessonId, t);
+      assert.ok(q.options.length >= 2, `${t} soal harus punya minimal 2 opsi`);
+      assert.ok(Number.isInteger(q.correctAnswer) && q.correctAnswer >= 0 && q.correctAnswer < q.options.length);
+    });
   });
 });
 
-check("GRAMMAR non-partikel mengembalikan kosong (tanpa fallback kosakata)", () => {
+check("GRAMMAR non-partikel menghasilkan soal rumpang/pola (bukan kosong, bukan fallback kosakata generik)", () => {
   const nonParticle = [
     "Waktu & Jam", "Angka & Counter Dasar", "Kata Kerja Bentuk MASU",
     "Kata Sifat I dan NA", "Bentuk TE Dasar", "Bentuk TE IMASU", "Tai Form Keinginan"
   ];
   nonParticle.forEach((t) => {
-    assert.strictEqual(buildLessonQuestions(t).length, 0, `${t} seharusnya kosong (data tidak terstruktur)`);
+    const qs = buildLessonQuestions(t);
+    assert.ok(qs.length > 0, `${t} seharusnya punya soal`);
+    qs.forEach((q) => {
+      assert.strictEqual(q.lessonId, t);
+      assert.ok(q.options.length >= 2, `${t} soal harus punya minimal 2 opsi`);
+      assert.ok(Number.isInteger(q.correctAnswer) && q.correctAnswer >= 0 && q.correctAnswer < q.options.length);
+    });
   });
 });
 

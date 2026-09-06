@@ -71,6 +71,14 @@ function initSakura() {
   const layer = document.querySelector(".sakura-layer");
   if (!layer || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
+  // Add washi paper texture overlay
+  let washiTexture = document.querySelector('.washi-texture');
+  if (!washiTexture) {
+    washiTexture = document.createElement('div');
+    washiTexture.className = 'washi-texture';
+    document.body.appendChild(washiTexture);
+  }
+
   layer.innerHTML = "";
   const amount = window.innerWidth < 760 ? 18 : 34;
   for (let index = 0; index < amount; index += 1) {
@@ -385,9 +393,18 @@ function renderQuestion() {
   if (topicEl) topicEl.textContent = activeQuizLesson ? `Materi: ${activeQuizLesson}` : "Kuis Campuran";
   if (textEl) textEl.textContent = question.question;
   if (choicesEl) {
-    choicesEl.innerHTML = question.options.map((choice, index) => `
-      <button data-choice="${index}">${choice}</button>
-    `).join("");
+    const question = activeQuizQuestions[activeQuestion];
+    choicesEl.innerHTML = question.options.map((choice, index) => {
+      let btnClass = "cta-secondary";
+      if (quizAnswered) {
+        if (index === question.correctAnswer) {
+          btnClass = "cta-primary correct-btn";
+        } else if (index === answerIndex && !isCorrect) {
+          btnClass = "cta-danger wrong-btn";
+        }
+      }
+      return `<button data-choice="${index}" class="${btnClass}">${choice}</button>`;
+    }).join("");
   }
 }
 
@@ -543,7 +560,7 @@ document.addEventListener("click", (event) => {
       quizXp += 10;
       if (feedbackBox) {
         feedbackBox.textContent = "Benar!";
-        feedbackBox.className = "quiz-feedback is-correct-fb";
+        feedbackBox.className = "quiz-feedback is-hidden is-correct";
       }
       recordActivity(`Menjawab kuis dengan benar (${question.lessonId})`, 10, 1);
     } else {
@@ -551,7 +568,7 @@ document.addEventListener("click", (event) => {
       recordActivity(`Menjawab kuis salah (${question.lessonId})`, 0, -1);
       if (feedbackBox) {
         feedbackBox.textContent = "Belum tepat";
-        feedbackBox.className = "quiz-feedback is-wrong-fb";
+        feedbackBox.className = "quiz-feedback is-hidden is-wrong";
       }
     }
     if (explainBox) {
