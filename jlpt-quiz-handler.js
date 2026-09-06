@@ -148,22 +148,34 @@ function buildAndStartJLPTQuiz(lessonTitle, questionCount, levels) {
       const lesson = data.lessonDetails[`Simulasi JLPT ${level}`];
       const vocab = lesson.vocab || [];
       
-      // Generate quiz questions from vocabulary
+      // Generate quiz questions from vocabulary - improve quality
       vocab.forEach((row, idx) => {
         if (row[0] && row[2]) {
           const correct = row[2];
-          const distractors = generateDistractors(correct, vocab, row[2]);
+          const romaji = row[1] || '';
+          
+          // Create diverse question types for better engagement
+          const questionTypes = [
+            `Arti dari "${row[0]}" adalah...`,
+            `Kata "${row[0]}" berarti...`,
+            `"${row[0]}" dalam bahasa Indonesia artinya...`,
+            `Apa terjemahan dari "${row[0]}"?`
+          ];
+          const randomQuestionType = questionTypes[Math.floor(Math.random() * questionTypes.length)];
+          
+          // Generate distractors with better variation
+          const distractors = generateQualityDistractors(correct, vocab, row[2], romaji);
           
           if (distractors.length >= 3) {
             allQuestions.push({
-              id: `jlpt_${level}_q${idx}`,
+              id: `jlpt_${level}_q${idx}_${Date.now()}`,
               lessonId: `Simulasi JLPT ${level}`,
               category: level,
               type: "vocabulary",
-              question: `Arti dari "${row[0]}" adalah...`,
+              question: randomQuestionType,
               options: shuffle([correct, ...distractors.slice(0, 3)]),
               correctAnswer: [correct, ...distractors.slice(0, 3)].indexOf(correct),
-              explanation: `"${row[0]}" dibaca ${row[1]} dan berarti ${correct}.`
+              explanation: `${romaji ? `"${row[0]}" dibaca "${romaji}" dan berarti "${correct}".` : `"${row[0]}" berarti "${correct}".`}`
             });
           }
         }
@@ -171,12 +183,18 @@ function buildAndStartJLPTQuiz(lessonTitle, questionCount, levels) {
     }
   });
   
-  // Shuffle and limit to selected count
-  if (allQuestions.length > questionCount) {
-    allQuestions = shuffle(allQuestions).slice(0, questionCount);
+  console.log(`Total questions in pool: ${allQuestions.length}`);
+  console.log(`Requested question count: ${questionCount}`);
+  
+  // Ensure we have at least the requested amount or use available
+  const finalCount = Math.min(questionCount, allQuestions.length);
+  
+  // Use Fisher-Yates shuffle for perfect randomization
+  if (allQuestions.length > finalCount) {
+    allQuestions = allQuestions.sort(() => Math.random() - 0.5).slice(0, finalCount);
   }
   
-  console.log(`Generated ${allQuestions.length} questions for JLPT Quick Quiz`);
+  console.log(`Final questions for quiz: ${allQuestions.length}`);
   
   if (allQuestions.length === 0) {
     alert("Maaf, tidak ada pertanyaan yang tersedia untuk level yang dipilih.");
@@ -193,13 +211,29 @@ function buildAndStartJLPTQuiz(lessonTitle, questionCount, levels) {
   showQuizQuestion();
 }
 
-function generateDistractors(correctAnswer, vocabPool, currentIdx) {
+// Better distractor generation with quality control
+function generateQualityDistractors(correctAnswer, vocabPool, currentIdx, romaji = '') {
+  console.log(`Generating distractors for "${currentIdx}"`);
+  
   // Get other meanings from vocab pool as distractors
   const otherMeanings = vocabPool
-    .filter(row => row[2] !== correctAnswer && row[2])
-    .map(row => row[2]);
+    .filter(row => row[2] !== correctAnswer && row[2] && row[2].trim().length > 0)
+    .map(row => ({
+      meaning: row[2],
+      romaji: row[1] || '',
+      original: row[0]
+    }));
   
-  return shuffle(otherMeanings);
+  // Shuffle and pick top 3-5 unique distractors
+  const shuffled = otherMeanings.sort(() => Math.random() - 0.5);
+  
+  // Take up to 5 candidates then randomly select 3
+  const candidates = shuffled.slice(0, Math.min(5, shuffled.length));
+  const selectedDistractors = candidates.sort(() => Math.random() - 0.5).slice(0, 3);
+  
+  console.log(`Generated ${selectedDistractors.length} distractors`);
+  
+  return selectedDistractors.map(d => d.meaning);
 }
 
 // Add CSS styles for the selection modal
