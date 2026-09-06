@@ -1,4 +1,4 @@
-const data = {
+﻿const data = {
   categories: [
     ["administrasi n3", "5 kosakata"],
     ["akademik n1", "20 kosakata"],
@@ -316,12 +316,31 @@ const comprehensionQuizBank = {
   "Simulasi JLPT N5": [
     ["問題を読んでください", "Instruksi tersebut meminta Anda untuk...", "Membaca soal", ["Membaca soal", "Menulis email", "Membeli tiket", "Menunggu teman"]],
     ["正しい答えを選んでください", "Apa yang harus dipilih?", "Jawaban yang benar", ["Jawaban yang benar", "Kanji tersulit", "Kata terpanjang", "Waktu tercepat"]],
-    ["時間を計って練習します", "Apa yang dilakukan saat berlatih?", "Mengukur waktu", ["Menghafal warna", "Mengukur waktu", "Membeli buku", "Menutup pintu"]]
+    ["時間を計って練習します", "Apa yang dilakukan saat berlatih?", "Mengukur waktu", ["Menghafal warna", "Mengukur waktu", "Membeli buku", "Menutup pintu"]],
+    ["こんにちは、元気にしていますか？", "Apa arti sapaan ini?", "Halo, apa kabar?", ["Selamat malam", "Terima kasih", "Sampai jumpa", "Permisi"]],
+    ["これは私の本です", "Kalimat ini menunjukkan...", "Kepemilikan", ["Kegiatan", "Lokasi", "Waktu", "Penjelasan"]],
+    ["学校へ行きます", "Maksud kalimat tersebut adalah...", "Pergi ke sekolah", ["Pulang dari sekolah", "Di sekolah", "Dari rumah ke kantor", "Ke perpustakaan"]],
+    ["おはようございます", "Kapan kata ini biasanya diucapkan?", "Saat pagi hari", ["Siang hari", "Malam hari", "Saat bertemu", "Saat pamitan"]],
+    ["ありがとう", "Ungkapan ini digunakan untuk...", "Mengucapkan terima kasih", ["Meminta maaf", "Perkenalan diri", "Bertanya nama", "Berterima kasih"]],
+    ["すみません", "Dalam situasi apa ini digunakan?", "Permisi/Maaf", ["Selamat tinggal", "Selamat datang", "Semoga sehat", "Selamat belajar"]],
+    ["はい、わかりました", "Respon ini berarti...", "Ya, saya mengerti", ["Tidak, tidak paham", "Mungkin nanti", "Baiklah", "Tunggu sebentar"]],
+    ["ありがとうございます", "Ini adalah bentuk... dari 'arigato'", "Terima kasih (sopan)", ["Maaf", "Selamat", "Selamat tinggal", "Permintaan"]],
+    ["さようなら", "Kata ini digunakan untuk...", "Perpisahan/sampai jumpa", ["Sapaan pagi", "Ucapan terima kasih", "Ucapan minta maaf", "Sapaan siang"]],
+    ["おやすみなさい", "Kapan mengucapkan ini?", "Sebelum tidur", ["Saat makan", "Saat bangun", "Saat pergi", "Saat pulang"]],
+    ["たべます", "Kata kerja ini berarti...", "Makan", ["Minum", "Tidur", "Belajar", "Pergi"]],
+    ["のみます", "Arti dari kata ini adalah...", "Minum", ["Makan", "Tidur", "Main", "Bekerja"]]
   ],
   "Simulasi JLPT N4": [
     ["日本語が読めます", "Apa kemampuan pembicara?", "Bisa membaca bahasa Jepang", ["Bisa menulis bahasa Jepang", "Bisa membaca bahasa Jepang", "Tidak bisa berbicara", "Sedang pergi ke Jepang"]],
     ["行ったことがあります", "Apa makna pola tersebut?", "Pernah pergi", ["Akan pergi", "Sedang pergi", "Pernah pergi", "Tidak pergi"]],
-    ["勉強しなければなりません", "Apa yang harus dilakukan?", "Harus belajar", ["Tidak boleh belajar", "Harus belajar", "Pernah belajar", "Ingin belajar"]]
+    ["勉強しなければなりません", "Apa yang harus dilakukan?", "Harus belajar", ["Tidak boleh belajar", "Harus belajar", "Pernah belajar", "Ingin belajar"]],
+    ["雨降っています", "Sedang terjadi apa?", "Hujan turun", ["Cerah", "Badai", "Salju", "Angin kencang"]],
+    ["友達が来ました", "Siapa yang melakukan aksi?", "Tetangga/friend datang", ["Temannya datang", "Ibu datang", "Ayah datang", "Guru datang"]],
+    ["毎日勉強します", "Seberapa sering?", "Setiap hari", ["Sekali sehari", "Dua kali sehari", "Mingguan", "Jarang"]],
+    ["先生に会います", "Dengan siapa bertemu?", "Guru/baik", ["Rumah", "Teman", "Tempat", "Halaman"]],
+    ["公園で遊びます", "Mereka akan bermain di mana?", "Di taman", ["Di rumah", "Di sekolah", "Di toko", "Di kantor"]],
+    ["昨日買い物をしました", "Kapan berbelanja?", "Kemarin", ["Hari ini", "Besok", "Lusa", "Minggu lalu"]],
+    ["電車で学校へ行きます", "Menggunakan transportasi apa?", "Kereta/mobil", ["Bus", "Kendaraan", "Berjalan kaki", "Pesawat"]]
   ],
   "Simulasi JLPT N3": [
     ["安ければ買います", "Dalam kondisi apa pembicara akan membeli?", "Jika murah", ["Jika mahal", "Jika murah", "Jika hujan", "Jika libur"]],
@@ -535,6 +554,146 @@ data.categories = [
   ["sekolah", "10 kosakata"], ["transportasi", "15 kosakata"], ["kantor & pekerjaan", "10 kosakata"], ["kesehatan", "10 kosakata"],
   ["cuaca & sifat", "10 kosakata"], ["kata kerja dasar", "15 kosakata"], ["kanji utama", `${data.kana.kanji.length} kanji`], ["aksara dasar", `${data.kana.hiragana.length + data.kana.katakana.length} huruf`]
 ];
+
+// ==========================================
+// XP PROGRESS TRACKING SYSTEM & QUIZ CONFIG
+// ==========================================
+const XP_STORAGE_KEY = 'japanese_xp_progress';
+
+// Global random seed untuk quiz shuffle (perubahan setiap load)
+let currentQuizSeed = Math.random();
+
+// Konfigurasi jumlah soal per jenis kuis
+const QUIZ_CONFIG = {
+  MIN_QUESTIONS: 10,        // Minimal soal per kuis
+  DEFAULT_QUESTIONS: 15,    // Default jumlah soal
+  MAX_QUESTIONS: 50,        // Maksimal soal per sesi
+  MIXED_QUIZ_POOL_SIZE: 30  // Pool soal campuran untuk variasi
+};
+
+function getShuffledArray(array) {
+    // Fisher-Yates shuffle dengan Math.random() untuk randomisasi sempurna
+    let result = [...array];
+    for (let i = result.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [result[i], result[j]] = [result[j], result[i]];
+    }
+    return result;
+}
+
+function loadXPProgress() {
+  try {
+    const saved = localStorage.getItem(XP_STORAGE_KEY);
+    return saved ? JSON.parse(saved) : {
+      totalXp: 0,
+      quizzesCompleted: 0,
+      correctAnswers: 0,
+      wrongAnswers: 0,
+      lastActiveDate: null,
+      dailyXp: {}, // { '2024-01-15': 100 }
+      lessonStreak: 0
+    };
+  } catch (e) {
+    console.error('Error loading XP progress:', e);
+    return getDefaultXP();
+  }
+}
+
+function saveXPProgress(progress) {
+  try {
+    localStorage.setItem(XP_STORAGE_KEY, JSON.stringify(progress));
+    updateXpDisplay(progress);
+  } catch (e) {
+    console.error('Error saving XP progress:', e);
+  }
+}
+
+function getDefaultXP() {
+  return {
+    totalXp: 0,
+    quizzesCompleted: 0,
+    correctAnswers: 0,
+    wrongAnswers: 0,
+    lastActiveDate: null,
+    dailyXp: {},
+    lessonStreak: 0
+  };
+}
+
+function getXpForAnswer(isCorrect) {
+  return isCorrect ? 10 : 2; // Benar: 10 XP, Salah: 2 XP (untuk tetap belajar)
+}
+
+function recordQuizCompletion(correctCount, wrongCount, xpEarned) {
+  const now = new Date();
+  const dateKey = now.toISOString().split('T')[0]; // '2024-01-15'
+  
+  const progress = loadXPProgress();
+  progress.totalXp += xpEarned;
+  progress.quizzesCompleted += 1;
+  progress.correctAnswers += correctCount;
+  progress.wrongAnswers += wrongCount;
+  
+  if (!progress.dailyXp[dateKey]) {
+    progress.dailyXp[dateKey] = 0;
+  }
+  progress.dailyXp[dateKey] += xpEarned;
+  
+  // Check streak
+  if (progress.lastActiveDate === dateKey) {
+    progress.lessonStreak += 1;
+  } else {
+    // Reset streak if more than 1 day passed
+    const lastDate = new Date(progress.lastActiveDate);
+    const today = new Date(dateKey);
+    const diffDays = Math.floor((today - lastDate) / (1000 * 60 * 60 * 24));
+    progress.lessonStreak = diffDays <= 1 ? progress.lessonStreak + 1 : 1;
+  }
+  
+  progress.lastActiveDate = dateKey;
+  saveXPProgress(progress);
+}
+
+function getProgressStats() {
+  const progress = loadXPProgress();
+  const totalQuizzes = progress.quizzesCompleted;
+  const accuracy = totalQuizzes > 0 
+    ? Math.round((progress.correctAnswers / totalQuizzes) * 100) 
+    : 0;
+  
+  return {
+    totalXp: progress.totalXp,
+    quizzesCompleted: progress.quizzesCompleted,
+    correctAnswers: progress.correctAnswers,
+    wrongAnswers: progress.wrongAnswers,
+    accuracy: accuracy,
+    currentStreak: progress.lessonStreak,
+    lastActiveDate: progress.lastActiveDate
+  };
+}
+
+function updateXpDisplay(stats) {
+  // Update UI jika ada elemen dengan ID terkait
+  const xpEl = document.getElementById('total-xp');
+  if (xpEl) {
+    xpEl.textContent = stats.totalXp.toLocaleString() + ' XP';
+  }
+  
+  const quizzesEl = document.getElementById('quizzes-completed');
+  if (quizzesEl) {
+    quizzesEl.textContent = stats.quizzesCompleted + ' Kuis';
+  }
+  
+  const accuracyEl = document.getElementById('accuracy-rate');
+  if (accuracyEl) {
+    accuracyEl.textContent = stats.accuracy + '% Akurasi';
+  }
+}
+
+function resetXPProgress() {
+  localStorage.removeItem(XP_STORAGE_KEY);
+  console.log('XP Progress direset');
+}
 
 const lessonSummaryOverrides = {
   "Hiragana Dasar": `${data.kana.hiragana.length} huruf Hiragana dasar dan contoh kata untuk latihan baca.`,
@@ -1069,15 +1228,23 @@ function buildLessonQuestions(title) {
   }
 }
 
+// Array penjelasan untuk kuis umum (lebih banyak variasi)
+const generalExplanations = [
+  "「ご飯」(gohan) berarti nasi atau makanan secara umum.",
+  "Huruf Hiragana untuk bunyi 'ka' adalah か.",
+  "Partikel は (wa) menandai topik kalimat.",
+  "Kanji 水 (mizu/sui) berarti air.",
+  "Bentuk sopan kata kerja makan adalah 食べます (tabemasu).",
+  "Partikel を (o) menandai objek langsung dalam kalimat.",
+  "Kata sifat い-adjjective dapat langsung menerangkan benda.",
+  "Bentuk negatif ません untuk kata kerja bentuk masu.",
+  "Kata sifat な-adjjective membutuhkan な sebelum noun.",
+  "Tenses lampau menggunakan -ました atau -た"
+];
+
 function buildGeneralQuestions() {
-  const explanations = [
-    "「ご飯」(gohan) berarti nasi atau makanan secara umum.",
-    "Huruf Hiragana untuk bunyi 'ka' adalah か.",
-    "Partikel は (wa) menandai topik kalimat.",
-    "Kanji 水 (mizu/sui) berarti air.",
-    "Bentuk sopan kata kerja makan adalah 食べます (tabemasu)."
-  ];
-  return data.questions.map((q, i) => ({
+  // Konversi semua data.questions menjadi object question dengan ID
+  const allQuestions = data.questions.map((q, i) => ({
     id: `umum__${i}`,
     lessonId: "umum",
     category: "Campuran",
@@ -1085,8 +1252,19 @@ function buildGeneralQuestions() {
     question: q.text,
     options: q.choices.slice(),
     correctAnswer: q.answer,
-    explanation: explanations[i] || ""
+    explanation: generalExplanations[i] || generalExplanations[Math.floor(Math.random() * generalExplanations.length)]
   }));
+  
+  // ACAK SEMUA SOAL DENGAN FISHER-YATES SHUFFLE!
+  const shuffledQuestions = getShuffledArray(allQuestions);
+  
+  // Ambil soal berdasarkan konfigurasi - MINIMAL 10 SOAL!
+  const numQuestions = Math.min(
+    QUIZ_CONFIG.MIN_QUESTIONS + Math.floor(Math.random() * 5), // Random 10-14 soal
+    shuffledQuestions.length
+  );
+  
+  return shuffledQuestions.slice(0, numQuestions);
 }
 
 function validateContent() {
@@ -1218,4 +1396,5 @@ if (typeof module !== "undefined" && module.exports) {
     validateStructure
   };
 }
+
 
